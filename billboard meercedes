@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rental Yield Calculator</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <!-- Left Section -->
+    <div class="form-section">
+      <h1>Rental yield calculator</h1>
+      <p>Work out how much money your rental property could bring in each year.</p>
+
+      <div class="input-group">
+        <label for="propertyValue">Current value of property</label>
+        <div class="input-prefix">
+          <span>£</span>
+          <input type="number" id="propertyValue" step="0.01" placeholder="0" />
+        </div>
+        <small class="error" id="propertyError"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="monthlyRent">Monthly rent</label>
+        <div class="input-prefix">
+          <span>£</span>
+          <input type="number" id="monthlyRent" step="0.01" placeholder="0" />
+        </div>
+        <small class="error" id="rentError"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="monthlyMortgage">Monthly mortgage payments (optional)</label>
+        <div class="input-prefix">
+          <span>£</span>
+          <input type="number" id="monthlyMortgage" step="0.01" placeholder="0" />
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="monthlyCosts">
+          Monthly costs (optional)
+          <span class="info-toggle" onclick="toggleInfo()">What does this include?</span>
+        </label>
+        <div class="input-prefix">
+          <span>£</span>
+          <input type="number" id="monthlyCosts" step="0.01" placeholder="0" />
+        </div>
+        <div id="infoText" class="info-text hidden">
+          This can include things like: insurance cost, property maintenance, agent management fees, service charge and ground rent, or maintenance funds for future repairs.
+        </div>
+      </div>
+
+      <button onclick="calculateYield()">Calculate rental yield</button>
+    </div>
+
+    <!-- Right Section -->
+    <div class="result-section">
+      <h2>Rental yield breakdown</h2>
+      <p><strong>Gross rental yield:</strong> <span id="grossYield">0%</span></p>
+      <p><strong>Net rental yield:</strong> <span id="netYield">0%</span></p>
+      <p><strong>Net annual return:</strong> <span id="netReturn">£0.00</span></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+📁 styles.css
+css
+Copy
+Edit
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f6f2;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.form-section,
+.result-section {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+h1, h2 {
+  color: #2c004b;
+}
+
+.input-group {
+  margin-top: 20px;
+}
+
+.input-prefix {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 5px 10px;
+}
+
+.input-prefix span {
+  color: #333;
+  margin-right: 6px;
+}
+
+.input-prefix input {
+  flex: 1;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+button {
+  margin-top: 25px;
+  width: 100%;
+  background-color: #4b0082;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.result-section p {
+  font-size: 18px;
+  margin: 12px 0;
+}
+
+.result-section span {
+  color: purple;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+}
+
+input.error-border {
+  border-color: red;
+}
+
+.info-toggle {
+  color: #4b0082;
+  font-size: 14px;
+  margin-left: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.info-text {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+📁 script.js
+javascript
+Copy
+Edit
+function toggleInfo() {
+  const info = document.getElementById("infoText");
+  info.classList.toggle("hidden");
+}
+
+function calculateYield() {
+  // Get values
+  const propertyValue = parseFloat(document.getElementById("propertyValue").value) || 0;
+  const monthlyRent = parseFloat(document.getElementById("monthlyRent").value) || 0;
+  const mortgage = parseFloat(document.getElementById("monthlyMortgage").value) || 0;
+  const expenses = parseFloat(document.getElementById("monthlyCosts").value) || 0;
+
+  // DOM elements
+  const grossYield = document.getElementById("grossYield");
+  const netYield = document.getElementById("netYield");
+  const netReturn = document.getElementById("netReturn");
+  const propertyError = document.getElementById("propertyError");
+  const rentError = document.getElementById("rentError");
+
+  // Reset errors
+  propertyError.textContent = "";
+  rentError.textContent = "";
+  document.getElementById("propertyValue").classList.remove("error-border");
+  document.getElementById("monthlyRent").classList.remove("error-border");
+
+  let hasError = false;
+
+  // Validate property value
+  if (propertyValue < 25000) {
+    propertyError.textContent = "Please enter a minimum value of £25,000";
+    document.getElementById("propertyValue").classList.add("error-border");
+    hasError = true;
+  }
+
+  // Validate monthly rent
+  if (monthlyRent <= 0) {
+    rentError.textContent = "Amount missing";
+    document.getElementById("monthlyRent").classList.add("error-border");
+    hasError = true;
+  }
+
+  if (hasError) {
+    grossYield.textContent = "0%";
+    netYield.textContent = "0%";
+    netReturn.textContent = "£0.00";
+    return;
+  }
+
+  // Calculation
+  const annualRent = monthlyRent * 12;
+  const annualCosts = (mortgage + expenses) * 12;
+  const gross = (annualRent / propertyValue) * 100;
+  const net = ((annualRent - annualCosts) / propertyValue) * 100;
+  const netAnnual = annualRent - annualCosts;
+
+  // Display result
+  grossYield.textContent = `${gross.toFixed(1)}%`;
+  netYield.textContent = `${net.toFixed(1)}%`;
+  netReturn.textContent = `${netAnnual < 0 ? '-' : ''}£${Math.abs(netAnnual).toFixed(2)}`;
