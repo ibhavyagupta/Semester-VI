@@ -15,30 +15,45 @@ function calculateYield() {
   const monthlyMortgage = parseFloat(mortgageInput.value) || 0;
   const monthlyExpenses = parseFloat(expensesInput.value) || 0;
 
-  // Elements for error display
   const propertyError = document.getElementById("propertyError");
-  const rentError = document.getElementById("rentError");
+const rentError = document.getElementById("rentError");
 
-  // Reset error states
-  propertyError.textContent = "";
-  rentError.textContent = "";
-  propertyValueInput.classList.remove("error-border");
-  monthlyRentInput.classList.remove("error-border");
+// Reset error states
+propertyError.innerHTML = "";
+rentError.innerHTML = "";
+propertyValueInput.classList.remove("error-border");
+monthlyRentInput.classList.remove("error-border");
 
-  let hasError = false;
+let hasError = false;
 
-  // Validation
-  if (propertyValue < 25000) {
-    propertyError.textContent = "Please enter a minimum value of £25,000";
-    propertyValueInput.classList.add("error-border");
-    hasError = true;
-  }
+// Helper to show error with icon
+function showError(container, message) {
+  const img = document.createElement("img");
+  img.src = "assets/error-icon.svg"; // Replace with your actual path
+  img.alt = "Error";
+  img.className = "error-icon";
 
-  if (monthlyRent <= 0) {
-    rentError.textContent = "Amount missing";
-    monthlyRentInput.classList.add("error-border");
-    hasError = true;
-  }
+  const text = document.createTextNode(message);
+
+  container.appendChild(img);
+  container.appendChild(text);
+  container.style.display = "flex";
+  container.style.alignItems = "center";
+  container.style.gap = "6px";
+}
+
+// Validation
+if (propertyValue < 25000) {
+  showError(propertyError, "Please enter a minimum value of £25,000");
+  propertyValueInput.classList.add("error-border");
+  hasError = true;
+}
+
+if (monthlyRent <= 0) {
+  showError(rentError, "Amount missing");
+  monthlyRentInput.classList.add("error-border");
+  hasError = true;
+}
 
   // Output fields
   const grossYieldEl = document.getElementById("grossYield");
