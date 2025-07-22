@@ -399,30 +399,41 @@
 }
 ---------------------------------------------------------------------------------------------
  <div class="info-toggle" onclick="toggleInfo()">
-                        What does this include?
-                        <img id="chevronIcon" src="/Chevron-down.svg" alt="Toggle Info" class="chevron-icon" />
+  What does this include?
+  <img id="chevronIcon" src="/Chevron-down.svg" alt="Toggle Info" class="chevron-icon" />
 </div>
 
- <div id="infoText" class="info-text hidden">
-                        This covers costs like building insurance, boiler insurance, property maintenance, agent
-                        management fees, etc.
- </div>
-            
+<div id="infoText" class="info-text collapsed">
+  This covers costs like building insurance, boiler insurance, property maintenance, agent
+  management fees, etc.
+</div>
+
+
+.info-text {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+}
+
+.info-text.active {
+  max-height: 500px;
+}
+
+.chevron-icon {
+  transition: transform 0.3s ease;
+  margin-left: 8px;
+}
+
+/* Rotate icon when info-text is active */
+.info-text.active + .chevron-icon,
+.info-toggle.active .chevron-icon {
+  transform: rotate(180deg);
+}
+
 function toggleInfo() {
   const infoText = document.getElementById("infoText");
-  const chevronIcon = document.getElementById("chevronIcon");
+  const toggle = document.querySelector(".info-toggle");
 
-  const isHidden = infoText.classList.contains("hidden");
-
-  if (isHidden) {
-    // Show info
-    infoText.classList.remove("hidden");
-    infoText.classList.add("slide-down");
-    chevronIcon.src = "/Chevron-up.svg";
-  } else {
-    // Hide info
-    infoText.classList.remove("slide-down");
-    infoText.classList.add("hidden");
-    chevronIcon.src = "/Chevron-down.svg";
-  }
+  infoText.classList.toggle("active");
+  toggle.classList.toggle("active");
 }
