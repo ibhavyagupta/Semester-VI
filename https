@@ -398,28 +398,28 @@
   outline: none;
 }
 ---------------------------------------------------------------------------------------------
-<div class="info-toggle" onclick="toggleInfo()">
-  What does this include?
-  <img id="chevronIcon" src="down-arrow.png" alt="Toggle Info" class="chevron-icon" />
+ <div class="info-toggle" onclick="toggleInfo()">
+                        What does this include?
+                        <img id="chevronIcon" src="/Chevron-down.svg" alt="Toggle Info" class="chevron-icon" />
 </div>
 
-<div id="infoText" class="info-text hidden">
-  This covers costs like building insurance, boiler insurance, property maintenance, agent
-  management fees, etc.
-</div>
+ <div id="infoText" class="info-text hidden">
+                        This covers costs like building insurance, boiler insurance, property maintenance, agent
+                        management fees, etc.
+ </div>
+            
+        function toggleInfo() {
+            const infoText = document.getElementById("infoText");
+            const chevronIcon = document.getElementById("chevronIcon");
 
-function toggleInfo() {
-  const infoText = document.getElementById("infoText");
-  const chevronIcon = document.getElementById("chevronIcon");
+            const isOpen = infoText.classList.toggle("slide");
 
-  const isOpen = infoText.classList.toggle("slide");
+            // Swap arrow image
+            chevronIcon.src = isOpen ? "/Chevron-up.svg" : "/Chevron-down.svg";
 
-  // Swap arrow image
-  chevronIcon.src = isOpen ? "up-arrow.png" : "down-arrow.png";
-
-  // Optional reset for display if you're hiding it with `display: none`
-  if (!isOpen) {
-    infoText.style.display = "none";
-    setTimeout(() => (infoText.style.display = ""), 300);
-  }
-}
+            // Optional reset for display if you're hiding it with `display: none`
+            if (!isOpen) {
+                infoText.style.display = "block";
+                setTimeout(() => (infoText.style.display = ""), 300);
+            }
+        }
