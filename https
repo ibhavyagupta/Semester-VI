@@ -408,18 +408,21 @@
                         management fees, etc.
  </div>
             
-        function toggleInfo() {
-            const infoText = document.getElementById("infoText");
-            const chevronIcon = document.getElementById("chevronIcon");
+function toggleInfo() {
+  const infoText = document.getElementById("infoText");
+  const chevronIcon = document.getElementById("chevronIcon");
 
-            const isOpen = infoText.classList.toggle("slide");
+  const isHidden = infoText.classList.contains("hidden");
 
-            // Swap arrow image
-            chevronIcon.src = isOpen ? "/Chevron-up.svg" : "/Chevron-down.svg";
-
-            // Optional reset for display if you're hiding it with `display: none`
-            if (!isOpen) {
-                infoText.style.display = "block";
-                setTimeout(() => (infoText.style.display = ""), 300);
-            }
-        }
+  if (isHidden) {
+    // Show info
+    infoText.classList.remove("hidden");
+    infoText.classList.add("slide-down");
+    chevronIcon.src = "/Chevron-up.svg";
+  } else {
+    // Hide info
+    infoText.classList.remove("slide-down");
+    infoText.classList.add("hidden");
+    chevronIcon.src = "/Chevron-down.svg";
+  }
+}
