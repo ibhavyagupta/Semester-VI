@@ -400,8 +400,9 @@
 ---------------------------------------------------------------------------------------------
 <div class="info-toggle" onclick="toggleInfo()">
   What does this include?
-  <span id="chevron" class="chevron">&#9660;</span> <!-- Down arrow (▼) -->
+  <img id="chevronIcon" src="down-arrow.png" alt="Toggle Info" class="chevron-icon" />
 </div>
+
 <div id="infoText" class="info-text hidden">
   This covers costs like building insurance, boiler insurance, property maintenance, agent
   management fees, etc.
