@@ -437,3 +437,432 @@ function toggleInfo() {
   infoText.classList.toggle("active");
   toggle.classList.toggle("active");
 }
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rental Yield Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f9f6f2;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .form-section,
+        .result-section {
+            flex: 1;
+            background-color: #fff;
+            padding: 32px 48px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+
+        .input-group {
+            margin-top: 20px;
+        }
+
+
+        .result-box {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .result-header {
+            color: #5A287D;
+            font-family: "RN House Sans";
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 40px;
+            letter-spacing: -0.2px;
+        }
+
+        .result-section {
+            background-color: #F2EAF9;
+        }
+
+        .input-prefix {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-prefix span {
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #333;
+            pointer-events: none;
+        }
+
+        .input-prefix input {
+            width: 100%;
+            padding: 10px 12px 10px 28px;
+            /* Space for £ symbol */
+            border: 1px solid #646068;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .wr-ryc-header {
+            color: #5A287D;
+            font-family: Knile;
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 50px;
+            letter-spacing: -0.2px;
+            margin: 0;
+        }
+
+        .wr-ryc-paragraph {
+            color: #646068;
+            font-family: "RN House Sans";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0.2px;
+        }
+
+
+        .error {
+            color: #646068;
+            font-family: "RN House Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0.2px;
+            margin-top: 12px;
+        }
+
+
+        input.error-border {
+            border-color: red;
+        }
+
+        .label-text {
+            color: #646068;
+            font-family: "RN House Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0.2px;
+        }
+
+        .info-toggle {
+            color: #4b0082;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .info-text {
+            color: #646068;
+            font-family: "RN House Sans", "RNHouseSansRegular", sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 18px;
+            letter-spacing: 0.2px;
+            margin-bottom: 8px;
+            max-height: 36px;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+
+        .ryc-cta-wrapper {
+            display: flex;
+            width: 100%;
+            height: auto;
+            gap: 16px;
+            align-self: stretch;
+            padding-top: 24px;
+        }
+
+        .ryc-cta-button {
+            background-color: #5E10B1;
+            font-family: "RN House Sans";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 26px;
+            padding: 12px 32px;
+            color: #ffffff !important;
+            text-align: center;
+            letter-spacing: 0.2px;
+            border-radius: 25px;
+            border: 0;
+        }
+
+        .wr-result-title {
+            color: #333;
+            font-family: "RN House Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0.2px;
+            margin: 0;
+        }
+
+        .wr-result-value {
+            color: #5A287D;
+            font-family: "RN House Sans";
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 40px;
+            letter-spacing: -0.2px;
+            margin: 0;
+        }
+
+
+        .ryc-cta-button:hover {
+            background-color: #3c1053;
+            text-decoration: none;
+        }
+
+        .ryc-cta-button:focus {
+            outline: 2px solid #5e10b1 !important;
+            outline-offset: 2px !important;
+            text-decoration: none !important;
+        }
+
+        button {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .info-text {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease;
+        }
+
+        .info-text.active {
+            max-height: 500px;
+        }
+
+        .chevron-icon {
+            transition: transform 0.3s ease;
+            margin-left: 8px;
+        }
+
+        /* Rotate icon when info-text is active */
+        .info-text.active+.chevron-icon,
+        .info-toggle.active .chevron-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+
+    <div class="container">
+        <!-- Left Section -->
+        <div class="form-section">
+            <h1 class="wr-ryc-header">Rental yield calculator</h1>
+            <p class="wr-ryc-paragraph">Work out how much money your rental property could bring in each year.</p>
+
+            <div class="input-group">
+                <label for="propertyValue" class="label-text">Current value of property</label>
+                <div class="input-prefix">
+                    <span>£</span>
+                    <input type="text" id="propertyValue" placeholder="0" />
+                </div>
+                <small class="error" id="propertyError"></small>
+            </div>
+
+            <div class="input-group">
+                <label for="monthlyRent" class="label-text">Monthly rent</label>
+                <div class="input-prefix">
+                    <span>£</span>
+                    <input type="text" id="monthlyRent" placeholder="0" />
+                </div>
+                <small class="error" id="rentError"></small>
+            </div>
+
+            <div class="input-group">
+                <label for="monthlyMortgage" class="label-text">Monthly mortgage payments (optional)</label>
+                <div class="input-prefix">
+                    <span>£</span>
+                    <input type="text" id="monthlyMortgage" placeholder="0" />
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="monthlyCosts" class="label-text">
+                    Monthly costs (optional)
+                    <div class="info-toggle" onclick="toggleInfo()">
+                        What does this include?
+                        <img id="chevronIcon" src="/Chevron-down.svg" alt="Toggle Info" class="chevron-icon" />
+                    </div>
+
+                    <div id="infoText" class="info-text collapsed">
+                        This covers costs like building insurance, boiler insurance, property maintenance, agent
+                        management fees, etc.
+                    </div>
+                </label>
+                <div class="input-prefix">
+                    <span>£</span>
+                    <input type="text" id="monthlyCosts" placeholder="0" />
+                </div>
+            </div>
+
+            <div class="ryc-cta-wrapper">
+                <button onclick="calculateYield()" class="ryc-cta-button">Calculate rental
+                    yield</a>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="result-section">
+            <div class="result-top">
+                <img src="/Mortgage calculator.png" alt="result section logo">
+                <h2 class="result-header">Rental yield breakdown</h2>
+            </div>
+            <div class="result-box">
+                <div class="wr-result-wrap">
+                    <p class="wr-result-title">Gross rental yield:</p>
+                    <p id="grossYield" class="wr-result-value">0%</p>
+                </div>
+
+                <div class="wr-result-wrap">
+                    <p class="wr-result-title">Net rental yield:</p>
+                    <p id="netYield" class="wr-result-value">0%</p>
+                </div>
+
+                <div class="wr-result-wrap">
+                    <p class="wr-result-title">Net annual return:</p>
+                    <p id="netReturn" class="wr-result-value"><strong>0%</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleInfo() {
+            const infoText = document.getElementById("infoText");
+            const toggle = document.querySelector(".info-toggle");
+
+            infoText.classList.toggle("active");
+            toggle.classList.toggle("active");
+        }
+        function calculateYield() {
+            // Retrieve values from input fields
+            const propertyValueInput = document.getElementById("propertyValue");
+            const monthlyRentInput = document.getElementById("monthlyRent");
+            const mortgageInput = document.getElementById("monthlyMortgage");
+            const expensesInput = document.getElementById("monthlyCosts");
+            const propertyValue = parseFloat(propertyValueInput.value) || 0;
+            const monthlyRent = parseFloat(monthlyRentInput.value) || 0;
+            const monthlyMortgage = parseFloat(mortgageInput.value) || 0;
+            const monthlyExpenses = parseFloat(expensesInput.value) || 0;
+            const propertyError = document.getElementById("propertyError");
+            const rentError = document.getElementById("rentError");
+
+            // Reset error states
+            propertyError.innerHTML = "";
+            rentError.innerHTML = "";
+            propertyValueInput.classList.remove("error-border");
+            monthlyRentInput.classList.remove("error-border");
+
+            let hasError = false;
+
+            // Helper to show error with icon
+            function showError(container, message) {
+                const img = document.createElement("img");
+                img.src = "/Error.svg"; // Replace with your actual path
+                img.alt = "Error";
+                img.className = "error-icon";
+
+                const text = document.createTextNode(message);
+
+                container.appendChild(img);
+                container.appendChild(text);
+                container.style.display = "flex";
+                container.style.alignItems = "center";
+                container.style.gap = "6px";
+
+            }
+
+            // Validation
+            if (propertyValue < 25000) {
+                showError(propertyError, "Please enter a minimum value of £25,000");
+                propertyValueInput.classList.add("error-border");
+                hasError = true;
+            }
+
+            if (monthlyRent <= 0) {
+                showError(rentError, "Monthly rent required.");
+                monthlyRentInput.classList.add("error-border");
+                hasError = true;
+            }
+
+            // Output fields
+            const grossYieldEl = document.getElementById("grossYield");
+            const netYieldEl = document.getElementById("netYield");
+            const netReturnEl = document.getElementById("netReturn");
+
+            if (hasError) {
+                // Reset results if invalid
+                grossYieldEl.textContent = "0%";
+                netYieldEl.textContent = "0%";
+                netReturnEl.textContent = "£0.00";
+                return;
+            }
+
+            // === Calculations ===
+
+            // Annual rental income
+            const annualRent = monthlyRent * 12;
+
+            // Annual costs = mortgage + expenses
+            const annualCosts = (monthlyMortgage + monthlyExpenses) * 12;
+
+            // Gross yield formula
+            const grossYield = (annualRent / propertyValue) * 100;
+
+            // Net yield formula
+            const netYield = ((annualRent - annualCosts) / propertyValue) * 100;
+
+            // Net annual return
+            const netReturn = annualRent - annualCosts;
+
+            // === Display Results ===
+
+            grossYieldEl.textContent = `${grossYield.toFixed(1)}%`;
+            netYieldEl.textContent = `${netYield.toFixed(1)}%`;
+            netReturnEl.textContent = `${netReturn < 0 ? '-' : ''}£${Math.abs(netReturn).toFixed(2)}`;
+        }
+    </script>
+</body>
+
+</html>
