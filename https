@@ -410,14 +410,16 @@
 
 function toggleInfo() {
   const infoText = document.getElementById("infoText");
-  const chevron = document.getElementById("chevron");
+  const chevronIcon = document.getElementById("chevronIcon");
 
-  infoText.classList.toggle("slide");
-  chevron.classList.toggle("rotate");
+  const isOpen = infoText.classList.toggle("slide");
 
-  // Optional: hide when toggled off
-  if (!infoText.classList.contains("slide")) {
+  // Swap arrow image
+  chevronIcon.src = isOpen ? "up-arrow.png" : "down-arrow.png";
+
+  // Optional reset for display if you're hiding it with `display: none`
+  if (!isOpen) {
     infoText.style.display = "none";
-    setTimeout(() => (infoText.style.display = ""), 300); // reset display
+    setTimeout(() => (infoText.style.display = ""), 300);
   }
 }
