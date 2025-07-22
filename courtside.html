@@ -305,71 +305,78 @@
     }
 
 function calculateYield() {
-            const propertyValueInput = document.getElementById("propertyValue");
-            const monthlyRentInput = document.getElementById("monthlyRent");
-            const mortgageInput = document.getElementById("monthlyMortgage");
-            const expensesInput = document.getElementById("monthlyCosts");
-            const propertyValue = parseFloat(propertyValueInput.value) || 0;
-            const monthlyRent = parseFloat(monthlyRentInput.value) || 0;
-            const monthlyMortgage = parseFloat(mortgageInput.value) || 0;
-            const monthlyExpenses = parseFloat(expensesInput.value) || 0;
-            const propertyError = document.getElementById("propertyError");
-            const rentError = document.getElementById("rentError");
+    const propertyValueInput = document.getElementById("propertyValue");
+    const monthlyRentInput = document.getElementById("monthlyRent");
+    const mortgageInput = document.getElementById("monthlyMortgage");
+    const expensesInput = document.getElementById("monthlyCosts");
+    const propertyValue = parseFloat(propertyValueInput.value) || 0;
+    const monthlyRent = parseFloat(monthlyRentInput.value) || 0;
+    const monthlyMortgage = parseFloat(mortgageInput.value) || 0;
+    const monthlyExpenses = parseFloat(expensesInput.value) || 0;
+    const propertyError = document.getElementById("propertyError");
+    const rentError = document.getElementById("rentError");
 
-            propertyError.innerHTML = "";
-            rentError.innerHTML = "";
-            propertyValueInput.classList.remove("error-border");
-            monthlyRentInput.classList.remove("error-border");
+    propertyError.innerHTML = "";
+    rentError.innerHTML = "";
+    propertyValueInput.classList.remove("error-border");
+    monthlyRentInput.classList.remove("error-border");
 
-            let hasError = false;
+    let hasError = false;
+    let firstErrorField = null;
 
-            function showError(container, message) {
-                const img = document.createElement("img");
-                img.src = "/Error.svg";
-                img.alt = "Error";
-                img.className = "error-icon";
+    function showError(container, message, inputField) {
+        const img = document.createElement("img");
+        img.src = "/Error.svg";
+        img.alt = "Error";
+        img.className = "error-icon";
 
-                const text = document.createTextNode(message);
-                container.appendChild(img);
-                container.appendChild(text);
-                container.style.display = "flex";
-                container.style.alignItems = "center";
-                container.style.gap = "6px";
-            }
+        const text = document.createTextNode(message);
+        container.appendChild(img);
+        container.appendChild(text);
+        container.style.display = "flex";
+        container.style.alignItems = "center";
+        container.style.gap = "6px";
 
-            if (propertyValue < 25000) {
-                showError(propertyError, "Please enter a minimum value of £25,000");
-                propertyValueInput.classList.add("error-border");
-                hasError = true;
-            }
-
-            if (monthlyRent <= 0) {
-                showError(rentError, "Monthly rent required.");
-                monthlyRentInput.classList.add("error-border");
-                hasError = true;
-            }
-
-            const grossYieldEl = document.getElementById("grossYield");
-            const netYieldEl = document.getElementById("netYield");
-            const netReturnEl = document.getElementById("netReturn");
-
-            if (hasError) {
-                grossYieldEl.textContent = "0%";
-                netYieldEl.textContent = "0%";
-                netReturnEl.textContent = "£0.00";
-                return;
-            }
-
-            const annualRent = monthlyRent * 12;
-            const annualCosts = (monthlyMortgage + monthlyExpenses) * 12;
-            const grossYield = (annualRent / propertyValue) * 100;
-            const netYield = ((annualRent - annualCosts) / propertyValue) * 100;
-            const netReturn = annualRent - annualCosts;
-
-            grossYieldEl.textContent = `${grossYield.toFixed(1)}%`;
-            netYieldEl.textContent = `${netYield.toFixed(1)}%`;
-            netReturnEl.textContent = `${netReturn < 0 ? '-' : ''}£${Math.abs(netReturn).toFixed(2)}`;
+        if (!firstErrorField) {
+            firstErrorField = inputField;
         }
+    }
+
+    if (propertyValue < 25000) {
+        showError(propertyError, "Please enter a minimum value of £25,000", propertyValueInput);
+        propertyValueInput.classList.add("error-border");
+        hasError = true;
+    }
+
+    if (monthlyRent <= 0) {
+        showError(rentError, "Monthly rent required.", monthlyRentInput);
+        monthlyRentInput.classList.add("error-border");
+        hasError = true;
+    }
+
+    const grossYieldEl = document.getElementById("grossYield");
+    const netYieldEl = document.getElementById("netYield");
+    const netReturnEl = document.getElementById("netReturn");
+
+    if (hasError) {
+        if (firstErrorField) firstErrorField.focus();
+        grossYieldEl.textContent = "0%";
+        netYieldEl.textContent = "0%";
+        netReturnEl.textContent = "£0.00";
+        return;
+    }
+
+    const annualRent = monthlyRent * 12;
+    const annualCosts = (monthlyMortgage + monthlyExpenses) * 12;
+    const grossYield = (annualRent / propertyValue) * 100;
+    const netYield = ((annualRent - annualCosts) / propertyValue) * 100;
+    const netReturn = annualRent - annualCosts;
+
+    grossYieldEl.textContent = `${grossYield.toFixed(1)}%`;
+    netYieldEl.textContent = `${netYield.toFixed(1)}%`;
+    netReturnEl.textContent = `${netReturn % 1 === 0 ? (netReturn < 0 ? '-' : '') + '£' + Math.abs(netReturn) : (netReturn < 0 ? '-' : '') + '£' + Math.abs(netReturn).toFixed(2)}`;
+}
+
   </script>
 </body>
 
