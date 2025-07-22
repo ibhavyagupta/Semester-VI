@@ -397,3 +397,26 @@
   font-size: 16px;
   outline: none;
 }
+---------------------------------------------------------------------------------------------
+<div class="info-toggle" onclick="toggleInfo()">
+  What does this include?
+  <span id="chevron" class="chevron">&#9660;</span> <!-- Down arrow (▼) -->
+</div>
+<div id="infoText" class="info-text hidden">
+  This covers costs like building insurance, boiler insurance, property maintenance, agent
+  management fees, etc.
+</div>
+
+function toggleInfo() {
+  const infoText = document.getElementById("infoText");
+  const chevron = document.getElementById("chevron");
+
+  infoText.classList.toggle("slide");
+  chevron.classList.toggle("rotate");
+
+  // Optional: hide when toggled off
+  if (!infoText.classList.contains("slide")) {
+    infoText.style.display = "none";
+    setTimeout(() => (infoText.style.display = ""), 300); // reset display
+  }
+}
