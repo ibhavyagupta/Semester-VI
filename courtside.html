@@ -254,6 +254,85 @@
         button {
             cursor: pointer;
         }
+
+
+        /* --- Responsive Media Queries --- */
+
+/* S View: Mobile (width < 768px) */
+@media (max-width: 767px) {
+    .container {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .form-section,
+    .result-section {
+        border-radius: 16px;
+        padding: 24px;
+    }
+
+    .ryc-cta-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .ryc-cta-button {
+        width: 100%;
+    }
+
+    .wr-ryc-header {
+        font-size: 32px;
+        line-height: 42px;
+    }
+
+    .result-section {
+        margin-top: 16px;
+    }
+}
+
+/* M View: Tablet (768px ≤ width < 1024px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        flex-direction: column;
+        padding: 24px;
+    }
+
+    .form-section,
+    .result-section {
+        border-radius: 16px;
+        padding: 32px;
+    }
+
+    .ryc-cta-wrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .ryc-cta-button {
+        flex: 1 1 auto;
+    }
+
+    .result-section {
+        margin-top: 20px;
+    }
+}
+
+/* L View: Desktop (1024px ≤ width < 1256px) */
+@media (min-width: 1024px) and (max-width: 1255px) {
+    .container {
+        padding: 32px;
+    }
+
+    .ryc-cta-wrapper {
+        margin-top: 16px;
+    }
+
+    .result-section {
+        padding-bottom: 48px;
+    }
+}
+
     </style>
 </head>
 
