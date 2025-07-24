@@ -477,10 +477,10 @@
             const monthlyRentInput = document.getElementById("monthlyRent");
             const mortgageInput = document.getElementById("monthlyMortgage");
             const expensesInput = document.getElementById("monthlyCosts");
-            const propertyValue = parseFloat(propertyValueInput.value) || 0;
-            const monthlyRent = parseFloat(monthlyRentInput.value) || 0;
-            const monthlyMortgage = parseFloat(mortgageInput.value) || 0;
-            const monthlyExpenses = parseFloat(expensesInput.value) || 0;
+            const propertyValue = parseFloat(propertyValueInput.value.replace(/,/g, '')) || 0;
+            const monthlyRent = parseFloat(monthlyRentInput.value.replace(/,/g, '')) || 0;
+            const monthlyMortgage = parseFloat(mortgageInput.value.replace(/,/g, '')) || 0;
+            const monthlyExpenses = parseFloat(expensesInput.value.replace(/,/g, '')) || 0;
             const propertyError = document.getElementById("propertyError");
             const rentError = document.getElementById("rentError");
 
