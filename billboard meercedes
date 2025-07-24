@@ -15,6 +15,7 @@
         .container {
             display: flex;
             flex-direction: row;
+            margin: auto;
             padding: 20px;
             max-width: 1256px;
         }
@@ -256,83 +257,115 @@
         }
 
 
+
+
         /* --- Responsive Media Queries --- */
 
-/* S View: Mobile (width < 768px) */
-@media (max-width: 767px) {
-    .container {
-        flex-direction: column;
-        padding: 16px;
-    }
+        /* S View: Mobile (width < 768px) */
+        @media (max-width: 767px) {
+            .container {
+                flex-direction: column;
+                padding: 16px;
+            }
 
-    .form-section,
-    .result-section {
-        border-radius: 16px;
-        padding: 24px;
-    }
+            .form-section,
+            .result-section {
+                border-radius: 16px;
+                padding: 24px;
+            }
 
-    .ryc-cta-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-    }
+            .ryc-cta-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+            }
 
-    .ryc-cta-button {
-        width: 100%;
-    }
+            .ryc-cta-button {
+                width: 100%;
+            }
 
-    .wr-ryc-header {
-        font-size: 32px;
-        line-height: 42px;
-    }
+            .wr-ryc-header {
+                font-size: 32px;
+                line-height: 42px;
+            }
 
-    .result-section {
-        margin-top: 16px;
-    }
-}
+            .result-section {
+                margin-top: 16px;
+            }
 
-/* M View: Tablet (768px ≤ width < 1024px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .container {
-        flex-direction: column;
-        padding: 24px;
-    }
+            .result-top {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: flex-end;
+            }
 
-    .form-section,
-    .result-section {
-        border-radius: 16px;
-        padding: 32px;
-    }
+            .result-top img {
 
-    .ryc-cta-wrapper {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
+                width: 80px;
+                height: 80px;
+                margin-left: 20px;
+            }
 
-    .ryc-cta-button {
-        flex: 1 1 auto;
-    }
+            .result-header {
+                margin-top: 5px;
+            }
+        }
 
-    .result-section {
-        margin-top: 20px;
-    }
-}
+        /* M View: Tablet (768px ≤ width < 1024px) */
+        @media (min-width: 768px) and (max-width: 1022px) {
+            .container {
 
-/* L View: Desktop (1024px ≤ width < 1256px) */
-@media (min-width: 1024px) and (max-width: 1255px) {
-    .container {
-        padding: 32px;
-    }
+                padding: 24px;
+            }
 
-    .ryc-cta-wrapper {
-        margin-top: 16px;
-    }
+            .wr-ryc-header {
+                font-size: 34px;
+            }
 
-    .result-section {
-        padding-bottom: 48px;
-    }
-}
+            .form-section,
+            .result-section {
+                border-radius: 16px;
+                padding: 32px;
+            }
 
+            .result-container {
+                margin-top: 3rem;
+            }
+
+            .ryc-cta-wrapper {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+
+
+
+            .result-section {
+                margin-top: 20px;
+            }
+        }
+
+        /* L View: Desktop (1024px ≤ width < 1256px) */
+        @media (min-width: 1023px) and (max-width: 1255px) {
+            .container {
+                padding: 32px;
+            }
+
+            .ryc-cta-wrapper {
+                margin-top: 16px;
+            }
+
+            .wr-ryc-header {
+                font-size: 38px;
+            }
+
+            .result-container {
+                margin-top: 5.5rem;
+            }
+
+            .result-section {
+                padding-bottom: 48px;
+            }
+        }
     </style>
 </head>
 
@@ -346,7 +379,7 @@
                 <label for="propertyValue" class="label-text">Current value of property</label>
                 <div class="input-prefix">
                     <span>£</span>
-                    <input type="text" id="propertyValue" inputmode="numeric" autocomplete="off" pattern="[0-9]*"
+                    <input type="text" id="propertyValue" inputmode="numeric" autocomplete="off" 
                         placeholder="0" />
                 </div>
                 <small class="error" id="propertyError"></small>
@@ -395,22 +428,24 @@
         </div>
 
         <div class="result-section">
-            <div class="result-top">
-                <img src="/Mortgage calculator.png" alt="result section logo">
-                <h2 class="result-header">Rental yield breakdown</h2>
-            </div>
-            <div class="result-box">
-                <div class="wr-result-wrap">
-                    <p class="wr-result-title">Gross rental yield:</p>
-                    <p id="grossYield" class="wr-result-value">0%</p>
+            <div class="result-container">
+                <div class="result-top">
+                    <img src="/Mortgage calculator.png" alt="result section logo">
+                    <h2 class="result-header">Rental yield breakdown</h2>
                 </div>
-                <div class="wr-result-wrap">
-                    <p class="wr-result-title">Net rental yield:</p>
-                    <p id="netYield" class="wr-result-value">0%</p>
-                </div>
-                <div class="wr-result-wrap">
-                    <p class="wr-result-title">Net annual return:</p>
-                    <p id="netReturn" class="wr-result-value">£0</p>
+                <div class="result-box">
+                    <div class="wr-result-wrap">
+                        <p class="wr-result-title">Gross rental yield:</p>
+                        <p id="grossYield" class="wr-result-value">0%</p>
+                    </div>
+                    <div class="wr-result-wrap">
+                        <p class="wr-result-title">Net rental yield:</p>
+                        <p id="netYield" class="wr-result-value">0%</p>
+                    </div>
+                    <div class="wr-result-wrap">
+                        <p class="wr-result-title">Net annual return:</p>
+                        <p id="netReturn" class="wr-result-value">£0</p>
+                    </div>
                 </div>
             </div>
         </div>
