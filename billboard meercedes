@@ -453,16 +453,34 @@
 
     <script>
         document.querySelectorAll("input[type='text']").forEach((input) => {
-            input.addEventListener("input", function () {
-                let digits = this.value.replace(/[^0-9]/g, "");
-                if (digits) {
-                    this.value = Number(digits).toLocaleString("en-UK");
-                }
-                else {
-                    this.value = "";
-                }
-            });
-        });
+    input.addEventListener("input", function () {
+        let value = this.value.replace(/,/g, ""); // Remove commas
+        value = value.replace(/[^\d.]/g, ""); // Remove non-digit and non-decimal
+        const parts = value.split(".");
+
+        if (parts.length > 2) {
+            value = parts[0] + "." + parts.slice(1).join(""); // keep only one decimal
+        }
+
+        let formattedValue = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        if (parts.length > 1) {
+            formattedValue += "." + parts[1];
+        }
+
+        this.value = formattedValue;
+    });
+
+    // Optional: prevent entering multiple decimal points directly
+    input.addEventListener("keydown", function (e) {
+        if (
+            (e.key === "e" || e.key === "E" || e.key === "+" || e.key === "-") ||
+            (e.key === "." && this.value.includes("."))
+        ) {
+            e.preventDefault();
+        }
+    });
+});
+
 
         function toggleInfo() {
             const infoText = document.getElementById("infoText");
