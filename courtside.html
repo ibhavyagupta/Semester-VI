@@ -311,3 +311,32 @@
                 line-height: 26px;
                 letter-spacing: 0.2px;
             }
+---------------------------------------------------------------------------------------------------
+.accordion {
+    max-width: 1256px;
+    margin: 24px auto;
+    border-top: 1px solid #D9D6DA;
+    border-bottom: 1px solid #D9D6DA;
+    padding: 16px 0;
+}
+
+.accordion-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 0 25px;
+}
+
+.accordion-toggle img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 25px;
+}
