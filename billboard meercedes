@@ -568,3 +568,98 @@
 </body>
 
 </html>
+----------------------------------------------------------------------------------------------------------------------------------------------------
+<!-- Notification Message -->
+<div class="info-banner">
+  Please note: This calculator is a guide and doesn’t include all costs you might incur.
+</div>
+
+<!-- Accordion Section -->
+<div class="accordion">
+  <div class="accordion-toggle" onclick="toggleAccordion()">
+    <img src="/plus-icon.svg" alt="Toggle" id="accordionIcon" />
+  </div>
+  <div class="accordion-content" id="accordionText">
+    <p>This includes information like taxes, maintenance, and other variable property-related expenses that might affect your yield calculation.</p>
+  </div>
+</div>
+✅ Step 2: Add CSS styles
+Place this inside your <style> tag:
+
+css
+Copy
+Edit
+/* Notification Banner */
+.info-banner {
+  background-color: #E9DEF9;
+  color: #5A287D;
+  font-family: "RN House Sans";
+  font-size: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 32px auto 24px;
+  max-width: 1256px;
+  text-align: center;
+}
+
+/* Accordion Styles */
+.accordion {
+  max-width: 1256px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.accordion-toggle {
+  width: 48px;
+  height: 48px;
+  background-color: #5E10B1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.accordion-toggle img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.accordion-toggle.active img {
+  transform: rotate(45deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  margin-top: 12px;
+  color: #333;
+  font-family: "RN House Sans";
+  font-size: 14px;
+  line-height: 22px;
+  background-color: #f8f4fd;
+  border-left: 4px solid #5E10B1;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.accordion-content.active {
+  max-height: 200px;
+  padding: 16px;
+}
+✅ Step 3: Add JavaScript to toggle accordion
+Place this inside your <script> tag:
+
+js
+Copy
+Edit
+function toggleAccordion() {
+  const content = document.getElementById("accordionText");
+  const icon = document.getElementById("accordionIcon").parentElement;
+
+  content.classList.toggle("active");
+  icon.classList.toggle("active");
+}
