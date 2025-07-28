@@ -139,6 +139,71 @@
                 letter-spacing: 0.2px;
             }
 
+            
+.accordion {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  row-gap: 8px;
+  max-width: 1256px;
+  background-color: #ffffff;
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-left: 25px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.accordion-toggle {
+  display: contents;
+}
+
+.icon-wrapper {
+  grid-column: 1;
+  grid-row: 1;
+  width: 24px;
+  height: 24px;
+}
+
+.accordion-icon {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.accordion.active .accordion-icon {
+  transform: rotate(45deg);
+}
+
+.accordion-header {
+  grid-column: 2;
+  grid-row: 1;
+  color: #5e10b1;
+  font-family: "RN House Sans";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0.2px;
+}
+
+.accordion-content {
+  grid-column: 2;
+  grid-row: 2;
+  color: #646068;
+  font-family: "RN House Sans";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0.2px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.accordion.active .accordion-content {
+  max-height: 500px; /* Adjust as needed */
+}
+
             .error {
                 color: #646068;
                 font-family: "RN House Sans";
@@ -546,22 +611,18 @@
         </div>
 
         <!-- Accordion Section -->
-        <div class="accordion">
-            <div class="accordion-toggle" onclick="toggleAccordion()">
-                <img src="/Plus.svg" alt="Toggle" id="accordionIcon" class="accordion-icon" />
-                <div>What does gross and net mean?</div>
-            </div>
-            <div class="accordion-content">
-                <div class="accordion-text-content"> Gross rental yield measures your rental income against the price of
-                    the property before expenses.
-
-                </div>
-                <div class="accordion-text-content"> Net rental yield (and net annual return) is what you're left with
-                    after
-                    expenses.</div>
-            </div>
-
-        </div>
+        <div class="accordion" onclick="toggleAccordion(this)">
+  <div class="accordion-toggle">
+    <div class="icon-wrapper">
+      <img src="/Plus.svg" alt="Toggle" class="accordion-icon" />
+    </div>
+    <div class="accordion-header">What does gross and net mean?</div>
+  </div>
+  <div class="accordion-content">
+    Gross rental yield measures your rental income against the price of the property before expenses. <br />
+    Net rental yield (and net annual return) is what you're left with after expenses.
+  </div>
+</div>
 
         <script>
             document.querySelectorAll("input[type='text']").forEach((input) => {
@@ -674,8 +735,15 @@
                 netYieldEl.textContent = `${netYield.toFixed(1)}%`;
                 netReturnEl.textContent = `${netReturn % 1 === 0 ? (netReturn < 0 ? '-' : '') + '£' + Math.abs(netReturn) : (netReturn < 0 ? '-' : '') + '£' + Math.abs(netReturn).toFixed(2)}`;
             }
+
+            function toggleAccordion(el) {
+  el.classList.toggle("active");
+}
+
         </script>
     </section>
 </body>
 
 </html>
+
+
