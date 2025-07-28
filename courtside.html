@@ -19,3 +19,295 @@
             </div>
 
         </div>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+            .container {
+                display: flex;
+                flex-direction: row;
+                margin: auto;
+                padding: 20px;
+                max-width: 1256px;
+            }
+
+            .form-section,
+            .result-section {
+                padding: 32px 48px;
+                flex: 5;
+                background-color: #FFFFFF;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            .form-section {
+                border-radius: 16px 0px 0px 16px;
+            }
+
+            .result-section {
+                border-radius: 0px 16px 16px 0px;
+            }
+
+
+
+            .input-group {
+                margin-top: 20px;
+            }
+
+            .result-box {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .result-header {
+                color: #5A287D;
+                font-family: "RN House Sans";
+                font-size: 30px;
+                font-weight: 400;
+                line-height: 40px;
+                letter-spacing: -0.2px;
+            }
+
+            .result-section {
+                background-color: #F2EAF9;
+            }
+
+            .input-prefix {
+                position: relative;
+                width: 100%;
+                margin-top: 8px;
+            }
+
+            #propertyValue:hover,
+            #monthlyRent:hover,
+            #monthlyMortgage:hover,
+            #monthlyCosts:hover {
+                outline: 1px auto #5E10B1;
+            }
+
+            #propertyValue:focus-visible,
+            #monthlyRent:focus-visible,
+            #monthlyMortgage:focus-visible,
+            #monthlyCosts:focus-visible {
+                outline: 1px auto #5E10B1;
+            }
+
+            .input-prefix span {
+                position: absolute;
+                top: 50%;
+                left: 12px;
+                transform: translateY(-50%);
+
+                color: #333;
+                pointer-events: none;
+                font-family: "RN House Sans";
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+            }
+
+            .input-prefix input {
+                width: 100%;
+                height: 3rem;
+                padding: 10px 20px 10px 34px;
+                font-size: 18px;
+                line-height: 26px;
+                font-family: "RNHouseSansRegular", sans-serif;
+                font-weight: 300;
+                border: 1px solid #646068;
+                border-radius: 8px;
+                outline: none;
+            }
+
+            .wr-ryc-header {
+                color: #5A287D;
+                font-family: Knile;
+                font-size: 40px;
+                font-weight: 700;
+                line-height: 50px;
+                letter-spacing: -0.2px;
+                margin: 0;
+            }
+
+            .wr-ryc-paragraph {
+                color: #646068;
+                font-family: "RN House Sans";
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+            }
+
+            .error {
+                color: #646068;
+                font-family: "RN House Sans";
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+                margin-top: 12px;
+            }
+
+            .error-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            input.error-border {
+                border: 2px solid #CF223F;
+            }
+
+            .label-text {
+                color: #646068;
+                font-family: "RN House Sans";
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+            }
+
+            .info-toggle {
+                color: #5E10B1;
+                font-size: 14px;
+                cursor: pointer;
+                text-decoration: 0.3px underline #5E10B1;
+                text-underline-offset: 2px;
+                display: flex;
+                align-items: center;
+            }
+
+            .info-text {
+                color: #646068;
+                font-family: "RN House Sans", "RNHouseSansRegular", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 18px;
+                letter-spacing: 0.2px;
+                margin-bottom: 8px;
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.2s ease;
+            }
+
+            .info-text.active {
+                max-height: 500px;
+            }
+
+            .chevron-icon {
+                transition: transform 0.2s ease;
+                margin-left: 8px;
+            }
+
+            .info-banner {
+                margin-left: 25px;
+                margin-right: 15px;
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                max-width: 1256px;
+            }
+
+            .notification-text {
+                color: #646068;
+                font-family: "RN House Sans";
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+            }
+
+            .info-toggle.active .chevron-icon {
+                transform: rotate(180deg);
+            }
+
+            .ryc-cta-wrapper {
+                display: flex;
+                width: 100%;
+                gap: 16px;
+                padding-top: 24px;
+            }
+
+            .ryc-cta-button {
+                background-color: #5E10B1;
+                font-family: "RN House Sans";
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 26px;
+                padding: 12px 32px;
+                color: #ffffff;
+                text-align: center;
+                letter-spacing: 0.2px;
+                border-radius: 25px;
+                border: 0;
+            }
+
+            .wr-result-title {
+                color: #333;
+                font-family: "RN House Sans";
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+                margin: 0;
+            }
+
+            .wr-result-value {
+                color: #5A287D;
+                font-family: "RN House Sans";
+                font-size: 30px;
+                font-weight: 400;
+                line-height: 40px;
+                letter-spacing: -0.2px;
+                margin: 0;
+            }
+
+            #netReturn {
+                color: #5A287D;
+                font-family: Knile;
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 40px;
+                letter-spacing: -0.1px;
+            }
+
+            .ryc-cta-button:hover {
+                background-color: #3c1053;
+            }
+
+            .ryc-cta-button:focus {
+                outline: 2px solid #5e10b1;
+                outline-offset: 2px;
+            }
+
+            button {
+                cursor: pointer;
+            }
+
+            .accordion {
+                background-color: #ffffff;
+            }
+
+            .accordion-toggle {
+                display: flex;
+                color: #5E10B1;
+                font-family: "RN House Sans";
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+
+            }
+
+            .accordion-content {
+                color: #646068;
+                font-family: "RN House Sans";
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 26px;
+                letter-spacing: 0.2px;
+            }
