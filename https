@@ -57,3 +57,93 @@
   align-items: center;
   gap: 8px;
 }
+--------------------------------------------------------------------------------------------------
+/* ========== Info Banner ========== */
+.wr-info-banner {
+  display: flex;
+  align-items: flex-start;
+  background-color: #f5f5fa;
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.wr-info-icon {
+  font-size: 18px;
+  margin-right: 12px;
+  margin-top: 2px;
+  color: #333;
+}
+
+.wr-info-text {
+  margin: 0;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
+/* Align info-banner to left on wider screens */
+@media screen and (min-width: 768px) {
+  .wr-info-banner {
+    align-self: flex-start;
+    max-width: 700px;
+  }
+}
+
+/* ========== Accordion ========== */
+.wr-accordion-container {
+  background-color: #f5f5fa;
+  padding: 10px 16px;
+  border-radius: 8px;
+  max-width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.wr-accordion {
+  width: 100%;
+}
+
+.wr-accordion-toggle {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #6b2ad3;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.wr-accordion-toggle:hover {
+  background: #f0eefc;
+}
+
+.wr-accordion-icon {
+  font-size: 20px;
+  margin-right: 12px;
+  color: #6b2ad3;
+  width: 20px;
+}
+
+.wr-accordion-title {
+  flex: 1;
+}
+
+.wr-accordion-content {
+  padding: 16px;
+  margin-top: 4px;
+  background: #ffffff;
+  border-radius: 8px;
+  color: #4a4a4a;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
