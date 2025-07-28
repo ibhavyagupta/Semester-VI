@@ -23,3 +23,37 @@
     </div>
   </div>
 </div>
+
+/* Info banner left-alignment on medium and up */
+@media screen and (min-width: 768px) {
+  .wr-info-banner {
+    align-self: flex-start;
+    text-align: left;
+    justify-content: flex-start;
+  }
+}
+
+/* Accordion icon rotate on open */
+.wr-accordion-toggle.active .wr-accordion-icon {
+  transform: rotate(45deg); /* plus ➕ becomes X ✖️ */
+}
+
+/* Accordion expanded content styling */
+.wr-accordion-content {
+  padding-top: 12px;
+  font-size: 16px;
+  color: #4b4b4b;
+  line-height: 1.5;
+}
+
+/* Improve spacing in expanded state */
+.wr-accordion.active {
+  padding-bottom: 16px;
+}
+
+/* Ensure icon stays on left with space */
+.wr-accordion-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
