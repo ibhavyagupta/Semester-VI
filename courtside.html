@@ -1,33 +1,41 @@
- <div class="accordion" onclick="toggleAccordion(this)">
-                                    <div class="accordion-toggle">
-                                        <div class="icon-wrapper">
-                                            <img src="/Plus.svg" alt="Toggle" class="accordion-icon" />
-                                        </div>
-                                        <div class="accordion-header">How did you calculate my rental yield?</div>
-                                    </div>
-                                    <div class="accordion-content">
-                                        <div class="accordion-sub-header">For gross rental yield we:</div>
+<div class="accordion" onclick="toggleAccordion(this)">
+  <div class="accordion-toggle">
+    <div class="icon-wrapper">
+      <img src="/Plus.svg" alt="Toggle" class="accordion-icon" />
+    </div>
+    <div class="accordion-header">How did you calculate my rental yield?</div>
+  </div>
 
-                                        <div>1. Multiplied your monthly rental income by 12 to find your annual income.
-                                        </div>
-                                        <div>2. Divided that figure by the property purchase price/current value.
-                                        </div>
-                                        <div>3. Then, multiplied the figure by 100. The final number is your gross
-                                            rental yield as a percentage.
-                                        </div>
-                                    </div>
-                                    <div class="accordion-content">
-                                        <div class="accordion-sub-header">To calculate net rental yield we:</div>
+  <div class="accordion-content">
+    <div class="accordion-sub-header">For gross rental yield we:</div>
+    <ol>
+      <li>Multiplied your monthly rental income by 12 to find your annual income.</li>
+      <li>Divided that figure by the property purchase price/current value.</li>
+      <li>Then, multiplied the figure by 100. The final number is your gross rental yield as a percentage.</li>
+    </ol>
+  </div>
 
-                                        <div>1. Multiplied your monthly rental income by 12.
-                                        </div>
-                                        <div>2. Multiplied your monthly rental costs by 12, then subtracted that
-                                            number
-                                            from
-                                            the annual rental income.
-                                        </div>
-                                        <div>3. Divided that by the property’s purchase value/current price.
-                                        </div>
-                                        <div>4. Multiplied that figure by 100 to get your net percentage.</div>
-                                    </div>
-                                </div>
+  <div class="accordion-content">
+    <div class="accordion-sub-header">To calculate net rental yield we:</div>
+    <ol>
+      <li>Multiplied your monthly rental income by 12.</li>
+      <li>Multiplied your monthly rental costs by 12, then subtracted that number from the annual rental income.</li>
+      <li>Divided that by the property’s purchase value/current price.</li>
+      <li>Multiplied that figure by 100 to get your net percentage.</li>
+    </ol>
+  </div>
+</div>
+
+
+.accordion-content ol {
+  padding-left: 20px;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.accordion-content li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
