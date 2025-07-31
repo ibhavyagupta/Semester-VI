@@ -54,4 +54,43 @@ describe('A11y violations - Evinced Unit Tester', () => {
     expect(violations.length).toBe(0);
   });
 });
+------------------------------------------------------------------------------------------------------------------------------
+import './test-env'
+import { configure, authenticate } from './test-env'
+import { ComponentAdditionalData } from '../src/transformers/violation-enricher'
+import * as components from './components'
+export * from './components'
+export interface UnitTester {
+  analyzeAccordion: typeof components.analyzeAccordion
+  analyzeAlert: typeof components.analyzeAlert
+  analyzeBreadcrumb: typeof components.analyzeBreadcrumb
+  analyzeButton: typeof components.analyzeButton
+  analyzeCarousel: typeof components.analyzeCarousel
+  analyzeCheckbox: typeof components.analyzeCheckbox
+  analyzeCombobox: typeof components.analyzeCombobox
+  analyzeDataGrid: typeof components.analyzeDataGrid
+  analyzeDisclosure: typeof components.analyzeDisclosure
+  analyzeFeed: typeof components.analyzeFeed
+  analyzeLink: typeof components.analyzeLink
+  analyzeListbox: typeof components.analyzeListbox
+  analyzeMenu: typeof components.analyzeMenu
+  analyzeMenuButton: typeof components.analyzeMenuButton
+  analyzeMeter: typeof components.analyzeMeter
+  analyzeModal: typeof components.analyzeModal
+  analyzeMultiThumbSlider: typeof components.analyzeMultiThumbSlider
+  analyzeRadioGroup: typeof components.analyzeRadioGroup
+  analyzeSiteNavigation: typeof components.analyzeSiteNavigation
+  analyzeSlider: typeof components.analyzeSlider
+  analyzeSpinButton: typeof components.analyzeSpinButton
+  analyzeSwitch: typeof components.analyzeSwitch
+  analyzeTable: typeof components.analyzeTable
+  analyzeTabList: typeof components.analyzeTabList
+  analyzeToggleButton: typeof components.analyzeToggleButton
+  analyzeTextInput: typeof components.analyzeTextInput
+}
+export { configure, authenticate }
+export { ComponentAdditionalData }
+declare const _default: UnitTester
+export default _default
+
 
