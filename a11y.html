@@ -20,3 +20,38 @@
 </html>
 -------------------------------------------------------------------
 npm install --save-dev @evinced/unit-tester jest jsdom
+-------------------------------------------------------------------
+import { getViolations } from '@evinced/unit-tester';
+import { JSDOM } from 'jsdom';
+
+const html = `
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+    <!-- Image missing alt -->
+    <img src="test.jpg">
+
+    <!-- Input without label -->
+    <input type="text" id="user-email">
+
+    <!-- Link without accessible name -->
+    <a href="#"></a>
+
+    <!-- Button without text -->
+    <button></button>
+  </body>
+  </html>
+`;
+
+describe('A11y violations - Evinced Unit Tester', () => {
+  it('should fail with accessibility violations', async () => {
+    const dom = new JSDOM(html);
+    const container = dom.window.document;
+
+    const violations = await getViolations(container);
+
+    // ❌ This will fail if violations exist — which is expected
+    expect(violations.length).toBe(0);
+  });
+});
+
