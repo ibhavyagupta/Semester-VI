@@ -187,6 +187,7 @@
                 font-weight: 400;
                 line-height: 26px;
                 letter-spacing: 0.2px;
+                margin-bottom: 4px;
             }
 
             .accordion-content {
@@ -547,247 +548,266 @@
                 .info-banner {
                     margin: auto;
                 }
+
+                .notification-banner,
+                .accordion {
+                    position: relative;
+                    left: calc((100% - 1256px)/2);
+                    width: 100%;
+                    max-width: 1024px;
+                    margin-left: 10px;
+                }
             }
         </style>
         <div class="container">
-      <div class="form-section">
-        <h1 class="wr-ryc-header">Rental yield calculator</h1>
-        <p class="wr-ryc-paragraph">Work out how much money your rental property could bring in each year.</p>
+            <div class="form-section">
+                <h1 class="wr-ryc-header">Rental yield calculator</h1>
+                <p class="wr-ryc-paragraph">Work out how much money your rental property could bring in each year.</p>
 
-        <div class="input-group">
-          <label for="propertyValue" class="label-text">Current value of property</label>
-          <div class="input-prefix">
-            <span>£</span>
-            <input type="text" id="propertyValue" inputmode="numeric" pattern="[0-9]*" aria-describedby="propertyError" autocomplete="off" placeholder="0" />
-          </div>
-          <small class="error" id="propertyError" aria-live="polite"></small>
-        </div>
+                <div class="input-group">
+                    <label for="propertyValue" class="label-text">Current value of property</label>
+                    <div class="input-prefix">
+                        <span>£</span>
+                        <input type="text" id="propertyValue" inputmode="numeric" pattern="[0-9]*"
+                            aria-describedby="propertyError" autocomplete="off" placeholder="0" />
+                    </div>
+                    <small class="error" id="propertyError" aria-live="polite"></small>
+                </div>
 
-        <div class="input-group">
-          <label for="monthlyRent" class="label-text">Monthly rent</label>
-          <div class="input-prefix">
-            <span>£</span>
-            <input type="text" id="monthlyRent" inputmode="numeric" pattern="[0-9]*" aria-describedby="rentError" placeholder="0" />
-          </div>
-          <small class="error" id="rentError" aria-live="polite"></small>
-        </div>
+                <div class="input-group">
+                    <label for="monthlyRent" class="label-text">Monthly rent</label>
+                    <div class="input-prefix">
+                        <span>£</span>
+                        <input type="text" id="monthlyRent" inputmode="numeric" pattern="[0-9]*"
+                            aria-describedby="rentError" placeholder="0" />
+                    </div>
+                    <small class="error" id="rentError" aria-live="polite"></small>
+                </div>
 
-        <div class="input-group">
-          <label for="monthlyMortgage" class="label-text">Monthly mortgage payments (optional)</label>
-          <div class="input-prefix">
-            <span>£</span>
-            <input type="text" id="monthlyMortgage" inputmode="numeric" pattern="[0-9]*" placeholder="0" />
-          </div>
-        </div>
+                <div class="input-group">
+                    <label for="monthlyMortgage" class="label-text">Monthly mortgage payments (optional)</label>
+                    <div class="input-prefix">
+                        <span>£</span>
+                        <input type="text" id="monthlyMortgage" inputmode="numeric" pattern="[0-9]*" placeholder="0" />
+                    </div>
+                </div>
 
-        <div class="input-group">
-          <label for="monthlyCosts" class="label-text">
-            Monthly costs (optional)
-            <button type="button" class="info-toggle" onclick="toggleInfo()" aria-expanded="false" aria-controls="infoText">
-              What does this include?
-              <img id="chevronIcon" src="/Chevron-down.svg" alt="" class="chevron-icon" />
-            </button>
-          </label>
-          <div id="infoText" class="info-text" role="region" aria-hidden="true">
-            This covers costs like building insurance, boiler insurance, property maintenance, agent management fees, etc.
-          </div>
-          <div class="input-prefix">
-            <span>£</span>
-            <input type="text" id="monthlyCosts" inputmode="numeric" pattern="[0-9]*" placeholder="0" />
-          </div>
-        </div>
+                <div class="input-group">
+                    <label for="monthlyCosts" class="label-text">
+                        Monthly costs (optional)
+                        <div role="button" type="button" class="info-toggle" onclick="toggleInfo()"
+                            aria-expanded="false" aria-controls="infoText">
+                            What does this include?
+                            <img id="chevronIcon" src="/Chevron-down.svg" alt="" class="chevron-icon" />
+                        </div>
+                    </label>
+                    <div id="infoText" class="info-text" role="region" aria-hidden="true">
+                        This covers costs like building insurance, boiler insurance, property maintenance, agent
+                        management fees, etc.
+                    </div>
+                    <div class="input-prefix">
+                        <span>£</span>
+                        <input type="text" id="monthlyCosts" inputmode="numeric" pattern="[0-9]*" placeholder="0" />
+                    </div>
+                </div>
 
-        <div class="ryc-cta-wrapper">
-          <button onclick="calculateYield()" class="ryc-cta-button">Calculate rental yield</button>
-        </div>
-      </div>
-
-      <div class="result-section">
-        <div class="result-container" aria-labelledby="resultHeading">
-          <div class="result-top">
-            <img src="/Mortgage calculator.png" alt="Result section illustration" />
-            <h2 class="result-header" id="resultHeading">Rental yield breakdown</h2>
-          </div>
-          <div class="result-box">
-            <div class="wr-result-wrap">
-              <p class="wr-result-title">Gross rental yield:</p>
-              <p id="grossYield" class="wr-result-value">0%</p>
+                <div class="ryc-cta-wrapper">
+                    <button onclick="calculateYield()" class="ryc-cta-button">Calculate rental yield</button>
+                </div>
             </div>
-            <div class="wr-result-wrap">
-              <p class="wr-result-title">Net rental yield:</p>
-              <p id="netYield" class="wr-result-value">0%</p>
+
+            <div class="result-section">
+                <div class="result-container" aria-labelledby="resultHeading">
+                    <div class="result-top">
+                        <img src="/Mortgage calculator.png" alt="Result section illustration" />
+                        <h2 class="result-header" id="resultHeading">Rental yield breakdown</h2>
+                    </div>
+                    <div class="result-box">
+                        <div class="wr-result-wrap">
+                            <p class="wr-result-title">Gross rental yield:</p>
+                            <p id="grossYield" class="wr-result-value">0%</p>
+                        </div>
+                        <div class="wr-result-wrap">
+                            <p class="wr-result-title">Net rental yield:</p>
+                            <p id="netYield" class="wr-result-value">0%</p>
+                        </div>
+                        <div class="wr-result-wrap">
+                            <p class="wr-result-title">Net annual return:</p>
+                            <p id="netReturn" class="wr-result-value">£0</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="wr-result-wrap">
-              <p class="wr-result-title">Net annual return:</p>
-              <p id="netReturn" class="wr-result-value">£0</p>
+        </div>
+
+        <div class="notification-banner" role="note">
+            <div class="notification-image">
+                <img src="/Info.svg" alt="" role="presentation" />
             </div>
-          </div>
+            <div class="notification-text">
+                These numbers are estimates based on the amounts you entered. We haven’t included any unforeseen costs
+                in our calculations.
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="notification-banner" role="note">
-      <div class="notification-image">
-        <img src="/Info.svg" alt="" role="presentation" />
-      </div>
-      <div class="notification-text">
-        These numbers are estimates based on the amounts you entered. We haven’t included any unforeseen costs in our calculations.
-      </div>
-    </div>
-
-    <!-- Accordion Section -->
-    <div class="accordion" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false" aria-controls="accordion1-content">
-      <div class="accordion-toggle">
-        <div class="icon-wrapper">
-          <img src="/Plus.svg" alt="" role="presentation" class="accordion-icon" />
+        <!-- Accordion Section -->
+        <div class="accordion" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false"
+            aria-controls="accordion1-content">
+            <div class="accordion-toggle">
+                <div class="icon-wrapper">
+                    <img src="/Plus.svg" alt="" role="presentation" class="accordion-icon" />
+                </div>
+                <div class="accordion-header">What does gross and net mean?</div>
+            </div>
+            <div class="accordion-content" id="accordion1-content" role="region" aria-hidden="true">
+                <div>Gross rental yield measures your rental income against the price of the property before expenses.
+                </div>
+                <div>Net rental yield (and net annual return) is what you're left with after expenses.</div>
+            </div>
         </div>
-        <div class="accordion-header">What does gross and net mean?</div>
-      </div>
-      <div class="accordion-content" id="accordion1-content" role="region" aria-hidden="true">
-        <div>Gross rental yield measures your rental income against the price of the property before expenses.</div>
-        <div>Net rental yield (and net annual return) is what you're left with after expenses.</div>
-      </div>
-    </div>
 
-    <div class="accordion" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false" aria-controls="accordion2-content">
-      <div class="accordion-toggle">
-        <div class="icon-wrapper">
-          <img src="/Plus.svg" alt="" role="presentation" class="accordion-icon" />
+        <div class="accordion" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false"
+            aria-controls="accordion2-content">
+            <div class="accordion-toggle">
+                <div class="icon-wrapper">
+                    <img src="/Plus.svg" alt="" role="presentation" class="accordion-icon" />
+                </div>
+                <div class="accordion-header">How did you calculate my rental yield?</div>
+            </div>
+
+            <div class="accordion-content" id="accordion2-content" role="region" aria-hidden="true">
+                <div class="accordion-sub-header">For gross rental yield we:</div>
+                <ol>
+                    <li>Multiplied your monthly rental income by 12 to find your annual income.</li>
+                    <li>Divided that figure by the property purchase price/current value.</li>
+                    <li>Then, multiplied the figure by 100. The final number is your gross rental yield as a percentage.
+                    </li>
+                </ol>
+
+                <div class="accordion-sub-header">To calculate net rental yield we:</div>
+                <ol>
+                    <li>Multiplied your monthly rental income by 12.</li>
+                    <li>Multiplied your monthly rental costs by 12, then subtracted that number from the annual rental
+                        income.</li>
+                    <li>Divided that by the property’s purchase value/current price.</li>
+                    <li>Multiplied that figure by 100 to get your net percentage.</li>
+                </ol>
+            </div>
         </div>
-        <div class="accordion-header">How did you calculate my rental yield?</div>
-      </div>
 
-      <div class="accordion-content" id="accordion2-content" role="region" aria-hidden="true">
-        <div class="accordion-sub-header">For gross rental yield we:</div>
-        <ol>
-          <li>Multiplied your monthly rental income by 12 to find your annual income.</li>
-          <li>Divided that figure by the property purchase price/current value.</li>
-          <li>Then, multiplied the figure by 100. The final number is your gross rental yield as a percentage.</li>
-        </ol>
+        <script>
+            document.querySelectorAll("input[type='text']").forEach((input) => {
+                input.addEventListener("input", function () {
+                    let value = this.value.replace(/,/g, "");
+                    value = value.replace(/[^\d.]/g, "");
+                    const parts = value.split(".");
+                    if (parts.length > 2) value = parts[0] + "." + parts.slice(1).join("");
+                    let formattedValue = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    if (parts.length > 1) formattedValue += "." + parts[1];
+                    this.value = formattedValue;
+                });
 
-        <div class="accordion-sub-header">To calculate net rental yield we:</div>
-        <ol>
-          <li>Multiplied your monthly rental income by 12.</li>
-          <li>Multiplied your monthly rental costs by 12, then subtracted that number from the annual rental income.</li>
-          <li>Divided that by the property’s purchase value/current price.</li>
-          <li>Multiplied that figure by 100 to get your net percentage.</li>
-        </ol>
-      </div>
-    </div>
+                input.addEventListener("keydown", function (e) {
+                    if ((e.key === "e" || e.key === "E" || e.key === "+" || e.key === "-") ||
+                        (e.key === "." && this.value.includes("."))) {
+                        e.preventDefault();
+                    }
+                });
+            });
 
-    <script>
-      document.querySelectorAll("input[type='text']").forEach((input) => {
-        input.addEventListener("input", function () {
-          let value = this.value.replace(/,/g, "");
-          value = value.replace(/[^\d.]/g, "");
-          const parts = value.split(".");
-          if (parts.length > 2) value = parts[0] + "." + parts.slice(1).join("");
-          let formattedValue = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          if (parts.length > 1) formattedValue += "." + parts[1];
-          this.value = formattedValue;
-        });
+            function toggleInfo() {
+                const infoText = document.getElementById("infoText");
+                const toggle = document.querySelector(".info-toggle");
+                const expanded = toggle.getAttribute("aria-expanded") === "true";
+                toggle.setAttribute("aria-expanded", !expanded);
+                infoText.setAttribute("aria-hidden", expanded);
+                infoText.classList.toggle("active");
+                toggle.classList.toggle("active");
+            }
 
-        input.addEventListener("keydown", function (e) {
-          if ((e.key === "e" || e.key === "E" || e.key === "+" || e.key === "-") ||
-            (e.key === "." && this.value.includes("."))) {
-            e.preventDefault();
-          }
-        });
-      });
+            function calculateYield() {
+                const propertyValueInput = document.getElementById("propertyValue");
+                const monthlyRentInput = document.getElementById("monthlyRent");
+                const mortgageInput = document.getElementById("monthlyMortgage");
+                const expensesInput = document.getElementById("monthlyCosts");
+                const propertyValue = parseFloat(propertyValueInput.value.replace(/,/g, '')) || 0;
+                const monthlyRent = parseFloat(monthlyRentInput.value.replace(/,/g, '')) || 0;
+                const monthlyMortgage = parseFloat(mortgageInput.value.replace(/,/g, '')) || 0;
+                const monthlyExpenses = parseFloat(expensesInput.value.replace(/,/g, '')) || 0;
+                const propertyError = document.getElementById("propertyError");
+                const rentError = document.getElementById("rentError");
 
-      function toggleInfo() {
-        const infoText = document.getElementById("infoText");
-        const toggle = document.querySelector(".info-toggle");
-        const expanded = toggle.getAttribute("aria-expanded") === "true";
-        toggle.setAttribute("aria-expanded", !expanded);
-        infoText.setAttribute("aria-hidden", expanded);
-        infoText.classList.toggle("active");
-        toggle.classList.toggle("active");
-      }
+                propertyError.innerHTML = "";
+                rentError.innerHTML = "";
+                propertyValueInput.classList.remove("error-border");
+                monthlyRentInput.classList.remove("error-border");
 
-      function calculateYield() {
-        const propertyValueInput = document.getElementById("propertyValue");
-        const monthlyRentInput = document.getElementById("monthlyRent");
-        const mortgageInput = document.getElementById("monthlyMortgage");
-        const expensesInput = document.getElementById("monthlyCosts");
-        const propertyValue = parseFloat(propertyValueInput.value.replace(/,/g, '')) || 0;
-        const monthlyRent = parseFloat(monthlyRentInput.value.replace(/,/g, '')) || 0;
-        const monthlyMortgage = parseFloat(mortgageInput.value.replace(/,/g, '')) || 0;
-        const monthlyExpenses = parseFloat(expensesInput.value.replace(/,/g, '')) || 0;
-        const propertyError = document.getElementById("propertyError");
-        const rentError = document.getElementById("rentError");
+                let hasError = false;
+                let firstErrorField = null;
 
-        propertyError.innerHTML = "";
-        rentError.innerHTML = "";
-        propertyValueInput.classList.remove("error-border");
-        monthlyRentInput.classList.remove("error-border");
+                function showError(container, message, inputField) {
+                    const img = document.createElement("img");
+                    img.src = "/Error.svg";
+                    img.alt = "Error";
+                    img.className = "error-icon";
 
-        let hasError = false;
-        let firstErrorField = null;
+                    const text = document.createTextNode(message);
+                    container.appendChild(img);
+                    container.appendChild(text);
+                    container.style.display = "flex";
+                    container.style.alignItems = "center";
+                    container.style.gap = "6px";
 
-        function showError(container, message, inputField) {
-          const img = document.createElement("img");
-          img.src = "/Error.svg";
-          img.alt = "Error";
-          img.className = "error-icon";
+                    if (!firstErrorField) {
+                        firstErrorField = inputField;
+                    }
+                }
 
-          const text = document.createTextNode(message);
-          container.appendChild(img);
-          container.appendChild(text);
-          container.style.display = "flex";
-          container.style.alignItems = "center";
-          container.style.gap = "6px";
+                if (propertyValue < 25000) {
+                    showError(propertyError, "Please enter a minimum value of £25,000", propertyValueInput);
+                    propertyValueInput.classList.add("error-border");
+                    hasError = true;
+                }
 
-          if (!firstErrorField) {
-            firstErrorField = inputField;
-          }
-        }
+                if (monthlyRent <= 0) {
+                    showError(rentError, "Monthly rent required.", monthlyRentInput);
+                    monthlyRentInput.classList.add("error-border");
+                    hasError = true;
+                }
 
-        if (propertyValue < 25000) {
-          showError(propertyError, "Please enter a minimum value of £25,000", propertyValueInput);
-          propertyValueInput.classList.add("error-border");
-          hasError = true;
-        }
+                const grossYieldEl = document.getElementById("grossYield");
+                const netYieldEl = document.getElementById("netYield");
+                const netReturnEl = document.getElementById("netReturn");
 
-        if (monthlyRent <= 0) {
-          showError(rentError, "Monthly rent required.", monthlyRentInput);
-          monthlyRentInput.classList.add("error-border");
-          hasError = true;
-        }
+                if (hasError) {
+                    if (firstErrorField) firstErrorField.focus();
+                    grossYieldEl.textContent = "0%";
+                    netYieldEl.textContent = "0%";
+                    netReturnEl.textContent = "£0.00";
+                    return;
+                }
 
-        const grossYieldEl = document.getElementById("grossYield");
-        const netYieldEl = document.getElementById("netYield");
-        const netReturnEl = document.getElementById("netReturn");
+                const annualRent = monthlyRent * 12;
+                const annualCosts = (monthlyMortgage + monthlyExpenses) * 12;
+                const grossYield = (annualRent / propertyValue) * 100;
+                const netYield = ((annualRent - annualCosts) / propertyValue) * 100;
+                const netReturn = annualRent - annualCosts;
 
-        if (hasError) {
-          if (firstErrorField) firstErrorField.focus();
-          grossYieldEl.textContent = "0%";
-          netYieldEl.textContent = "0%";
-          netReturnEl.textContent = "£0.00";
-          return;
-        }
+                grossYieldEl.textContent = `${grossYield.toFixed(1)}%`;
+                netYieldEl.textContent = `${netYield.toFixed(1)}%`;
+                netReturnEl.textContent = `${netReturn < 0 ? '-' : ''}£${Math.abs(netReturn).toFixed(2)}`;
+            }
 
-        const annualRent = monthlyRent * 12;
-        const annualCosts = (monthlyMortgage + monthlyExpenses) * 12;
-        const grossYield = (annualRent / propertyValue) * 100;
-        const netYield = ((annualRent - annualCosts) / propertyValue) * 100;
-        const netReturn = annualRent - annualCosts;
-
-        grossYieldEl.textContent = `${grossYield.toFixed(1)}%`;
-        netYieldEl.textContent = `${netYield.toFixed(1)}%`;
-        netReturnEl.textContent = `${netReturn < 0 ? '-' : ''}£${Math.abs(netReturn).toFixed(2)}`;
-      }
-
-      function toggleAccordion(el) {
-        const expanded = el.getAttribute("aria-expanded") === "true";
-        el.setAttribute("aria-expanded", !expanded);
-        const content = el.querySelector(".accordion-content");
-        if (content) {
-          content.setAttribute("aria-hidden", expanded);
-        }
-        el.classList.toggle("active");
-      }
-    </script>
+            function toggleAccordion(el) {
+                const expanded = el.getAttribute("aria-expanded") === "true";
+                el.setAttribute("aria-expanded", !expanded);
+                const content = el.querySelector(".accordion-content");
+                if (content) {
+                    content.setAttribute("aria-hidden", expanded);
+                }
+                el.classList.toggle("active");
+            }
+        </script>
     </section>
 </body>
 
