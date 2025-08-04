@@ -715,6 +715,14 @@
                 });
             });
 
+            document.querySelectorAll('.accordion').forEach(acc => {
+    acc.addEventListener('keydown', function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleAccordion(this);
+        }
+    });
+});
             function toggleInfo() {
                 const infoText = document.getElementById("infoText");
                 const toggle = document.querySelector(".info-toggle");
@@ -807,8 +815,20 @@
                 }
                 el.classList.toggle("active");
             }
+            function handleInfoKey(e) {
+    if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleInfo();
+    }
+}
         </script>
     </section>
 </body>
 
 </html>
+
+
+
+
+
+
