@@ -265,6 +265,10 @@
                 max-height: 500px;
             }
 
+            .info-toggle:focus-visible {
+                outline-offset: 2px
+            }
+
             .chevron-icon {
                 transition: transform 0.2s ease;
                 margin-left: 8px;
@@ -480,12 +484,13 @@
 
                 .accordion {
                     width: fit-content;
+                    margin-left: 10px;
 
                 }
             }
 
             /* M View: Tablet (768px ≤ width < 1024px) */
-            @media (min-width: 768px) and (max-width: 1022px) {
+            @media (min-width: 768px) and (max-width: 1023px) {
                 .container {
                     padding: 24px;
                 }
@@ -520,7 +525,7 @@
             }
 
             /* L View: Desktop (1024px ≤ width < 1256px) */
-            @media (min-width: 1023px) and (max-width: 1255px) {
+            @media (min-width: 1024px) and (max-width: 1255px) {
                 .container {
                     padding: 32px;
                 }
@@ -554,8 +559,12 @@
                     position: relative;
                     left: calc((100% - 1256px)/2);
                     width: 100%;
-                    max-width: 1024px;
+                    max-width: 864px;
                     margin-left: 10px;
+                }
+
+                .notification-banner {
+                    max-width: 1256px;
                 }
             }
         </style>
@@ -596,7 +605,8 @@
                     <label for="monthlyCosts" class="label-text">
                         Monthly costs (optional)
                         <div role="button" type="button" class="info-toggle" onclick="toggleInfo()"
-                            aria-expanded="false" aria-controls="infoText">
+                            onkeydown="handleInfoKey(event)" tabindex="0" aria-expanded="false"
+                            aria-controls="infoText">
                             What does this include?
                             <img id="chevronIcon" src="/Chevron-down.svg" alt="" class="chevron-icon" />
                         </div>
@@ -716,13 +726,13 @@
             });
 
             document.querySelectorAll('.accordion').forEach(acc => {
-    acc.addEventListener('keydown', function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            toggleAccordion(this);
-        }
-    });
-});
+                acc.addEventListener('keydown', function (e) {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        toggleAccordion(this);
+                    }
+                });
+            });
             function toggleInfo() {
                 const infoText = document.getElementById("infoText");
                 const toggle = document.querySelector(".info-toggle");
@@ -816,19 +826,13 @@
                 el.classList.toggle("active");
             }
             function handleInfoKey(e) {
-    if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleInfo();
-    }
-}
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    toggleInfo();
+                }
+            }
         </script>
     </section>
 </body>
 
 </html>
-
-
-
-
-
-
