@@ -318,7 +318,11 @@ this is my html and js below. in this code, the logic is when we click on calcul
 
         grossYieldEl.textContent = `${grossYield.toFixed(1)}%`;
         netYieldEl.textContent = `${netYield.toFixed(1)}%`;
-        netReturnEl.textContent = `${netReturn < 0 ? '-' : ''}£${Math.abs(netReturn).toFixed(2)}`;
+        const formattedReturn = Number.isInteger(netReturn)
+    ? Math.abs(netReturn)
+    : Math.abs(netReturn).toFixed(2);
+
+netReturnEl.textContent = `${netReturn < 0 ? '-' : ''}£${formattedReturn}`;
     }
 </script>
 
