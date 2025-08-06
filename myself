@@ -165,129 +165,160 @@ this is my html and js below. in this code, the logic is when we click on calcul
                             </div>
 
                             <script>
-                                document.querySelectorAll("input[type='text']").forEach((input) => {
-                                    input.addEventListener("input", function () {
-                                        let value = this.value.replace(/,/g, "");
-                                        value = value.replace(/[^\d.]/g, "");
-                                        const parts = value.split(".");
-                                        if (parts.length > 2) value = parts[0] + "." + parts.slice(1).join("");
-                                        let formattedValue = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                                        if (parts.length > 1) formattedValue += "." + parts[1];
-                                        this.value = formattedValue;
-                                    });
+    document.querySelectorAll("input[type='text']").forEach((input) => {
+        input.addEventListener("input", function () {
+            let value = this.value.replace(/,/g, "");
+            value = value.replace(/[^\d.]/g, "");
+            const parts = value.split(".");
+            if (parts.length > 2) value = parts[0] + "." + parts.slice(1).join("");
+            let formattedValue = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            if (parts.length > 1) formattedValue += "." + parts[1];
+            this.value = formattedValue;
+        });
 
-                                    input.addEventListener("keydown", function (e) {
-                                        if ((e.key === "e" || e.key === "E" || e.key === "+" || e.key === "-") ||
-                                            (e.key === "." && this.value.includes("."))) {
-                                            e.preventDefault();
-                                        }
-                                    });
-                                });
+        input.addEventListener("keydown", function (e) {
+            if ((e.key === "e" || e.key === "E" || e.key === "+" || e.key === "-") ||
+                (e.key === "." && this.value.includes("."))) {
+                e.preventDefault();
+            }
+        });
+    });
 
-                                document.querySelectorAll('.wr-accordion').forEach(acc => {
-                                    acc.addEventListener('keydown', function (e) {
-                                        if (e.key === "Enter" || e.key === " ") {
-                                            e.preventDefault();
-                                            toggleAccordion(this);
-                                        }
-                                    });
-                                });
-                                function toggleInfo() {
-                                    const infoText = document.getElementById("wr-infoText");
-                                    const toggle = document.querySelector(".wr-info-toggle");
-                                    const expanded = toggle.getAttribute("aria-expanded") === "true";
-                                    toggle.setAttribute("aria-expanded", !expanded);
-                                    infoText.setAttribute("aria-hidden", expanded);
-                                    infoText.classList.toggle("active");
-                                    toggle.classList.toggle("active");
-                                }
+    document.querySelectorAll('.wr-accordion').forEach(acc => {
+        acc.addEventListener('keydown', function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggleAccordion(this);
+            }
+        });
+    });
 
-                                function calculateYield() {
-                                    const propertyValueInput = document.getElementById("wr-propertyValue");
-                                    const monthlyRentInput = document.getElementById("wr-monthlyRent");
-                                    const mortgageInput = document.getElementById("wr-monthlyMortgage");
-                                    const expensesInput = document.getElementById("wr-monthlyCosts");
-                                    const propertyValue = parseFloat(propertyValueInput.value.replace(/,/g, '')) || 0;
-                                    const monthlyRent = parseFloat(monthlyRentInput.value.replace(/,/g, '')) || 0;
-                                    const monthlyMortgage = parseFloat(mortgageInput.value.replace(/,/g, '')) || 0;
-                                    const monthlyExpenses = parseFloat(expensesInput.value.replace(/,/g, '')) || 0;
-                                    const propertyError = document.getElementById("wr-propertyError");
-                                    const rentError = document.getElementById("wr-rentError");
+    function toggleInfo() {
+        const infoText = document.getElementById("wr-infoText");
+        const toggle = document.querySelector(".wr-info-toggle");
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", !expanded);
+        infoText.setAttribute("aria-hidden", expanded);
+        infoText.classList.toggle("active");
+        toggle.classList.toggle("active");
+    }
 
-                                    propertyError.innerHTML = "";
-                                    rentError.innerHTML = "";
-                                    propertyValueInput.classList.remove("error-border");
-                                    monthlyRentInput.classList.remove("error-border");
+    function toggleAccordion(el) {
+        const expanded = el.getAttribute("aria-expanded") === "true";
+        el.setAttribute("aria-expanded", !expanded);
+        const content = el.querySelector(".wr-accordion-content");
+        if (content) {
+            content.setAttribute("aria-hidden", expanded);
+        }
+        el.classList.toggle("active");
+    }
 
-                                    let hasError = false;
-                                    let firstErrorField = null;
+    function handleInfoKey(e) {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleInfo();
+        }
+    }
 
-                                    function showError(container, message, inputField) {
-                                        const img = document.createElement("img");
-                                        img.src = "/Error.svg";
-                                        img.alt = "Error";
-                                        img.className = "error-icon";
+    function validateInputField(inputField, errorContainer, conditionFn, errorMessage) {
+        errorContainer.innerHTML = "";
+        inputField.classList.remove("error-border");
 
-                                        const text = document.createTextNode(message);
-                                        container.appendChild(img);
-                                        container.appendChild(text);
-                                        container.style.display = "flex";
-                                        container.style.alignItems = "center";
-                                        container.style.gap = "6px";
+        const value = parseFloat(inputField.value.replace(/,/g, "")) || 0;
 
-                                        if (!firstErrorField) {
-                                            firstErrorField = inputField;
-                                        }
-                                    }
+        if (conditionFn(value)) {
+            const img = document.createElement("img");
+            img.src = "/Error.svg";
+            img.alt = "Error";
+            img.className = "error-icon";
 
-                                    if (propertyValue < 25000) {
-                                        showError(propertyError, "Min. £25,000 required", propertyValueInput);
-                                        propertyValueInput.classList.add("error-border");
-                                        hasError = true;
-                                    }
+            const text = document.createTextNode(errorMessage);
+            errorContainer.appendChild(img);
+            errorContainer.appendChild(text);
+            errorContainer.style.display = "flex";
+            errorContainer.style.alignItems = "center";
+            errorContainer.style.gap = "6px";
 
-                                    if (monthlyRent <= 0) {
-                                        showError(rentError, "Monthly rent required.", monthlyRentInput);
-                                        monthlyRentInput.classList.add("error-border");
-                                        hasError = true;
-                                    }
+            inputField.classList.add("error-border");
+            return false;
+        }
+        return true;
+    }
 
-                                    const grossYieldEl = document.getElementById("wr-grossYield");
-                                    const netYieldEl = document.getElementById("wr-netYield");
-                                    const netReturnEl = document.getElementById("wr-netReturn");
+    // Real-time validation on blur
+    document.getElementById("wr-propertyValue").addEventListener("blur", function () {
+        validateInputField(
+            this,
+            document.getElementById("wr-propertyError"),
+            (value) => value < 25000,
+            "Min. £25,000 required"
+        );
+    });
 
-                                    if (hasError) {
-                                        if (firstErrorField) firstErrorField.focus();
-                                        grossYieldEl.textContent = "0%";
-                                        netYieldEl.textContent = "0%";
-                                        netReturnEl.textContent = "£0.00";
-                                        return;
-                                    }
+    document.getElementById("wr-monthlyRent").addEventListener("blur", function () {
+        validateInputField(
+            this,
+            document.getElementById("wr-rentError"),
+            (value) => value <= 0,
+            "Monthly rent required."
+        );
+    });
 
-                                    const annualRent = monthlyRent * 12;
-                                    const annualCosts = (monthlyMortgage + monthlyExpenses) * 12;
-                                    const grossYield = (annualRent / propertyValue) * 100;
-                                    const netYield = ((annualRent - annualCosts) / propertyValue) * 100;
-                                    const netReturn = annualRent - annualCosts;
+    function calculateYield() {
+        const propertyValueInput = document.getElementById("wr-propertyValue");
+        const monthlyRentInput = document.getElementById("wr-monthlyRent");
+        const mortgageInput = document.getElementById("wr-monthlyMortgage");
+        const expensesInput = document.getElementById("wr-monthlyCosts");
+        const propertyError = document.getElementById("wr-propertyError");
+        const rentError = document.getElementById("wr-rentError");
 
-                                    grossYieldEl.textContent = `${grossYield.toFixed(1)}%`;
-                                    netYieldEl.textContent = `${netYield.toFixed(1)}%`;
-                                    netReturnEl.textContent = `${netReturn < 0 ? '-' : ''}£${Math.abs(netReturn).toFixed(2)}`;
-                                }
+        const propertyValue = parseFloat(propertyValueInput.value.replace(/,/g, '')) || 0;
+        const monthlyRent = parseFloat(monthlyRentInput.value.replace(/,/g, '')) || 0;
+        const monthlyMortgage = parseFloat(mortgageInput.value.replace(/,/g, '')) || 0;
+        const monthlyExpenses = parseFloat(expensesInput.value.replace(/,/g, '')) || 0;
 
-                                function toggleAccordion(el) {
-                                    const expanded = el.getAttribute("aria-expanded") === "true";
-                                    el.setAttribute("aria-expanded", !expanded);
-                                    const content = el.querySelector(".wr-accordion-content");
-                                    if (content) {
-                                        content.setAttribute("aria-hidden", expanded);
-                                    }
-                                    el.classList.toggle("active");
-                                }
-                                function handleInfoKey(e) {
-                                    if (e.key === "Enter" || e.key === " ") {
-                                        e.preventDefault();
-                                        toggleInfo();
-                                    }
-                                }
-                            </script>
+        const grossYieldEl = document.getElementById("wr-grossYield");
+        const netYieldEl = document.getElementById("wr-netYield");
+        const netReturnEl = document.getElementById("wr-netReturn");
+
+        // Run validation
+        const isPropertyValid = validateInputField(
+            propertyValueInput,
+            propertyError,
+            (value) => value < 25000,
+            "Min. £25,000 required"
+        );
+
+        const isRentValid = validateInputField(
+            monthlyRentInput,
+            rentError,
+            (value) => value <= 0,
+            "Monthly rent required."
+        );
+
+        const hasError = !(isPropertyValid && isRentValid);
+
+        if (hasError) {
+            if (!isPropertyValid) {
+                propertyValueInput.focus();
+            } else {
+                monthlyRentInput.focus();
+            }
+            grossYieldEl.textContent = "0%";
+            netYieldEl.textContent = "0%";
+            netReturnEl.textContent = "£0.00";
+            return;
+        }
+
+        const annualRent = monthlyRent * 12;
+        const annualCosts = (monthlyMortgage + monthlyExpenses) * 12;
+        const grossYield = (annualRent / propertyValue) * 100;
+        const netYield = ((annualRent - annualCosts) / propertyValue) * 100;
+        const netReturn = annualRent - annualCosts;
+
+        grossYieldEl.textContent = `${grossYield.toFixed(1)}%`;
+        netYieldEl.textContent = `${netYield.toFixed(1)}%`;
+        netReturnEl.textContent = `${netReturn < 0 ? '-' : ''}£${Math.abs(netReturn).toFixed(2)}`;
+    }
+</script>
+
