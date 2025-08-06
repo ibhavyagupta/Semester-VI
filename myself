@@ -1,46 +1,293 @@
-I'm a Front-End Developer on the Prototyping Team — which basically means I help bring ideas to life before they become full-blown products.
+this is my html and js below. in this code, the logic is when we click on calculate button, error comes up for the input field based on the error criteria. i want to have the error shown when user enters some digit and blur the input field or click outside of the input field..same error should shown up
 
-Think of me as the person who takes scribbles, post-its, or wild ideas and turns them into real, clickable things you can actually test and play with.
+  <div class="wr-container">
+                                <div class="wr-form-section">
+                                    <h1 class="wr-ryc-header">Rental yield calculator</h1>
+                                    <p class="wr-ryc-paragraph">Work out how much money your rental property could
+                                        bring
+                                        in each year.
+                                    </p>
 
-💼 What I do (besides drinking way too much coffee ☕)
-Turn early concepts into working prototypes using HTML, CSS, JS — fast and clean.
+                                    <div class="wr-input-group">
+                                        <label for="wr-propertyValue" class="wr-label-text">Current value of
+                                            property</label>
+                                        <div class="wr-input-prefix">
+                                            <span>£</span>
+                                            <input type="text" id="wr-propertyValue" inputmode="numeric"
+                                                pattern="[0-9]*" aria-describedby="wr-propertyError" autocomplete="off"
+                                                placeholder="0" />
+                                        </div>
+                                        <small class="wr-error" id="wr-propertyError" aria-live="polite"></small>
+                                    </div>
 
-Work closely with designers to make sure their vision works in the browser, not just on slides.
+                                    <div class="wr-input-group">
+                                        <label for="wr-monthlyRent" class="wr-label-text">Monthly rent</label>
+                                        <div class="wr-input-prefix">
+                                            <span>£</span>
+                                            <input type="text" id="wr-monthlyRent" inputmode="numeric" pattern="[0-9]*"
+                                                aria-describedby="wr-rentError" placeholder="0" />
+                                        </div>
+                                        <small class="wr-error" id="wr-rentError" aria-live="polite"></small>
+                                    </div>
 
-Test interactions, layouts, and accessibility (because everyone deserves a great experience).
+                                    <div class="wr-input-group">
+                                        <label for="wr-monthlyMortgage" class="wr-label-text">Monthly mortgage payments
+                                            (optional)</label>
+                                        <div class="wr-input-prefix">
+                                            <span>£</span>
+                                            <input type="text" id="wr-monthlyMortgage" inputmode="numeric"
+                                                pattern="[0-9]*" placeholder="0" />
+                                        </div>
+                                    </div>
 
-Spot potential issues before they become real problems.
+                                    <div class="wr-input-group">
+                                        <label for="wr-monthlyCosts" class="wr-label-text">
+                                            Monthly costs (optional)
+                                            <div role="button" type="button" class="wr-info-toggle"
+                                                onclick="toggleInfo()" onkeydown="handleInfoKey(event)" tabindex="0"
+                                                aria-expanded="false" aria-controls="wr-infoText">
+                                                What does this include?
+                                                <img id="wr-chevronIcon" src="/Chevron-down.svg" alt=""
+                                                    class="wr-chevron-icon" />
+                                            </div>
+                                        </label>
+                                        <div id="wr-infoText" class="wr-info-text" role="region" aria-hidden="true">
+                                            This covers costs like building insurance, boiler insurance, property
+                                            maintenance, agent
+                                            management fees, etc.
+                                        </div>
+                                        <div class="wr-input-prefix">
+                                            <span>£</span>
+                                            <input type="text" id="wr-monthlyCosts" inputmode="numeric" pattern="[0-9]*"
+                                                placeholder="0" />
+                                        </div>
+                                    </div>
 
-Add just enough polish to make ideas feel real — without over-engineering.
+                                    <div class="wr-ryc-cta-wrapper">
+                                        <button onclick="calculateYield()" class="wr-ryc-cta-button">Calculate rental
+                                            yield</button>
+                                    </div>
+                                </div>
 
-💬 Talk to me about…
-Making things accessible and user-friendly (yes, I check contrast ratios 🙈)
+                                <div class="wr-result-section">
+                                    <div class="wr-result-container" aria-labelledby="wr-resultHeading">
+                                        <div class="wr-result-top">
+                                            <img src="/Mortgage calculator.png" alt="Result section illustration" />
+                                            <h2 class="wr-result-header" id="wr-resultHeading">Rental yield breakdown
+                                            </h2>
+                                        </div>
+                                        <div class="wr-result-box">
+                                            <div class="wr-result-wrap">
+                                                <p class="wr-result-title">Gross rental yield:</p>
+                                                <p id="wr-grossYield" class="wr-result-value">0%</p>
+                                            </div>
+                                            <div class="wr-result-wrap">
+                                                <p class="wr-result-title">Net rental yield:</p>
+                                                <p id="wr-netYield" class="wr-result-value">0%</p>
+                                            </div>
+                                            <div class="wr-result-wrap">
+                                                <p class="wr-result-title">Net annual return:</p>
+                                                <p id="wr-netReturn" class="wr-result-value">£0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-Why I love semantic HTML more than pizza (ok, maybe not more than pizza 🍕)
+                            <div class="wr-notification-banner" role="note">
+                                <div class="wr-notification-image">
+                                    <img src="/Info.svg" alt="" role="presentation" />
+                                </div>
+                                <div class="wr-notification-text">
+                                    These numbers are estimates based on the amounts you entered. We haven’t
+                                    included
+                                    any unforeseen
+                                    costs
+                                    in our calculations.
+                                </div>
+                            </div>
 
-How to build things quickly without breaking everything
+                            <!-- Accordion Section -->
+                            <div class="wr-accordion" onclick="toggleAccordion(this)" role="button" tabindex="0"
+                                aria-expanded="false" aria-controls="wr-accordion1-content">
+                                <div class="wr-accordion-toggle">
+                                    <div class="wr-icon-wrapper">
+                                        <img src="/Plus.svg" alt="" role="presentation" class="wr-accordion-icon" />
+                                    </div>
+                                    <div class="wr-accordion-header">What does gross and net mean?</div>
+                                </div>
+                                <div class="wr-accordion-content" id="wr-accordion1-content" role="region"
+                                    aria-hidden="true">
+                                    <div>Gross rental yield measures your rental income against the price of the
+                                        property before
+                                        expenses.
+                                    </div>
+                                    <div>Net rental yield (and net annual return) is what you're left with after
+                                        expenses.</div>
+                                </div>
+                            </div>
 
-Collaborating with Figma, dev tools, and creative chaos
+                            <div class="wr-accordion" onclick="toggleAccordion(this)" role="button" tabindex="0"
+                                aria-expanded="false" aria-controls="wr-accordion2-content">
+                                <div class="wr-accordion-toggle">
+                                    <div class="wr-icon-wrapper">
+                                        <img src="/Plus.svg" alt="" role="presentation" class="wr-accordion-icon" />
+                                    </div>
+                                    <div class="wr-accordion-header">How did you calculate my rental yield?</div>
+                                </div>
 
-🎉 Fun Fact
-I once spent hours fixing a layout bug that turned out to be caused by… a missing } in CSS.
-Yes, I laughed. Yes, I cried. Yes, I celebrated like a hero.
+                                <div class="wr-accordion-content" id="wr-accordion2-content" role="region"
+                                    aria-hidden="true">
+                                    <div class="wr-accordion-sub-header">For gross rental yield we:</div>
+                                    <ol>
+                                        <li>Multiplied your monthly rental income by 12 to find your annual income.
+                                        </li>
+                                        <li>Divided that figure by the property purchase price/current value.</li>
+                                        <li>Then, multiplied the figure by 100. The final number is your gross
+                                            rental
+                                            yield as a
+                                            percentage.
+                                        </li>
+                                    </ol>
 
-Let me know if you want it in a one-pager, a slide deck, or adapted for LinkedIn/Slack!
+                                    <div class="wr-accordion-sub-header">To calculate net rental yield we:</div>
+                                    <ol>
+                                        <li>Multiplied your monthly rental income by 12.</li>
+                                        <li>Multiplied your monthly rental costs by 12, then subtracted that number
+                                            from
+                                            the annual
+                                            rental
+                                            income.</li>
+                                        <li>Divided that by the property’s purchase value/current price.</li>
+                                        <li>Multiplied that figure by 100 to get your net percentage.</li>
+                                    </ol>
+                                </div>
+                            </div>
 
-Absolutely — here are a few funny fun facts you can pick from (or mix and match):
+                            <script>
+                                document.querySelectorAll("input[type='text']").forEach((input) => {
+                                    input.addEventListener("input", function () {
+                                        let value = this.value.replace(/,/g, "");
+                                        value = value.replace(/[^\d.]/g, "");
+                                        const parts = value.split(".");
+                                        if (parts.length > 2) value = parts[0] + "." + parts.slice(1).join("");
+                                        let formattedValue = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                        if (parts.length > 1) formattedValue += "." + parts[1];
+                                        this.value = formattedValue;
+                                    });
 
-🤪 Fun Fact (Funny Edition)
-I once spent 45 minutes debugging a layout issue… only to realize I was editing the wrong file.
-(Pro tip: always check your tabs.)
+                                    input.addEventListener("keydown", function (e) {
+                                        if ((e.key === "e" || e.key === "E" || e.key === "+" || e.key === "-") ||
+                                            (e.key === "." && this.value.includes("."))) {
+                                            e.preventDefault();
+                                        }
+                                    });
+                                });
 
-I talk to my code like it’s a living thing — and yes, I say “please work” out loud.
-(It listens… sometimes.)
+                                document.querySelectorAll('.wr-accordion').forEach(acc => {
+                                    acc.addEventListener('keydown', function (e) {
+                                        if (e.key === "Enter" || e.key === " ") {
+                                            e.preventDefault();
+                                            toggleAccordion(this);
+                                        }
+                                    });
+                                });
+                                function toggleInfo() {
+                                    const infoText = document.getElementById("wr-infoText");
+                                    const toggle = document.querySelector(".wr-info-toggle");
+                                    const expanded = toggle.getAttribute("aria-expanded") === "true";
+                                    toggle.setAttribute("aria-expanded", !expanded);
+                                    infoText.setAttribute("aria-hidden", expanded);
+                                    infoText.classList.toggle("active");
+                                    toggle.classList.toggle("active");
+                                }
 
-My favorite IDE feature? Undo. I treat it like a time machine.
+                                function calculateYield() {
+                                    const propertyValueInput = document.getElementById("wr-propertyValue");
+                                    const monthlyRentInput = document.getElementById("wr-monthlyRent");
+                                    const mortgageInput = document.getElementById("wr-monthlyMortgage");
+                                    const expensesInput = document.getElementById("wr-monthlyCosts");
+                                    const propertyValue = parseFloat(propertyValueInput.value.replace(/,/g, '')) || 0;
+                                    const monthlyRent = parseFloat(monthlyRentInput.value.replace(/,/g, '')) || 0;
+                                    const monthlyMortgage = parseFloat(mortgageInput.value.replace(/,/g, '')) || 0;
+                                    const monthlyExpenses = parseFloat(expensesInput.value.replace(/,/g, '')) || 0;
+                                    const propertyError = document.getElementById("wr-propertyError");
+                                    const rentError = document.getElementById("wr-rentError");
 
-I’ve mastered the art of “temporarily fixing” things… that somehow go live forever.
-(Shh, don’t tell anyone.)
+                                    propertyError.innerHTML = "";
+                                    rentError.innerHTML = "";
+                                    propertyValueInput.classList.remove("error-border");
+                                    monthlyRentInput.classList.remove("error-border");
 
-I once fixed a bug by deleting a line of code and… it just worked.
-I still don’t know why — and I’m afraid to ask.
+                                    let hasError = false;
+                                    let firstErrorField = null;
+
+                                    function showError(container, message, inputField) {
+                                        const img = document.createElement("img");
+                                        img.src = "/Error.svg";
+                                        img.alt = "Error";
+                                        img.className = "error-icon";
+
+                                        const text = document.createTextNode(message);
+                                        container.appendChild(img);
+                                        container.appendChild(text);
+                                        container.style.display = "flex";
+                                        container.style.alignItems = "center";
+                                        container.style.gap = "6px";
+
+                                        if (!firstErrorField) {
+                                            firstErrorField = inputField;
+                                        }
+                                    }
+
+                                    if (propertyValue < 25000) {
+                                        showError(propertyError, "Min. £25,000 required", propertyValueInput);
+                                        propertyValueInput.classList.add("error-border");
+                                        hasError = true;
+                                    }
+
+                                    if (monthlyRent <= 0) {
+                                        showError(rentError, "Monthly rent required.", monthlyRentInput);
+                                        monthlyRentInput.classList.add("error-border");
+                                        hasError = true;
+                                    }
+
+                                    const grossYieldEl = document.getElementById("wr-grossYield");
+                                    const netYieldEl = document.getElementById("wr-netYield");
+                                    const netReturnEl = document.getElementById("wr-netReturn");
+
+                                    if (hasError) {
+                                        if (firstErrorField) firstErrorField.focus();
+                                        grossYieldEl.textContent = "0%";
+                                        netYieldEl.textContent = "0%";
+                                        netReturnEl.textContent = "£0.00";
+                                        return;
+                                    }
+
+                                    const annualRent = monthlyRent * 12;
+                                    const annualCosts = (monthlyMortgage + monthlyExpenses) * 12;
+                                    const grossYield = (annualRent / propertyValue) * 100;
+                                    const netYield = ((annualRent - annualCosts) / propertyValue) * 100;
+                                    const netReturn = annualRent - annualCosts;
+
+                                    grossYieldEl.textContent = `${grossYield.toFixed(1)}%`;
+                                    netYieldEl.textContent = `${netYield.toFixed(1)}%`;
+                                    netReturnEl.textContent = `${netReturn < 0 ? '-' : ''}£${Math.abs(netReturn).toFixed(2)}`;
+                                }
+
+                                function toggleAccordion(el) {
+                                    const expanded = el.getAttribute("aria-expanded") === "true";
+                                    el.setAttribute("aria-expanded", !expanded);
+                                    const content = el.querySelector(".wr-accordion-content");
+                                    if (content) {
+                                        content.setAttribute("aria-hidden", expanded);
+                                    }
+                                    el.classList.toggle("active");
+                                }
+                                function handleInfoKey(e) {
+                                    if (e.key === "Enter" || e.key === " ") {
+                                        e.preventDefault();
+                                        toggleInfo();
+                                    }
+                                }
+                            </script>
