@@ -302,6 +302,36 @@
                 max-width: 100px;
             }
         }
+/* Make Card A wider only in the first row */
+.wr-grid {
+  grid-template-columns: 1fr 1fr; /* keep default equal widths for all rows */
+}
+
+/* Override ONLY for first row cards */
+.wr-card--a {
+  grid-column: span 2; /* temporarily span across both columns */
+  display: grid;
+  grid-template-columns: 65% 35%; /* wider text column, smaller image column */
+  align-items: end;
+}
+
+/* Image container for Card A */
+.wr-card--a .wr-card-image-a {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+/* Image styling for Card A */
+.wr-card--a .wr-card-image-a img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+  border-bottom-right-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
     </style>
 </head>
 
