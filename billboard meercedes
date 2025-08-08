@@ -240,3 +240,250 @@
 </body>
 
 </html>
+------------------------------------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Money Confidence — Health Check</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #fff;
+}
+
+.wr-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.wr-title {
+  color: #5A287D;
+  text-align: center;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.wr-highlight {
+  color: #5A287D;
+  text-decoration: underline;
+  text-decoration-color: red;
+  font-weight: 700;
+}
+
+.wr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "a b"
+    "c e"
+    "d e";
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.wr-card {
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wr-card-title {
+  color: #5A287D;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.wr-card-text {
+  color: #5A287D;
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Background colors */
+.wr-card--a {
+  grid-area: a;
+  background: #F2F2F8;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.wr-card--b {
+  grid-area: b;
+  background: #DBEDFA;
+}
+
+.wr-card--c {
+  grid-area: c;
+  background: #FFEAE6;
+}
+
+.wr-card--d {
+  grid-area: d;
+  background: #FFDBEC;
+}
+
+.wr-card--e {
+  grid-area: e;
+  background: #F2EAF9;
+}
+
+/* Card A image adjustments */
+.wr-card-image-a {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wr-card-image-a img {
+  max-width: 55%;
+  height: auto;
+  border-bottom-right-radius: 16px;
+  border-top-right-radius: 16px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Smaller images for B, C, D */
+.wr-card-image-b img,
+.wr-card-image-c img,
+.wr-card-image-d img {
+  max-width: 130px;
+  height: auto;
+  margin-top: 16px;
+}
+
+/* Card E special panel */
+.wr-card-image-e {
+  margin-top: 20px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wr-card-image-e img {
+  max-width: 50px;
+}
+
+.wr-card-image-e h4 {
+  color: #5A287D;
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .wr-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "a"
+      "b"
+      "c"
+      "d"
+      "e";
+  }
+
+  .wr-card--a {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .wr-card-image-a img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-right: 0;
+  }
+
+  .wr-card-image-b img,
+  .wr-card-image-c img,
+  .wr-card-image-d img {
+    max-width: 100px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <main class="wr-section">
+    <h2 class="wr-title">
+      Boost your money <span class="wr-highlight">confidence</span> with a health check
+    </h2>
+
+    <div class="wr-grid">
+
+      <!-- Card A -->
+      <article class="wr-card wr-card--a">
+        <div class="wr-card-content">
+          <h2 class="wr-card-title">What is a health check?</h2>
+          <p class="wr-card-text">
+            Financial Health Check is a free review of your finances, offering tips and ideas to help you get financially fitter now and in the future.
+          </p>
+        </div>
+        <div class="wr-card-image-a">
+          <img src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-FHC-tennis-image.png" alt="Health check image">
+        </div>
+      </article>
+
+      <!-- Card B -->
+      <article class="wr-card wr-card--b">
+        <h3 class="wr-card-title">Get help the way you want</h3>
+        <p class="wr-card-text">Book a video appointment or arrange to speak to someone over the phone or in branch.</p>
+        <div class="wr-card-image-b">
+          <img src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-FHC-phone-video-call.png" alt="phone / video icon">
+        </div>
+      </article>
+
+      <!-- Card C -->
+      <article class="wr-card wr-card--c">
+        <h3 class="wr-card-title">In-app if you prefer</h3>
+        <p class="wr-card-text">The Insights tab in our app offers personalised tips, tools, and insights to help you reach your financial goals.</p>
+        <div class="wr-card-image-c">
+          <img src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-FHC-insights-tips.png" alt="app screenshot">
+        </div>
+      </article>
+
+      <!-- Card D -->
+      <article class="wr-card wr-card--d">
+        <h3 class="wr-card-title">Financial support for you</h3>
+        <p class="wr-card-text">The ‘Just for you’ section offers personalised guidance to save, spend smarter, and boost credit score.</p>
+        <div class="wr-card-image-d">
+          <img src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-FHC-pulse-insights-prompt.png" alt="support screenshot">
+        </div>
+      </article>
+
+      <!-- Card E -->
+      <article class="wr-card wr-card--e">
+        <h3 class="wr-card-title">Own your finances</h3>
+        <p class="wr-card-text">Take control of your money with self-paced coaching plans, tools, and progress tracking.</p>
+        <div class="wr-card-image-e">
+          <div>
+            <h4>Hit your money goals</h4>
+            <div style="height:10px; background:#eee; border-radius:5px; margin-bottom:6px; width:100px;"></div>
+            <div style="height:10px; background:#eee; border-radius:5px; width:60px;"></div>
+          </div>
+          <img src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-FHC-progress-tracking.png" alt="rocket illustration">
+        </div>
+      </article>
+
+    </div>
+  </main>
+</body>
+
+</html>
