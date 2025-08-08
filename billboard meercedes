@@ -1,3 +1,18 @@
+/* Make first row Card A wider than Card B */
+.wr-grid:first-of-type {
+  grid-template-columns: 2fr 1fr; /* Card A wider */
+}
+
+/* Make Card A image align bottom right with same radius */
+.wr-grid:first-of-type .wr-card--a .wr-card-image-a img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-bottom-right-radius: 16px;
+}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
