@@ -58,6 +58,39 @@
                 "c e"
                 "d e";
         }
+/* First row: make Card A wider than Card B */
+.wr-grid {
+  grid-template-columns: 65% 35%;
+  grid-template-areas:
+    "a b"
+    "c e"
+    "d e";
+}
+
+/* Card A layout: text left, image right */
+.wr-card--a {
+  display: grid;
+  grid-template-columns: 1fr auto; /* text column then image column */
+  align-items: end; /* align image to bottom */
+}
+
+/* Image container in Card A */
+.wr-card--a .wr-card-image-a {
+  display: flex;
+  align-items: flex-end; /* bottom align inside its column */
+  justify-content: flex-end; /* push to right edge */
+}
+
+/* Image styling for Card A */
+.wr-card--a .wr-card-image-a img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+  border-bottom-right-radius: 16px; /* match card's radius */
+  border-top-right-radius: 16px;    /* match card's radius */
+}
+
 
         .wr-grid.first-row {
             grid-template-columns: 65% 35% !important;
