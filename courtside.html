@@ -336,47 +336,55 @@
                                         line-height: 48px;
                                     }
                                 }
-                              /* Keep A & B stacked for all screen sizes */
+                             /* Container for Card A & Card B */
 .wr-ab-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Small devices (mobile, up to 767px) */
+/* Default grid for C, D, E */
+.wr-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "c e"
+    "d e";
+}
+
+/* Small devices (mobile) - all stacked vertically */
 @media screen and (max-width: 767px) {
+  .wr-ab-container {
+    flex-direction: column;
+  }
+
   .wr-grid {
-    display: grid;
     grid-template-columns: 1fr;
     grid-template-areas:
       "c"
       "d"
       "e";
-    gap: 20px;
   }
 }
 
-/* Medium devices (tablet, 768px–1023px) */
+/* Medium devices (tablet) */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .wr-grid {
-    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "c e"
       "d e";
-    gap: 20px;
   }
 }
 
-/* Large devices (desktop, 1024px+) */
+/* Large devices (desktop) */
 @media screen and (min-width: 1024px) {
   .wr-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "c e"
       "d e";
-    gap: 24px;
   }
 }
 
