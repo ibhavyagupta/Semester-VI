@@ -1,149 +1,887 @@
-<!-- Info Banner -->
-<div class="wr-info-banner" role="region" aria-label="Disclaimer">
-  <span class="wr-info-icon" aria-hidden="true">ℹ️</span>
-  <p class="wr-info-text">
-    These numbers are estimates based on the amounts you entered. We haven’t included any unforeseen costs in our calculations.
-  </p>
-</div>
+<section class="wr-dynamic-card-container">
+                                <style>
+                                  img {
+                                    max-width: 100%;
+                                    display: block;
+                                  }
 
-<!-- Accordion Section -->
-<div class="wr-accordion-container">
-  <div class="wr-accordion">
-    <button class="wr-accordion-toggle" aria-expanded="false" aria-controls="accordion-content-1">
-      <span class="wr-accordion-icon" aria-hidden="true">+</span>
-      <span class="wr-accordion-title">What does gross and net mean?</span>
-    </button>
-    <div id="accordion-content-1" class="wr-accordion-content" hidden>
-      <p>
-        Gross rental yield measures your rental income against the price of the property before expenses.
-      </p>
-      <p>
-        Net rental yield (and net annual return) is what you're left with after expenses.
-      </p>
-    </div>
-  </div>
-</div>
+                                  .wr-dynamic-card-container {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                    align-items: flex-start;
+                                    gap: 48px;
+                                    max-inline-size: 1256px;
+                                    margin-inline: auto;
+                                    background-color: #ffffff;
+                                    padding: 48px 0px 0px 0px;
+                                  }
 
-/* Info banner left-alignment on medium and up */
-@media screen and (min-width: 768px) {
-  .wr-info-banner {
-    align-self: flex-start;
-    text-align: left;
-    justify-content: flex-start;
-  }
-}
+                                  .wr-title-wrap {
+                                    align-self: center;
+                                    text-align: center;
+                                  }
 
-/* Accordion icon rotate on open */
-.wr-accordion-toggle.active .wr-accordion-icon {
-  transform: rotate(45deg); /* plus ➕ becomes X ✖️ */
-}
+                                  .wr-title-wrap h2 {
+                                    font-family: "RN House Sans", "RNHouseSansRegular", sans-serif;
+                                    font-size: 40px;
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    line-height: 50px;
+                                    letter-spacing: -0.2px;
+                                    color: #5A287D;
+                                    padding: 0;
+                                    margin: 0;
+                                  }
 
-/* Accordion expanded content styling */
-.wr-accordion-content {
-  padding-top: 12px;
-  font-size: 16px;
-  color: #4b4b4b;
-  line-height: 1.5;
-}
+                                  .wr-card-container {
+                                    display: grid;
+                                    gap: 24px;
+                                    max-inline-size: 1256px;
+                                    margin-inline: auto;
+                                    grid-template-areas:
+                                      'one'
+                                      'two'
+                                      'three'
+                                      'four'
+                                      'five';
+                                  }
 
-/* Improve spacing in expanded state */
-.wr-accordion.active {
-  padding-bottom: 16px;
-}
+                                  .wr-card-content {
+                                    color: #5A287D;
+                                    background-color: #fff;
+                                    padding: 24px;
+                                    border-radius: 16px;
+                                    overflow: clip;
+                                    display: grid;
+                                    gap: 24px;
+                                    text-align: start;
+                                    position: relative;
+                                    overflow: visible;
+                                  }
 
-/* Ensure icon stays on left with space */
-.wr-accordion-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
---------------------------------------------------------------------------------------------------
-/* ========== Info Banner ========== */
-.wr-info-banner {
-  display: flex;
-  align-items: flex-start;
-  background-color: #f5f5fa;
-  border-radius: 8px;
-  padding: 16px 20px;
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 20px;
-  max-width: 100%;
-}
+                                  .wr-card-container img {
+                                    max-width: var(--bento-card-image-width, 100%);
+                                    width: var(--bento-card-image-width, 100%);
+                                    order: var(--bento-card-image-order);
+                                  }
 
-.wr-info-icon {
-  font-size: 18px;
-  margin-right: 12px;
-  margin-top: 2px;
-  color: #333;
-}
+                                  .wr-card-content {
+                                    display: flex;
+                                    flex-direction: column;
+                                  }
 
-.wr-info-text {
-  margin: 0;
-  line-height: 1.5;
-  color: #4a4a4a;
-}
+                                  .wr-text-area-wrap h3 {
+                                    font-family: "RN House Sans", "RNHouseSansRegular", sans-serif;
+                                    font-size: 30px;
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    line-height: 40px;
+                                    letter-spacing: -0.2px;
+                                    color: #5A287D;
+                                    margin: 0;
+                                    margin-bottom: 8px;
+                                  }
 
-/* Align info-banner to left on wider screens */
-@media screen and (min-width: 768px) {
-  .wr-info-banner {
-    align-self: flex-start;
-    max-width: 700px;
-  }
-}
+                                  .wr-text-area-wrap p {
+                                    font-family: "RN House Sans", "RNHouseSansRegular", sans-serif;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: 26px;
+                                    letter-spacing: 0.2px;
+                                    color: #5A287D;
+                                    margin: 0;
+                                  }
 
-/* ========== Accordion ========== */
-.wr-accordion-container {
-  background-color: #f5f5fa;
-  padding: 10px 16px;
-  border-radius: 8px;
-  max-width: 100%;
-  font-family: 'Segoe UI', sans-serif;
-}
+                                  .wr-card-container .wr-card-content .wr-text-area-wrap .comp-rich-text .popover a.popover-close {
+                                    background-image: url("https://www.natwest.com/etc.clientlibs/responsive/editable/components/foundation/text/clientlibs/clientlib_text_base/resources/images/icon-close-white.svg") !important;
+                                  }
 
-.wr-accordion {
-  width: 100%;
-}
+                                  .wr-card-container .wr-card-content .wr-text-area-wrap .comp-rich-text .popover a.popover-close :focus {
+                                    outline: none;
+                                  }
 
-.wr-accordion-toggle {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border: none;
-  width: 100%;
-  text-align: left;
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 500;
-  color: #6b2ad3;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
+                                  .wr-card-container> :nth-child(1) {
+                                    background-color: #FFDBEC;
+                                    grid-area: one;
+                                    --bento-card-image-width: 30%;
+                                  }
 
-.wr-accordion-toggle:hover {
-  background: #f0eefc;
-}
+                                  .wr-card-container> :nth-child(2) {
+                                    Background-color: #FFEEEB;
+                                    grid-area: two;
+                                    --bento-card-image-width: 22%;
+                                  }
 
-.wr-accordion-icon {
-  font-size: 20px;
-  margin-right: 12px;
-  color: #6b2ad3;
-  width: 20px;
-}
+                                  .wr-card-2-image-1 {
+                                    position: absolute;
+                                    bottom: -15px;
+                                    left: 35%;
+                                    z-index: 1;
+                                  }
 
-.wr-accordion-title {
-  flex: 1;
-}
+                                  .wr-card-container> :nth-child(3) {
+                                    Background-color: #DBEDFA;
+                                    overflow: clip;
+                                    grid-area: three;
+                                    --bento-card-image-width: 100%;
+                                    padding-bottom: 0px;
+                                  }
 
-.wr-accordion-content {
-  padding: 16px;
-  margin-top: 4px;
-  background: #ffffff;
-  border-radius: 8px;
-  color: #4a4a4a;
-  font-size: 15px;
-  line-height: 1.6;
-}
+                                  .wr-card-3-img-wrapper {
+                                    position: relative;
+                                    justify-items: center;
+                                  }
 
+                                  .wr-card-3-image-1 {
+                                    height: 100%;
+                                    object-fit: cover;
+                                  }
+
+                                  .wr-card-3-image-2,
+                                  .wr-card-3-image-3,
+                                  .wr-card-3-image-4,
+                                  .wr-card-3-image-5 {
+                                    position: absolute;
+                                    --bento-card-image-width: 85%;
+                                    box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.12);
+                                    border-radius: 8px;
+                                  }
+
+                                  .wr-card-3-image-2 {
+                                    top: 25%;
+                                    z-index: 3;
+                                  }
+
+                                  .wr-card-3-image-3 {
+                                    top: 42%;
+                                    z-index: 2;
+                                  }
+
+                                  .wr-card-3-image-4 {
+                                    top: 57.9%;
+                                    z-index: 1;
+                                  }
+
+                                  .wr-card-3-image-5 {
+                                    top: 74%;
+                                  }
+
+                                  .wr-card-container> :nth-child(4) {
+                                    Background-color: #F2EAF9;
+                                    --bento-card-image-width: 45%;
+                                    grid-area: four;
+                                  }
+
+                                  .wr-card-container> :nth-child(4) .wr-text-area-wrap {
+                                    width: 57%;
+                                  }
+
+                                  .wr-card-4-image-1 {
+                                    position: absolute;
+                                    right: 0;
+                                  }
+
+                                  .wr-card-container> :nth-child(5) {
+                                    Background-color: #FFDBEC;
+                                    align-content: start;
+                                    align-items: start;
+                                    justify-items: start;
+                                    grid-area: five;
+                                  }
+
+                                  .wr-card-container> :nth-child(5) .wr-text-area-wrap {
+                                    flex: 0.45;
+                                  }
+
+                                  .wr-card-5-image-1 {
+                                    position: absolute;
+                                    right: -10px;
+                                    top: 15px;
+                                  }
+
+                                  .wr-card-5-image-2,
+                                  .wr-card-5-image-3 {
+                                    position: absolute;
+                                    width: 15% !important;
+                                    bottom: 25px;
+                                  }
+
+                                  .wr-card-5-image-2 {
+                                    right: 120px;
+                                  }
+
+                                  .wr-card-5-image-3 {
+                                    right: 25px;
+                                  }
+
+                                  .wr-card-1-image-1,
+                                  .wr-card-2-image-1,
+                                  .wr-card-3-image-2,
+                                  .wr-card-3-image-3,
+                                  .wr-card-3-image-4,
+                                  .wr-card-3-image-5,
+                                  .wr-card-4-image-1,
+                                  .wr-card-5-image-1 {
+                                    transition: transform 0.2s ease-in-out;
+                                  }
+
+                                  .wr-card-3-image-2,
+                                  .wr-card-3-image-3,
+                                  .wr-card-3-image-4,
+                                  .wr-card-3-image-5 {
+                                    transition: top 0.2s ease-in-out;
+                                  }
+
+                                  .wr-card-5-image-2,
+                                  .wr-card-5-image-3 {
+                                    transition: bottom 0.2s ease-in-out;
+                                  }
+
+
+                                  /* media queries */
+                                  /* S - mobile view */
+                                  @media (max-width: 767px) {
+                                    .wr-dynamic-card-container {
+                                      gap: 32px;
+                                      padding: 48px 0px 0px 0px;
+                                    }
+
+                                    .wr-title-wrap h2 {
+                                      font-size: 32px;
+                                      line-height: 40px;
+                                      text-align: center;
+                                    }
+
+                                    .wr-text-area-wrap h3 {
+                                      font-size: 18px;
+                                      line-height: 26px;
+                                    }
+
+                                    .wr-card-content {
+                                      padding: 16px;
+                                    }
+
+                                    .wr-card-container> :nth-child(1) {
+                                      min-height: 100px;
+                                    }
+
+                                    .wr-card-container> :nth-child(1),
+                                    .wr-card-container> :nth-child(2) {
+                                      flex-direction: row;
+                                      --bento-card-image-width: 10%;
+                                    }
+
+                                    .wr-card-container> :nth-child(1) .wr-text-area-wrap,
+                                    .wr-card-container> :nth-child(2) .wr-text-area-wrap {
+                                      width: 80%;
+                                    }
+
+                                    .wr-card-1-image-1 {
+                                      position: absolute;
+                                      right: 30px;
+                                      align-self: center;
+                                    }
+
+                                    .wr-card-2-image-1 {
+                                      bottom: 22px;
+                                      right: 30px;
+                                      left: unset;
+                                    }
+
+                                    .wr-card-container> :nth-child(3) {
+                                      --bento-card-image-width: 80%;
+                                    }
+
+                                    .wr-card-3-image-2,
+                                    .wr-card-3-image-3,
+                                    .wr-card-3-image-4,
+                                    .wr-card-3-image-5 {
+                                      --bento-card-image-width: 75%;
+                                      left: 12%;
+                                    }
+
+                                    .wr-card-3-image-2 {
+                                      top: 25%;
+                                    }
+
+                                    .wr-card-3-image-3 {
+                                      top: 42%;
+                                    }
+
+                                    .wr-card-3-image-4 {
+                                      top: 57.9%;
+                                    }
+
+                                    .wr-card-3-image-5 {
+                                      top: 74%;
+                                    }
+
+                                    .wr-card-container> :nth-child(4),
+                                    .wr-card-container> :nth-child(5) {
+                                      flex-direction: column-reverse;
+                                      --bento-card-image-width: 60%;
+                                    }
+
+                                    .wr-card-container> :nth-child(4) img,
+                                    .wr-card-container> :nth-child(5) img {
+                                      position: relative;
+                                      align-self: center;
+                                    }
+
+                                    .wr-card-container> :nth-child(4) {
+                                      margin-top: 38px;
+                                    }
+
+                                    .wr-card-container> :nth-child(4) .wr-text-area-wrap {
+                                      width: 100%;
+                                      padding-top: 50%;
+                                    }
+
+                                    .wr-card-4-image-1 {
+                                      position: absolute !important;
+                                      top: -40px;
+                                      left: 19%;
+                                    }
+
+                                    .wr-card-container> :nth-child(5) {
+                                      padding-top: 0px;
+                                    }
+
+                                    .wr-card-container> :nth-child(5) .wr-text-area-wrap {
+                                      padding-top: 25px;
+                                    }
+
+                                    .wr-card-5-image-2,
+                                    .wr-card-5-image-3 {
+                                      position: absolute !important;
+                                      bottom: 90px;
+                                    }
+
+                                    .wr-card-5-image-2 {
+                                      left: 36%;
+                                    }
+
+                                    .wr-card-5-image-3 {
+                                      right: 29%;
+                                    }
+
+                                    .wr-card-5-image-2,
+                                    .wr-card-5-image-3 {
+                                      transition: bottom 0.2s ease-in-out;
+                                    }
+                                  }
+
+                                  @media (min-width: 500px) and (max-width: 767px) {
+                                    .wr-card-container> :nth-child(4) {
+                                      margin-top: 48px;
+                                    }
+
+                                    .wr-card-4-image-1 {
+                                      top: -55px;
+                                    }
+
+                                    .wr-card-container> :nth-child(5) {
+                                      --bento-card-image-width: 50%;
+                                    }
+
+                                    .wr-card-5-image-2,
+                                    .wr-card-5-image-3 {
+                                      width: 12% !important;
+                                    }
+
+                                    .wr-card-5-image-2 {
+                                      left: 38%;
+                                    }
+
+                                    .wr-card-5-image-3 {
+                                      right: 33%;
+                                    }
+                                  }
+
+                                  @media (max-width: 560px) {
+
+                                    .wr-card-container> :nth-child(1),
+                                    .wr-card-container> :nth-child(2) {
+                                      --bento-card-image-width: 15%;
+                                    }
+
+                                    .wr-card-1-image-1,
+                                    .wr-card-2-image-1 {
+                                      right: 15px;
+                                    }
+                                  }
+
+                                  @media (max-width: 478px) {
+
+                                    .wr-card-5-image-2,
+                                    .wr-card-5-image-3 {
+                                      bottom: 118px;
+                                    }
+                                  }
+
+                                  @media (max-width: 415px) {
+
+                                    .wr-card-container> :nth-child(1),
+                                    .wr-card-container> :nth-child(2) {
+                                      --bento-card-image-width: 20%;
+                                    }
+
+                                    .wr-card-1-image-1,
+                                    .wr-card-2-image-1 {
+                                      right: 10px;
+                                    }
+                                  }
+
+                                  @media (width > 767px) {
+                                    .wr-card-container {
+                                      grid-template-areas:
+                                        "one one one one"
+                                        "two two two two"
+                                        "three three four four"
+                                        "three three five five";
+                                    }
+
+                                    .wr-card-content {
+                                      flex-direction: row;
+                                    }
+
+                                    .wr-card-container> :nth-child(1) img {
+                                      gap: 24px;
+                                    }
+
+                                    .wr-card-container> :nth-child(3) {
+                                      flex-direction: column;
+                                    }
+
+                                    .wr-card-3-image-3 {
+                                      top: 41%;
+                                    }
+
+                                    .wr-card-3-image-4 {
+                                      top: 56%;
+                                    }
+
+                                    .wr-card-3-image-5 {
+                                      top: 71%;
+                                    }
+
+                                    .wr-card-container> :nth-child(4) {
+                                      flex-direction: row;
+                                    }
+
+                                    .wr-card-container> :nth-child(5) {
+                                      --bento-card-image-width: 30%;
+                                      align-content: center;
+                                      align-items: center;
+                                      justify-items: center;
+                                    }
+                                  }
+
+                                  @media (width > 1023px) {
+                                    .wr-card-container {
+                                      grid-template-areas:
+                                        "one three four four"
+                                        "two three five five";
+                                    }
+
+                                    .wr-card-content {
+                                      min-height: 210px;
+                                    }
+
+                                    .wr-card-container> :nth-child(5) {
+                                      --bento-card-image-width: 50%;
+                                    }
+
+                                    .wr-card-3-image-2,
+                                    .wr-card-3-image-3,
+                                    .wr-card-3-image-4,
+                                    .wr-card-3-image-5 {
+                                      left: 8%;
+                                    }
+                                  }
+
+                                  /* M - Tablet view */
+                                  @media (min-width: 768px) and (max-width: 1023px) {
+                                    .wr-dynamic-card-container {
+                                      gap: 24px;
+                                      padding: 24px 0px;
+                                    }
+
+                                    .wr-card-container {
+                                      grid-template-areas:
+                                        "one one three three"
+                                        "two two three three"
+                                        "four four four four"
+                                        "five five five five";
+                                    }
+
+                                    .wr-title-wrap h2 {
+                                      font-size: 34px;
+                                      line-height: 44px;
+                                    }
+
+                                    .wr-card-content {
+                                      padding: 24px;
+                                    }
+
+                                    .wr-text-area-wrap h3 {
+                                      font-size: 24px;
+                                      line-height: 32px;
+                                    }
+
+                                    .wr-card-container> :nth-child(1),
+                                    .wr-card-container> :nth-child(2),
+                                    .wr-card-container> :nth-child(4) {
+                                      --bento-card-image-width: 25%;
+                                    }
+
+                                    .wr-card-container> :nth-child(2) {
+                                      --bento-card-image-width: 22%;
+                                    }
+
+                                    .wr-card-container> :nth-child(1),
+                                    .wr-card-container> :nth-child(4),
+                                    .wr-card-container> :nth-child(5) {
+                                      align-items: center;
+                                    }
+
+                                    .wr-card-3-image-2,
+                                    .wr-card-3-image-3,
+                                    .wr-card-3-image-4,
+                                    .wr-card-3-image-5 {
+                                      left: 8%;
+                                    }
+
+                                    .wr-card-container> :nth-child(4) {
+                                      --bento-card-image-width: 30%;
+                                      min-height: 220px;
+                                    }
+
+                                    .wr-card-container> :nth-child(5) {
+                                      min-height: 210px;
+                                    }
+
+                                    .wr-card-5-image-2,
+                                    .wr-card-5-image-3 {
+                                      width: 8% !important;
+                                      bottom: 30px;
+                                    }
+
+                                    .wr-card-5-image-2 {
+                                      right: 120px;
+                                    }
+
+                                    .wr-card-5-image-3 {
+                                      right: 20px;
+                                    }
+                                  }
+
+                                  /* L - Laptop view */
+                                  @media (min-width: 1024px) and (max-width: 1254px) {
+                                    .wr-card-container {
+                                      gap: 16px;
+                                    }
+
+                                    .wr-title-wrap h2 {
+                                      font-size: 38px;
+                                      line-height: 48px;
+                                    }
+
+                                    .wr-text-area-wrap h3 {
+                                      font-size: 26px;
+                                      line-height: 36px;
+                                    }
+
+                                    .wr-card-content {
+                                      min-height: auto;
+                                      padding: 16px;
+                                    }
+
+                                    .wr-card-container> :nth-child(1) {
+                                      flex-direction: column;
+                                      --bento-card-image-width: 32%;
+                                    }
+
+                                    .wr-card-1-image-1 {
+                                      align-self: flex-end;
+                                    }
+
+                                    .wr-card-2-image-1 {
+                                      display: none;
+                                    }
+
+                                    .wr-card-4-image-1 {
+                                      align-self: center;
+                                    }
+
+                                    .wr-card-5-image-2,
+                                    .wr-card-5-image-3 {
+                                      width: 13% !important;
+                                      bottom: 40px;
+                                    }
+
+                                    .wr-card-5-image-2 {
+                                      right: 100px;
+                                    }
+
+                                    .wr-card-5-image-3 {
+                                      right: 20px;
+                                    }
+                                  }
+
+                                  @media (min-width: 1131px) and (max-width: 1254px) {
+
+                                    .wr-card-5-image-2,
+                                    .wr-card-5-image-3 {
+                                      bottom: 25px;
+                                    }
+                                  }
+
+                                  @media (min-width: 1219px) and (max-width: 1254px) {
+                                    .wr-card-content {
+                                      min-height: 190px;
+                                    }
+
+                                    .wr-card-5-image-2 {
+                                      right: 110px;
+                                    }
+                                  }
+
+                                  @media (min-width: 1255px) {
+
+                                    .wr-card-5-image-2,
+                                    .wr-card-5-image-3 {
+                                      bottom: 23px;
+                                    }
+                                  }
+                                </style>
+                                <div class="wr-title-wrap">
+                                  <h2>Key features to consider with our kids & teen bank account</h2>
+                                </div>
+
+                                <div class="wr-card-container">
+                                  <div class="wr-card-content" onmouseenter="onCardMouseEnter(0)"
+                                    onmouseleave="onCardMouseLeave(0)">
+                                    <div class="wr-text-area-wrap">
+                                      <h3>Fee-free</h3>
+                                      <p>No monthly fee on this kids and teen bank account.</p>
+                                    </div>
+                                    <img
+                                      src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-illus-zero-pound-card.svg"
+                                      alt="Decorative" class="wr-card-1-image-1">
+                                  </div>
+
+                                  <div class="wr-card-content" onmouseenter="onCardMouseEnter(1)"
+                                    onmouseleave="onCardMouseLeave(1)">
+                                    <div class="wr-text-area-wrap">
+                                      <h3>Interest payments</h3>
+                                      <p>Earn 2.05% AER, 2.03% Gross p.a. (variable) interest on balances. Interest is
+                                        calculated daily and paid monthly.</p>
+                                    </div>
+                                    <img
+                                      src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-investment-growth-arrow.svg"
+                                      alt="Decorative" class="wr-card-2-image-1">
+                                  </div>
+
+                                  <div class="wr-card-content" onmouseenter="onCardMouseEnter(2)"
+                                    onmouseleave="onCardMouseLeave(2)">
+                                    <div class="wr-text-area-wrap">
+                                      <h3>Easy tracking in our app</h3>
+                                      <p class="cmp-text tooltip_text comp-rich-text">Pay your mates (ages 16+), <a
+                                          href="https://www.natwest.com/current-accounts/debit-cards.html"
+                                          title="freeze your kids debit card"
+                                          aria-label="freeze your kids debit card">freeze your kids debit
+                                          card</a>, and check balances on the go.</p>
+                                    </div>
+                                    <div class="wr-card-3-img-wrapper">
+                                      <img
+                                        src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-image-mobile-outline.svg"
+                                        alt="Decorative" class="wr-card-3-image-1">
+                                      <img
+                                        src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-payment-link-4.svg"
+                                        alt="Decorative" class="wr-card-3-image-2">
+                                      <img
+                                        src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-payment-link-3.svg"
+                                        alt="Decorative" class="wr-card-3-image-3">
+                                      <img
+                                        src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-payment-link.svg"
+                                        alt="Decorative" class="wr-card-3-image-4">
+                                      <img
+                                        src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-payment-link-2.svg"
+                                        alt="Decorative" class="wr-card-3-image-5">
+                                    </div>
+                                  </div>
+
+                                  <div class="wr-card-content" onmouseenter="onCardMouseEnter(3)"
+                                    onmouseleave="onCardMouseLeave(3)">
+                                    <div class="wr-text-area-wrap">
+                                      <h3>Parental peace of mind</h3>
+                                      <p class="cmp-text tooltip_text comp-rich-text">Our child and teen bank account
+                                        has no overdraft. And it's protected by the
+                                        <a class="pop"
+                                          data-content="<p>Your eligible deposits held by a UK establishment of NatWest are protected up to a total of £85,000, by the Financial Services Compensation Scheme, the UK's deposit guarantee scheme. Any deposits you hold above the limit are unlikely to be covered.</p>"
+                                          data-title="Financial Service Compensation Scheme"
+                                          data-description="If you'd prefer to continue without sharing biometric data, you'll need to call our specialist team but it may take a little longer to open your account. You can call us on 03453 073 704, Relay UK : 18001 03453 073 704. We're open Monday-Friday 8am-8pm, Saturday 9am-3pm and Sunday closed. Excluding public holidays."
+                                          data-linkurl=".html" data-newtab="false" data-enableicon="false"
+                                          data-toggle="popover" data-original-title="" title=""
+                                          href="javascript:void(0)" role="link" aria-expanded="false">Financial Service
+                                          Compensation Scheme.</a>
+                                      </p>
+                                    </div>
+                                    <img
+                                      src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-card-freeze-image.png"
+                                      alt="Decorative" class="wr-card-4-image-1">
+                                  </div>
+
+                                  <div class="wr-card-content" onmouseenter="onCardMouseEnter(4)"
+                                    onmouseleave="onCardMouseLeave(4)">
+                                    <div class="wr-text-area-wrap">
+                                      <h3>Pay with your phone</h3>
+                                      <p>Easily pay via Apple Pay and Google Pay™ (ages 13+).</p>
+                                    </div>
+                                    <img
+                                      src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-mobile-payment-phone.png"
+                                      alt="Decorative" class="wr-card-5-image-1">
+                                    <img
+                                      src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-google-pay.png"
+                                      alt="Decorative" class="wr-card-5-image-2">
+                                    <img
+                                      src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-apple-pay.png"
+                                      alt="Decorative" class="wr-card-5-image-3">
+                                  </div>
+                                </div>
+
+                                <script defer="true"
+                                  src="https://www.natwest.com/etc.clientlibs/responsive/components/foundation/rte/clientlibs/clientlib_rte_base_dtm-_52116cc441fb90cd2ca76a1f6ec77915.min.js"></script>
+                                <script defer="true"
+                                  src="https://www.natwest.com/etc.clientlibs/responsive/components/foundation/rte/clientlibs/clientlib_rte_base-_a3c181f8d86ade1f1b0a1b6f1d5b0e57.min.js"></script>
+                                <script>
+                                  const enableAnimation = !globalUtil.isReducedMotion();
+                                  // when mouse pointer enters the card
+                                  function onCardMouseEnter(index) {
+                                    if (enableAnimation) {
+                                      if (index == 0 || index == 1 || index == 3) { // For Dynamic Card 1 and 2
+                                        document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[0].style.transform = 'scale(1.3)';
+                                      }
+                                      if (index == 2) { // For Dynamic Card 3
+                                        if (window.outerWidth < 768) {
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.top = '23%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.transform = 'rotate(0.5deg)';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[3].style.top = '61%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[4].style.top = '80%';
+                                        } else {
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.top = '23%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.transform = 'rotate(0.5deg)';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.top = '42%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[3].style.top = '61%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[4].style.top = '80%';
+
+                                        }
+                                      }
+                                      if (index == 3) { // For Dynamic Card 4
+                                        document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[0].style.transform = 'scale(1.18)';
+                                      }
+                                      if (index == 4) { // For Dynamic Card 5
+                                        document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[0].style.transform = 'scale(1.2)';
+                                        if (window.outerWidth > 1023 || window.outerWidth < 1255) { // L Screen
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.bottom = '30px';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.bottom = '30px';
+                                        }
+                                        if (window.outerWidth > 767 || window.outerWidth < 1024) { // M Screen
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.bottom = '23px';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.bottom = '23px';
+                                        }
+                                        if (window.outerWidth > 1254) { // XL Screen
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.bottom = '12px';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.bottom = '12px';
+                                        }
+                                        if (window.outerWidth < 479) { // S screen
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.bottom = '105px';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.bottom = '105px';
+                                        } else if (window.outerWidth < 768) { // S screen
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.bottom = '80px';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.bottom = '80px';
+                                        }
+                                      }
+                                    }
+                                  }
+
+                                  // when mouse pointer leaves the card
+                                  function onCardMouseLeave(index) { // For All Dynamic Cards
+                                    if (enableAnimation) {
+                                      document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[0].style.transform = 'scale(1)';
+                                      if (index == 2) { // For Dynamic Card 3
+                                        if (window.outerWidth < 768) {
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.top = '25%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.transform = 'rotate(0deg)';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.top = '42%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.transform = 'rotate(0deg)';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[3].style.top = '57.9%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[4].style.top = '74%';
+                                        } else {
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.top = '25%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.transform = 'rotate(0deg)';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.top = '41%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.transform = 'rotate(0deg)';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[3].style.top = '56%';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[4].style.top = '71%';
+
+                                        }
+                                      }
+                                      if (index == 4) { // For Dynamic Card 5
+                                        if (window.outerWidth > 1023 || window.outerWidth < 1255) { // L Screen
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.bottom = '40px';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.bottom = '40px';
+                                        }
+                                        if (window.outerWidth > 767 || window.outerWidth < 1024) { // M Screen
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.bottom = '30px';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.bottom = '30px';
+                                        }
+                                        if (window.outerWidth > 1254) { // XL screen
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.bottom = '23px';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.bottom = '23px';
+                                        }
+                                        if (window.outerWidth < 479) { // S screen
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.bottom = '118px';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.bottom = '118px';
+                                        } else if (window.outerWidth < 768) { // S screen
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[1].style.bottom = '90px';
+                                          document.querySelectorAll('.wr-card-content')[index].getElementsByTagName('img')[2].style.bottom = '90px';
+                                        }
+                                      }
+                                    }
+                                  }
+
+                                  // Reloading clientlibs require for tooltip to render properly
+                                  const clientLibList = [];
+                                  function removeDuplicateSrc(acc, curr) {
+                                    if (!acc.includes(curr)) acc.push(curr);
+                                    return acc;
+                                  }
+                                  window.addEventListener('load', () => {
+                                    console.log('window load completes!');
+                                    const tooltipClientLibName = 'clientlib_rte_base';
+                                    // find the existing clientlib require for tooltip and remove
+                                    const allClientLibs = document.querySelectorAll('script');
+                                    allClientLibs.forEach(clientlib => {
+                                      if (clientlib.src && clientlib.src.includes(tooltipClientLibName)) {
+                                        clientLibList.push(clientlib.src);
+                                        clientlib.parentNode.removeChild(clientlib);
+                                      }
+                                    });
+                                    // remove duplicate clientlib src
+                                    const newClientLibSrcList = clientLibList.reduce(removeDuplicateSrc, []);
+
+                                    // create and append the clientlibs require for tooltip
+                                    newClientLibSrcList.forEach(newClientLibSrc => {
+                                      const newClientLib = document.createElement('script');
+                                      newClientLib.src = newClientLibSrc;
+                                      newClientLib.defer = 'true';
+                                      document.head.appendChild(newClientLib);
+                                    });
+                                  });
+
+                                </script>
+                              </section>
