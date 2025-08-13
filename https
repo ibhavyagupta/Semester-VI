@@ -861,27 +861,47 @@
                                     return acc;
                                   }
                                   window.addEventListener('load', () => {
-                                    console.log('window load completes!');
-                                    const tooltipClientLibName = 'clientlib_rte_base';
-                                    // find the existing clientlib require for tooltip and remove
-                                    const allClientLibs = document.querySelectorAll('script');
-                                    allClientLibs.forEach(clientlib => {
-                                      if (clientlib.src && clientlib.src.includes(tooltipClientLibName)) {
-                                        clientLibList.push(clientlib.src);
-                                        clientlib.parentNode.removeChild(clientlib);
-                                      }
-                                    });
-                                    // remove duplicate clientlib src
-                                    const newClientLibSrcList = clientLibList.reduce(removeDuplicateSrc, []);
+  console.log('window load completes!');
+  const tooltipClientLibName = 'clientlib_rte_base';
+  // find the existing clientlib require for tooltip and remove
+  const allClientLibs = document.querySelectorAll('script');
+  allClientLibs.forEach(clientlib => {
+    if (clientlib.src && clientlib.src.includes(tooltipClientLibName)) {
+      clientLibList.push(clientlib.src);
+      clientlib.parentNode.removeChild(clientlib);
+    }
+  });
+  // remove duplicate clientlib src
+  const newClientLibSrcList = clientLibList.reduce(removeDuplicateSrc, []);
 
-                                    // create and append the clientlibs require for tooltip
-                                    newClientLibSrcList.forEach(newClientLibSrc => {
-                                      const newClientLib = document.createElement('script');
-                                      newClientLib.src = newClientLibSrc;
-                                      newClientLib.defer = 'true';
-                                      document.head.appendChild(newClientLib);
-                                    });
-                                  });
+  // create and append the clientlibs require for tooltip
+  newClientLibSrcList.forEach(newClientLibSrc => {
+    const newClientLib = document.createElement('script');
+    newClientLib.src = newClientLibSrc;
+    newClientLib.defer = 'true';
+    document.head.appendChild(newClientLib);
+  });
+
+  // ✅ ADD THIS: Ensure popovers work on touch devices
+  setTimeout(() => { // give time for tooltip scripts to load
+    const popElements = document.querySelectorAll('[data-toggle="popover"]');
+
+    popElements.forEach(function (el) {
+      $(el).popover({
+        trigger: 'click', // tap or click instead of hover
+        html: true
+      });
+
+      // Close popover when clicking outside
+      document.addEventListener('click', function (e) {
+        if (!el.contains(e.target)) {
+          $(el).popover('hide');
+        }
+      });
+    });
+  }, 500); // small delay to ensure clientlibs are loaded
+});
+
 
                                 </script>
                               </section>
