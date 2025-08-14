@@ -1,1 +1,2 @@
-<img width="1078" height="705" alt="image" src="https://github.com/user-attachments/assets/d00eb007-c313-4ed0-bbd8-dc045ca7b91d" />
+"Good morning, team! Today, we’re taking inspiration from Bird Box — a thrilling story about moving forward even when you can’t see the whole path ahead. In the movie, the characters trust each other, stay focused, and keep going despite hidden dangers. Just like them, we may face unknowns in this sprint, but with teamwork and determination, we’ll reach our goal together!"
+
