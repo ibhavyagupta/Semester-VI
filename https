@@ -309,68 +309,61 @@
                                 }
 
                                 /* Large devices (desktop) */
-                                @media (min-width: 1024px) and (max-width: 1255px) {
-                                    .wr-card-title {
-                                        color: #5A287D;
-                                        font-family: "RN House Sans";
-                                        font-size: 26px;
-                                        font-style: normal;
-                                        font-weight: 700;
-                                        line-height: 30px;
-                                    }
+                                @media (min-width: 1024px) and (max-width: 1256px) {
 
-                                    .wr-grid {
-                                        grid-template-columns: max-content;
-                                        justify-content: center;
-                                        grid-template-areas:
-                                            "c e"
-                                            "d e";
-                                    }
+  .wr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* two equal columns */
+    grid-template-areas:
+      "c e"
+      "d e";
+    gap: 24px;
+    align-items: stretch;
+  }
 
-                                    .wr-ab-container {
-                                        justify-content: center;
-                                    }
+  .wr-card--a {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* text bigger than image */
+    gap: 20px;
+    align-items: center;
+    max-width: 100%; /* remove restrictive width */
+  }
 
-                                    .wr-card--a {
-                                        display: grid;
-                                        grid-template-columns: 1fr minmax(260px, 52%);
-                                        gap: 20px;
-                                        align-items: center;
-                                        max-width: 572px;
-                                    }
+  .wr-card--b {
+    max-width: 100%;
+    padding: 20px;
+  }
 
-                                    .wr-card--a img {
-                                        height: 290px;
-                                    }
+  .wr-card--c,
+  .wr-card--d {
+    max-width: 100%; /* let grid control sizing */
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 24px;
+  }
 
-                                    .wr-card--b {
-                                        max-width: 328px;
-                                    }
+  .wr-card--e {
+    max-width: 100%; /* allow full height beside c + d */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+  }
 
-                                    .wr-card--b img {
-                                        height: 89px;
-                                    }
+  /* Typography scaling */
+  .wr-card-title {
+    font-size: 26px;
+    line-height: 34px;
+  }
 
-                                    .wr-card--c {
-                                        max-width: 450px;
-                                        max-height: 241px;
-                                    }
+  .wr-card-text {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
 
-                                    .wr-card-image-c {}
-
-                                    .wr-card--d {
-                                        max-width: 450px;
-                                        max-height: 241px;
-                                    }
-
-                                    .wr-card--e {
-                                        max-width: 450px;
-                                    }
-
-                                    .wr-card--e img {
-                                        width: 450px;
-                                    }
-                                }
                             </style>
 
                             <h2 class="wr-title">
