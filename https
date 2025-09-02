@@ -556,18 +556,51 @@
     border-bottom-right-radius: 16px;
     padding-top: 0; /* Remove top padding */
   }
-   .wr-card-title {
+
+  .wr-card-title {
     font-size: 24px !important;
     line-height: 32px; /* Adjust line height accordingly */
   }
-  .wr-card--d > .wr-card-content > .wr-card-title {
-    white-space: nowrap !important; /* Prevent text wrapping */
-    overflow: hidden !important; /* Hide overflow text */
-    text-overflow: ellipsis !important; /* Add ellipsis for overflow */
-    line-height: 32px !important;
+
+  /* ✅ Card D fixes */
+  .wr-card--d {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%; /* Give more space to text */
+    gap: 10px;
+    align-items: center;
   }
+
+  .wr-card--d > .wr-card-content {
+    width: 100%;
+    min-width: 0; /* allow shrinking */
+    padding-top: 20px;
+  }
+
+  .wr-card--d > .wr-card-content > .wr-card-title {
+    white-space: nowrap !important; /* Force single line */
+    overflow: visible !important;   /* Show full text */
+    text-overflow: unset !important;/* Disable ellipsis */
+    font-size: 22px !important;     /* Slightly smaller to fit */
+    line-height: 30px !important;
+  }
+
+  .wr-card--d .wr-card-image-d {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; /* Vertically centered */
+    overflow: hidden;
+  }
+
+  .wr-card--d .wr-card-image-d img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
   .wr-grid {
-    grid-template-columns: 52%; /* Equal space for both columns */
+    grid-template-columns: 52%; /* Keep grid balanced */
     grid-template-areas:
       "c e"
       "d e";
@@ -576,14 +609,11 @@
     gap: 20px;
   }
 
-  .wr-card--d > .wr-card-content {
-    width: 66%;
-  }
-
   .wr-card--c {
     overflow: hidden;
   }
 }
+
 
                   /* Large devices (desktop) */
                   @media (min-width: 1024px) and (max-width: 1255px) {
