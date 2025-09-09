@@ -1,710 +1,678 @@
- <style>
-                  .wr-container {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    padding: 40px 20px;
-                  }
-
-                  .wr-underline-image {
-                    position: absolute;
-                    bottom: 0px;
-                    left: 0;
-                    width: 100%;
-                    height: auto;
-                    z-index: -1;
-                  }
-
-                  .wr-step-number {
-                    display: inline-block;
-                    position: relative;
-                  }
-
-                  .wr-ab-container {
-                    display: flex;
-                    gap: 22px;
-                    margin-bottom: 24px;
-                  }
-
-                  .wr-title {
-                    color: #5a287d;
-                    text-align: center;
-                    font-family: Knile;
-                    font-size: 40px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 50px;
-                    letter-spacing: -0.2px;
-                    position: relative;
-                    margin-bottom: 32px;
-                  }
-
-                  /* GRID */
-                  .wr-grid {
-                    display: grid;
-                    gap: 24px;
-                    grid-template-columns: repeat(2, 1fr);
-                    grid-template-areas:
-                      "c e"
-                      "d e";
-                  }
-
-                  /* Make first row Card A wider than Card B */
-                  .wr-grid:first-of-type {
-                    grid-template-columns: 2fr 1fr;
-                    /* Card A wider */
-                  }
-
-                  /* Make Card A image align bottom right with same radius */
-                  .wr-grid:first-of-type .wr-card--a .wr-card-image-a img {
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                    object-fit: cover;
-                    border-bottom-right-radius: 16px;
-                  }
-
-                  /* CARD base */
-                  .wr-card {
-                    border-radius: 16px;
-                    padding: 24px;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: space-between;
-                    overflow: hidden;
-                  }
-
-                  /* Titles / text */
-                  .wr-card-title {
-                    color: #5a287d;
-                    font-family: "RN House Sans";
-                    font-size: 30px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 40px;
-                    letter-spacing: -0.2px;
-                    margin: 0;
-                  }
-
-                  .wr-card-text {
-                    color: #5a287d;
-                    font-family: "RN House Sans";
-                    font-size: 18px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 26px;
-                    letter-spacing: 0.2px;
-                  }
-
-                  /* Backgrounds and grid areas */
-                  .wr-card--a {
-                    grid-area: a;
-                    background: #f2f2f8;
-                    padding: 0px 0px 0px 24px;
-                    border-radius: 16px;
-                  }
-
-                  .wr-card--b {
-                    grid-area: b;
-                    background: #dbedfa;
-                    display: flex;
-                    flex-direction: column;
-
-                    max-width: 434px;
-                    border-radius: 16px;
-                    padding: 20px 20px 0px 20px;
-                  }
-
-                  .wr-card--c {
-                    grid-area: c;
-                    background: #ffeae6;
-                    max-width: 574px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                    padding: 24px 0px 24px 20px;
-                    border-radius: 16px;
-                  }
-
-                  .wr-card--d {
-                    grid-area: d;
-                    background: #ffdbec;
-                    max-width: 574px;
-                    display: grid;
-                    grid-template-columns: 1fr minmax(260px, 20%);
-                    gap: 10px;
-                    align-items: center;
-                    padding: 0px 0px 0px 20px;
-                    border-radius: 16px;
-                  }
-
-                  .wr-card--e {
-                    grid-area: e;
-                    background: #f2eaf9;
-                    max-width: 570px;
-                    border-radius: 16px;
-                  }
-
-                  .card-c-container {
-                    display: flex;
-                  }
-
-                  .wr-card--d > .wr-card-content {
-                    padding-top: 20px;
-                  }
-
-                  .wr-card--a {
-                    display: grid;
-                    grid-template-columns: 1fr minmax(260px, 52%);
-                    gap: 20px;
-                    align-items: center;
-                    max-width: 712px;
-                  }
-
-                  /* text side */
-                  .wr-card--a .wr-card-content {
-                    padding-right: 8px;
-                  }
-
-                  .wr-card--c > .wr-card-text {
-                    max-width: 272px;
-                  }
-
-                  .wr-card-image-a {
-                    overflow: hidden;
-                    border-bottom-right-radius: 16px;
-                  }
-
-                  .wr-card-image-a img {
-                    display: block;
-                    width: 115%;
-                    max-width: 520px;
-                    max-height: 286px;
-                    object-fit: cover;
-
-                    border-bottom-right-radius: 16px;
-                    padding-top: 28px;
-                  }
-                  .wr-card--b img {
-                    height: 130px;
-                  }
-
-                  .wr-card--b > .wr-card-text {
-                    margin-bottom: 0px;
-                    margin-top: 8px;
-                  }
-
-                  .wr-card-image-b {
-                    display: flex;
-                    justify-content: center;
-                    align-items: flex-end;
-                    padding-bottom: 10px;
-                  }
-
-                  .wr-card-image-d {
-                    overflow: hidden;
-                    display: flex;
-                    align-items: flex-end;
-                    justify-content: flex-end;
-                    margin-top: 0; /* Remove top margin */
-                    align-self: end; /* Align to bottom of grid cell */
-                    height: 100%; /* Take full height of grid cell */
-                  }
-
-                  .wr-card-image-d img {
-                    width: 237px;
-                    height: 180px;
-                    object-fit: cover; /* Ensure image covers the area properly */
-                  }
-
-                  .wr-card-image-c {
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: flex-end;
-                    margin-top: 10px;
-                  }
-                  .wr-card-image-c {
-                    margin-top: -26px !important;
-                  }
-
-                  .wr-card--e > .wr-card-title {
-                    padding: 24px 24px 0px 24px;
-                  }
-
-                  .wr-card--e > .wr-card-text {
-                    padding: 0px 24px 0px 24px;
-                  }
-
-                  .wr-card-image-e {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    overflow: hidden; /* Hide the cropped parts */
-                    margin-top: 6rem;
-                  }
-
-                  .wr-card-image-e img {
-                    width: 95%; /* Zoom in by 150% */
-                    height: auto;
-                    object-fit: cover;
-                    object-position: center; /* Keep the center of the image visible */
-                    transform: scale(1.45); /* Alternative zoom method */
-                  }
-
-                  @media (max-width: 767px) {
-                    .wr-container {
-                      width: 100%;
-                      padding: 20px 16px; /* Consistent padding */
-                    }
-
-                    .wr-ab-container {
-                      flex-direction: column;
-                      gap: 16px; /* Consistent gap */
-                      margin-bottom: 16px;
-                    }
-
-                    /* Fix all cards alignment for all mobile sizes */
-                    .wr-card--a,
-                    .wr-card--b,
-                    .wr-card--c,
-                    .wr-card--d,
-                    .wr-card--e {
-                      display: flex;
-                      flex-direction: column;
-                      max-width: 100%;
-                      margin: 0; /* Remove any margins */
-                      width: 100%; /* Ensure full width */
-                      box-sizing: border-box; /* Include padding in width */
-                    }
-
-                    /* Card A specific mobile layout */
-                    .wr-card--a {
-                      grid-template-columns: 1fr;
-                      gap: 12px;
-                      align-items: flex-start;
-                    }
-
-                    /* Reset Card A content */
-                    .wr-card--a .wr-card-content {
-                      padding-right: 20px;
-                      width: 100%;
-                    }
-
-                    /* Card A image mobile styling */
-                    .wr-card--a .wr-card-image-a {
-                      width: 100%;
-                      display: flex;
-                      justify-content: flex-end;
-                      align-items: center;
-                    }
-
-                    .wr-card--a .wr-card-image-a img {
-                      padding-top: 0;
-                      max-width: min(
-                        600px,
-                        calc(100vw - 64px)
-                      ); /* Responsive: account for container padding */
-                      max-height: 300px;
-                    }
-
-                    /* Card C container fix */
-                    .card-c-container {
-                      display: flex;
-                      flex-direction: column; /* Stack vertically in mobile */
-                      gap: 16px;
-                    }
-
-                    .wr-card-text {
-                      font-size: 18px;
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 26px;
-                      letter-spacing: 0.2px;
-                    }
-
-                    .card-c-container > .wr-card-content {
-                      padding-right: 10px;
-                    }
-
-                    .wr-card--c .wr-card-text {
-                      display: none;
-                    }
-
-                    .wr-card-image-d {
-                      display: flex;
-                      justify-content: center; /* Center horizontally */
-                      align-items: center; /* Center vertically */
-                      margin-top: 10px;
-                      object-fit: cover;
-                      height: auto; /* Remove fixed height for mobile */
-                      align-self: center; /* Center within the flex container */
-                    }
-
-                    .wr-card-image-d img {
-                      max-height: 400px !important;
-                      max-width: min(350px, calc(100vw - 64px));
-                      width: min(35rem, calc(100vw - 64px));
-                      height: min(27rem, 400px);
-                      align-self: center; /* Center the image itself */
-                    }
-
-                    /* Add new text for Card C in mobile using pseudo-element */
-                    .wr-card--c .wr-card-content::after {
-                      content: "In the mobile app our Insights tab is packed with personalised insights, tools and tips to help you reach your financial goals.";
-                      color: #5a287d;
-                      font-family: "RN House Sans";
-                      font-size: 16px;
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 26px;
-                      letter-spacing: 0.2px;
-                      display: block;
-                    }
-
-                    /* Reset Card C image positioning for mobile */
-                    .wr-card-image-c {
-                      margin-top: 0 !important; /* Override the -20px margin */
-                      justify-content: flex-end; /* Center image in mobile */
-                      align-items: center;
-                    }
-
-                    /* All card images consistent sizing except Card E */
-                    .wr-card--a img,
-                    .wr-card--b img,
-                    .wr-card--c img,
-                    .wr-card--d img {
-                      max-height: 160px;
-                      align-self: center;
-                    }
-
-                    /* Card E - special styling for full-width image */
-                    .wr-card--e {
-                      padding: 0 !important; /* Remove padding to allow full-width image */
-                      overflow: hidden; /* Ensure image doesn't overflow card borders */
-                    }
-
-                    .wr-card--e .wr-card-title {
-                      padding: 24px 16px 16px 16px; /* Add padding to title only */
-                    }
-
-                    .wr-card--e .wr-card-text {
-                      padding: 0 16px 16px 16px; /* Add padding to text only */
-                    }
-
-                    .wr-card--e .wr-card-image-e {
-                      width: 100%; /* Full width container */
-                      margin: 0; /* Remove any margins */
-                      display: flex;
-                      justify-content: stretch; /* Stretch to full width */
-                      align-items: stretch;
-                      margin-bottom: 30px;
-                    }
-
-                    .wr-card--e img {
-                      width: 100% !important; /* Force full width */
-                      max-width: none !important; /* Remove max-width constraint */
-                      height: auto; /* Maintain aspect ratio */
-                      object-fit: cover; /* Cover the full width while maintaining aspect ratio */
-                      align-self: stretch; /* Stretch to container */
-                      border-radius: 0; /* Remove border radius for full-width effect */
-                      transform: scale(1.35);
-                    }
-
-                    .wr-grid {
-                      grid-template-columns: 1fr !important;
-                      gap: 16px; /* Match ab-container gap */
-                      grid-template-areas:
-                        "c"
-                        "d"
-                        "e";
-                    }
-
-                    .wr-title {
-                      color: #5a287d;
-                      text-align: left;
-                      font-family: Knile;
-                      font-size: clamp(
-                        28px,
-                        5vw,
-                        32px
-                      ); /* Responsive font size */
-                      font-style: normal;
-                      font-weight: 700;
-                      line-height: 40px;
-                      letter-spacing: -0.1px;
-                    }
-
-                    .wr-card-title {
-                      font-family: "RN House Sans";
-                      font-size: 22px;
-                      font-style: normal;
-                      font-weight: 700;
-                      line-height: 32px;
-                    }
-
-                    .wr-card--d > .wr-card-content > .wr-card-text {
-                      padding: 16px 0 0px 0;
-                    }
-
-                    .wr-card--a > .wr-card-content > .wr-card-title {
-                      padding: 10px 0 16px 0;
-                    }
-                  }
-
-                  /* Specific adjustments for very small screens */
-                  @media (min-width: 320px) and (max-width: 374px) {
-                    .wr-card-image-d img {
-                      width: min(
-                        29rem,
-                        calc(100vw - 48px)
-                      ); /* Account for smaller padding */
-                      height: min(22rem, 350px);
-                    }
-
-                    /* Smaller padding for very small screens */
-
-                    .wr-card--b {
-                      padding: 12px; /* Smaller padding for very small screens */
-                    }
-                    .wr-card--a {
-                      padding: 12px 0px 0px 12px;
-                    }
-                    .wr-card--c {
-                      padding: 12px 0px 12px 12px;
-                    }
-                    .wr-card--d {
-                      padding: 12px 12px 0px 12px;
-                    }
-
-                    .wr-container {
-                      padding: 16px 12px; /* Reduce container padding */
-                    }
-                  }
-
-                  /* Adjustments for small screens */
-                  @media (min-width: 375px) and (max-width: 480px) {
-                    .wr-card-image-d img {
-                      width: min(32rem, calc(100vw - 64px));
-                      height: min(24rem, 380px);
-                    }
-                  }
-
-                  /* Adjustments for medium mobile screens */
-                  @media (min-width: 481px) and (max-width: 767px) {
-                    .wr-card-image-d img {
-                      width: min(35rem, calc(100vw - 64px));
-                      height: min(27rem, 400px);
-                    }
-                  }
-
-                  /* Adjustments for small screens */
-                  @media (min-width: 375px) and (max-width: 480px) {
-                    .wr-card-image-d img {
-                      width: min(32rem, calc(100vw - 64px));
-                      height: min(24rem, 380px);
-                    }
-                  }
-
-                  /* Adjustments for medium mobile screens */
-                  @media (min-width: 481px) and (max-width: 767px) {
-                    .wr-card-image-d img {
-                      width: min(35rem, calc(100vw - 64px));
-                      height: min(27rem, 400px);
-                    }
-                  }
-
-                  @media (min-width: 768px) and (max-width: 1023px) {
-                    .wr-title {
-                      color: #5a287d;
-                      text-align: center;
-                      font-family: Knile;
-                      font-size: 38px;
-                      font-style: normal;
-                      font-weight: 700;
-                      line-height: 48px;
-                    }
-                  }
-
-                  /* Medium devices (tablet) */
-                  @media (min-width: 768px) and (max-width: 1023px) {
-                    .wr-card--a {
-                      max-width: 68% !important;
-                      grid-template-columns: 2fr 3fr; /* Content 40%, Image 60% */
-                      padding: 24px 0px 0px 24px; /* Remove right and bottom padding */
-                    }
-
-                    /* Make Card A image container extend to edges */
-                    .wr-card-image-a {
-                      overflow: hidden;
-                      border-bottom-right-radius: 16px;
-                      margin-right: 0; /* Align with right edge */
-                      margin-bottom: 0; /* Align with bottom edge */
-                      height: 100%; /* Take full height of grid cell */
-                      display: flex;
-                      align-items: flex-end; /* Align image to bottom */
-                    }
-
-                    /* Make Card A image fill the container and touch corners */
-                    .wr-card-image-a img {
-                      display: block;
-                      width: 100%; /* Fill the 60% container width */
-                      height: 100%; /* Fill container height */
-                      min-height: 250px; /* Ensure minimum height */
-                      object-fit: cover;
-                      border-bottom-right-radius: 16px;
-                      padding-top: 0; /* Remove top padding */
-                    }
-
-                    .wr-card-title {
-                      font-size: 24px !important;
-                      line-height: 32px; /* Adjust line height accordingly */
-                    }
-
-                    /* ✅ Card D fixes */
-                    .wr-card--d {
-                      max-width: 100%;
-                      display: grid;
-                      grid-template-columns: 60% 40%; /* Give more space to text */
-                      gap: 10px;
-                      align-items: center;
-                    }
-
-                    .wr-card--d > .wr-card-content {
-                      width: 100%;
-                      min-width: 0; /* allow shrinking */
-                      padding-top: 20px;
-                    }
-
-                    .wr-card--d > .wr-card-content > .wr-card-title {
-                      white-space: nowrap !important; /* Force single line */
-                      overflow: visible !important; /* Show full text */
-                      text-overflow: unset !important; /* Disable ellipsis */
-                      font-size: 24px !important; /* Slightly smaller to fit */
-                      line-height: 30px !important;
-                    }
-
-                    .wr-card--d .wr-card-image-d {
-                      display: flex;
-                      justify-content: flex-end;
-                      align-items: center; /* Vertically centered */
-                      overflow: hidden;
-                    }
-
-                    .wr-card--d .wr-card-image-d img {
-                      max-width: 100%;
-                      height: auto;
-                      object-fit: contain;
-                      display: block;
-                      align-self: flex-end;
-                    }
-
-                    .wr-grid {
-                      grid-template-columns: 52%; /* Keep grid balanced */
-                      grid-template-areas:
-                        "c e"
-                        "d e";
-                      max-width: 100%;
-                      width: 100%;
-                      gap: 20px;
-                    }
-
-                    .wr-card--c {
-                      overflow: hidden;
-                    }
-
-                    .wr-card-image-c img {
-                      width: 200px;
-                      align-self: center;
-                    }
-                  }
-
-                  @media (min-width: 768px) and (max-width: 846px) {
-                    .wr-card--d .wr-card-image-d img {
-                      max-width: 113%;
-                    }
-                  }
-
-                  /* Large devices (desktop) */
-                  @media (min-width: 1024px) and (max-width: 1255px) {
-                    .wr-card-title {
-                      color: #5a287d;
-                      font-family: "RN House Sans";
-                      font-size: 26px;
-                      font-style: normal;
-                      font-weight: 700;
-                      line-height: 30px;
-                    }
-
-                    .wr-grid {
-                      grid-template-columns: max-content;
-                      justify-content: center;
-                      grid-template-areas:
-                        "c e"
-                        "d e";
-                    }
-
-                    .wr-ab-container {
-                      justify-content: center;
-                    }
-
-                    .wr-card--a {
-                      display: grid;
-                      grid-template-columns: 1fr minmax(260px, 52%);
-                      gap: 20px;
-                      align-items: center;
-                      max-width: 572px;
-                    }
-
-                    .wr-card--a img {
-                      height: 290px;
-                    }
-
-                    .wr-card--b {
-                      max-width: 328px;
-                    }
-
-                    .wr-card--b img {
-                      height: 89px;
-                    }
-
-                    .wr-card--c {
-                      max-width: 450px;
-                    }
-
-                    .wr-card--d {
-                      max-width: 450px;
-                      display: grid; /* Restore grid layout */
-                      grid-template-columns: 1fr 50%; /* Content takes remaining space, image takes needed space */
-                      gap: 10px;
-                      align-items: center;
-                    }
-
-                    .wr-card--e {
-                      max-width: 450px;
-                    }
-
-                    .wr-card-image-d {
-                      display: flex;
-                      justify-content: flex-end;
-                      align-items: flex-end;
-                      overflow: hidden; /* Ensure image doesn't overflow */
-                    }
-
-                    .wr-card-image-d img {
-                      width: 212px; /* Reduced from 276px */
-                      height: 201px; /* Reduced from 238px */
-                      object-fit: cover;
-                      max-width: 100%; /* Ensure it doesn't exceed container */
-                    }
-
-                    .wr-card--d > .wr-card-content {
-                      padding-top: 20px;
-                      min-width: 204px;
-                    }
-                  }
-
-                  /* XL view */
-                  @media (min-width: 1256px) {
-                  }
-                </style>
+<style>
+  .wr-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .wr-underline-image {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+  }
+
+  .wr-step-number {
+    display: inline-block;
+    position: relative;
+  }
+
+  .wr-ab-container {
+    display: flex;
+    gap: 22px;
+    margin-bottom: 24px;
+  }
+
+  .wr-title {
+    color: #5a287d;
+    text-align: center;
+    font-family: Knile;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 50px;
+    letter-spacing: -0.2px;
+    position: relative;
+    margin-bottom: 32px;
+  }
+
+  .wr-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "c e"
+      "d e";
+  }
+
+  .wr-grid:first-of-type {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .wr-grid:first-of-type .wr-card--a .wr-card-image-a img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom-right-radius: 16px;
+  }
+
+  .wr-card {
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  .wr-card-title {
+    color: #5a287d;
+    font-family: "RN House Sans";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: -0.2px;
+    margin: 0;
+  }
+
+  .wr-card-text {
+    color: #5a287d;
+    font-family: "RN House Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0.2px;
+  }
+
+  .wr-card--a {
+    grid-area: a;
+    background: #f2f2f8;
+    padding: 0px 0px 0px 24px;
+    border-radius: 16px;
+  }
+
+  .wr-card--b {
+    grid-area: b;
+    background: #dbedfa;
+    display: flex;
+    flex-direction: column;
+    max-width: 434px;
+    border-radius: 16px;
+    padding: 20px 20px 0px 20px;
+  }
+
+  .wr-card--c {
+    grid-area: c;
+    background: #ffeae6;
+    max-width: 574px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px 0px 24px 20px;
+    border-radius: 16px;
+  }
+
+  .wr-card--d {
+    grid-area: d;
+    background: #ffdbec;
+    max-width: 574px;
+    display: grid;
+    grid-template-columns: 1fr minmax(260px, 20%);
+    gap: 10px;
+    align-items: center;
+    padding: 0px 0px 0px 20px;
+    border-radius: 16px;
+  }
+
+  .wr-card--e {
+    grid-area: e;
+    background: #f2eaf9;
+    max-width: 570px;
+    border-radius: 16px;
+  }
+
+  .card-c-container {
+    display: flex;
+  }
+
+  .wr-card--d > .wr-card-content {
+    padding-top: 20px;
+  }
+
+  .wr-card--a {
+    display: grid;
+    grid-template-columns: 1fr minmax(260px, 52%);
+    gap: 20px;
+    align-items: center;
+    max-width: 712px;
+  }
+
+  .wr-card--a .wr-card-content {
+    padding-right: 8px;
+  }
+
+  .wr-card--c > .wr-card-text {
+    max-width: 272px;
+  }
+
+  .wr-card-image-a {
+    overflow: hidden;
+    border-bottom-right-radius: 16px;
+  }
+
+  .wr-card-image-a img {
+    display: block;
+    width: 115%;
+    max-width: 520px;
+    max-height: 286px;
+    object-fit: cover;
+    border-bottom-right-radius: 16px;
+    padding-top: 28px;
+  }
+
+  .wr-card--b img {
+    height: 130px;
+  }
+
+  .wr-card--b > .wr-card-text {
+    margin-bottom: 0px;
+    margin-top: 8px;
+  }
+
+  .wr-card-image-b {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 10px;
+  }
+
+  .wr-card-image-d {
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 0;
+    align-self: end;
+    height: 100%;
+  }
+
+  .wr-card-image-d img {
+    width: 237px;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .wr-card-image-c {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 10px;
+  }
+
+  .wr-card-image-c {
+    margin-top: -26px !important;
+  }
+
+  .wr-card--e > .wr-card-title {
+    padding: 24px 24px 0px 24px;
+  }
+
+  .wr-card--e > .wr-card-text {
+    padding: 0px 24px 0px 24px;
+  }
+
+  .wr-card-image-e {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 6rem;
+  }
+
+  .wr-card-image-e img {
+    width: 95%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.45);
+  }
+
+  @media (max-width: 767px) {
+    .wr-container {
+      width: 100%;
+      padding: 20px 16px;
+    }
+
+    .wr-ab-container {
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .wr-card--a,
+    .wr-card--b,
+    .wr-card--c,
+    .wr-card--d,
+    .wr-card--e {
+      display: flex;
+      flex-direction: column;
+      max-width: 100%;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .wr-card--a {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .wr-card--a .wr-card-content {
+      padding-right: 20px;
+      width: 100%;
+    }
+
+    .wr-card--a .wr-card-image-a {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .wr-card--a .wr-card-image-a img {
+      padding-top: 0;
+      max-width: min(600px, calc(100vw - 64px));
+      max-height: 300px;
+    }
+
+    .card-c-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .wr-card-text {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26px;
+      letter-spacing: 0.2px;
+    }
+
+    .card-c-container > .wr-card-content {
+      padding-right: 10px;
+    }
+
+    .wr-card--c .wr-card-text {
+      display: none;
+    }
+
+    .wr-card-image-d {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      object-fit: cover;
+      height: auto;
+      align-self: center;
+    }
+
+    .wr-card-image-d img {
+      max-height: 400px !important;
+      max-width: min(350px, calc(100vw - 64px));
+      width: min(35rem, calc(100vw - 64px));
+      height: min(27rem, 400px);
+      align-self: center;
+    }
+
+    .wr-card--c .wr-card-content::after {
+      content: "In the mobile app our Insights tab is packed with personalised insights, tools and tips to help you reach your financial goals.";
+      color: #5a287d;
+      font-family: "RN House Sans";
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26px;
+      letter-spacing: 0.2px;
+      display: block;
+    }
+
+    .wr-card-image-c {
+      margin-top: 0 !important;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .wr-card--a img,
+    .wr-card--b img,
+    .wr-card--c img,
+    .wr-card--d img {
+      max-height: 160px;
+      align-self: center;
+    }
+
+    .wr-card--e {
+      padding: 0 !important;
+      overflow: hidden;
+    }
+
+    .wr-card--e .wr-card-title {
+      padding: 24px 16px 16px 16px;
+    }
+
+    .wr-card--e .wr-card-text {
+      padding: 0 16px 16px 16px;
+    }
+
+    .wr-card--e .wr-card-image-e {
+      width: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: stretch;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .wr-card--e img {
+      width: 100% !important;
+      max-width: none !important;
+      height: auto;
+      object-fit: cover;
+      align-self: stretch;
+      border-radius: 0;
+      transform: scale(1.35);
+    }
+
+    .wr-grid {
+      grid-template-columns: 1fr !important;
+      gap: 16px;
+      grid-template-areas:
+        "c"
+        "d"
+        "e";
+    }
+
+    .wr-title {
+      color: #5a287d;
+      text-align: left;
+      font-family: Knile;
+      font-size: clamp(28px, 5vw, 32px);
+      font-style: normal;
+      font-weight: 700;
+      line-height: 40px;
+      letter-spacing: -0.1px;
+    }
+
+    .wr-card-title {
+      font-family: "RN House Sans";
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px;
+    }
+
+    .wr-card--d > .wr-card-content > .wr-card-text {
+      padding: 16px 0 0px 0;
+    }
+
+    .wr-card--a > .wr-card-content > .wr-card-title {
+      padding: 10px 0 16px 0;
+    }
+  }
+
+  /* Specific adjustments for very small screens */
+  @media (min-width: 320px) and (max-width: 374px) {
+    .wr-card-image-d img {
+      width: min(29rem, calc(100vw - 48px));
+      height: min(22rem, 350px);
+    }
+
+    .wr-card--b {
+      padding: 12px;
+    }
+    .wr-card--a {
+      padding: 12px 0px 0px 12px;
+    }
+    .wr-card--c {
+      padding: 12px 0px 12px 12px;
+    }
+    .wr-card--d {
+      padding: 12px 12px 0px 12px;
+    }
+
+    .wr-container {
+      padding: 16px 12px;
+    }
+  }
+
+  /* Adjustments for small screens */
+  @media (min-width: 375px) and (max-width: 480px) {
+    .wr-card-image-d img {
+      width: min(32rem, calc(100vw - 64px));
+      height: min(24rem, 380px);
+    }
+  }
+
+  /* Adjustments for medium mobile screens */
+  @media (min-width: 481px) and (max-width: 767px) {
+    .wr-card-image-d img {
+      width: min(35rem, calc(100vw - 64px));
+      height: min(27rem, 400px);
+    }
+  }
+
+  /* Adjustments for small screens */
+  @media (min-width: 375px) and (max-width: 480px) {
+    .wr-card-image-d img {
+      width: min(32rem, calc(100vw - 64px));
+      height: min(24rem, 380px);
+    }
+  }
+
+  /* Adjustments for medium mobile screens */
+  @media (min-width: 481px) and (max-width: 767px) {
+    .wr-card-image-d img {
+      width: min(35rem, calc(100vw - 64px));
+      height: min(27rem, 400px);
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .wr-title {
+      color: #5a287d;
+      text-align: center;
+      font-family: Knile;
+      font-size: 38px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 48px;
+    }
+  }
+
+  /* Medium devices (tablet) */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .wr-card--a {
+      max-width: 68% !important;
+      grid-template-columns: 2fr 3fr;
+      padding: 24px 0px 0px 24px;
+    }
+
+    .wr-card-image-a {
+      overflow: hidden;
+      border-bottom-right-radius: 16px;
+      margin-right: 0;
+      margin-bottom: 0;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .wr-card-image-a img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 250px;
+      object-fit: cover;
+      border-bottom-right-radius: 16px;
+      padding-top: 0;
+    }
+
+    .wr-card-title {
+      font-size: 24px !important;
+      line-height: 32px;
+    }
+
+    .wr-card--d {
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: 60% 40%;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .wr-card--d > .wr-card-content {
+      width: 100%;
+      min-width: 0;
+      padding-top: 20px;
+    }
+
+    .wr-card--d > .wr-card-content > .wr-card-title {
+      white-space: nowrap !important;
+      overflow: visible !important;
+      text-overflow: unset !important;
+      font-size: 24px !important;
+      line-height: 30px !important;
+    }
+
+    .wr-card--d .wr-card-image-d {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .wr-card--d .wr-card-image-d img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      align-self: flex-end;
+    }
+
+    .wr-grid {
+      grid-template-columns: 52%;
+      grid-template-areas:
+        "c e"
+        "d e";
+      max-width: 100%;
+      width: 100%;
+      gap: 20px;
+    }
+
+    .wr-card--c {
+      overflow: hidden;
+    }
+
+    .wr-card-image-c img {
+      width: 200px;
+      align-self: center;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 846px) {
+    .wr-card--d .wr-card-image-d img {
+      max-width: 113%;
+    }
+  }
+
+  /* Large devices (desktop) */
+  @media (min-width: 1024px) and (max-width: 1255px) {
+    .wr-card-title {
+      color: #5a287d;
+      font-family: "RN House Sans";
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 30px;
+    }
+
+    .wr-grid {
+      grid-template-columns: max-content;
+      justify-content: center;
+      grid-template-areas:
+        "c e"
+        "d e";
+    }
+
+    .wr-ab-container {
+      justify-content: center;
+    }
+
+    .wr-card--a {
+      display: grid;
+      grid-template-columns: 1fr minmax(260px, 52%);
+      gap: 20px;
+      align-items: center;
+      max-width: 572px;
+    }
+
+    .wr-card--a img {
+      height: 290px;
+    }
+
+    .wr-card--b {
+      max-width: 328px;
+    }
+
+    .wr-card--b img {
+      height: 89px;
+    }
+
+    .wr-card--c {
+      max-width: 450px;
+    }
+
+    .wr-card--d {
+      max-width: 450px;
+      display: grid;
+      grid-template-columns: 1fr 50%;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .wr-card--e {
+      max-width: 450px;
+    }
+
+    .wr-card-image-d {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .wr-card-image-d img {
+      width: 212px;
+      height: 201px;
+      object-fit: cover;
+      max-width: 100%;
+    }
+
+    .wr-card--d > .wr-card-content {
+      padding-top: 20px;
+      min-width: 204px;
+    }
+  }
+
+  /* XL view */
+  @media (min-width: 1256px) {
+  }
+</style>
