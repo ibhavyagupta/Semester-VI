@@ -1,6 +1,4 @@
-<section class="wr-container">
-
-                <style>
+ <style>
                   .wr-container {
                     max-width: 1200px;
                     margin: 0 auto;
@@ -247,7 +245,7 @@
                   }
 
                   .wr-card-image-e img {
-                    width: 75%; /* Zoom in by 150% */
+                    width: 95%; /* Zoom in by 150% */
                     height: auto;
                     object-fit: cover;
                     object-position: center; /* Keep the center of the image visible */
@@ -317,6 +315,14 @@
                       gap: 16px;
                     }
 
+                    .wr-card-text {
+                      font-size: 18px;
+                      font-style: normal;
+                      font-weight: 400;
+                      line-height: 26px;
+                      letter-spacing: 0.2px;
+                    }
+
                     .card-c-container > .wr-card-content {
                       padding-right: 10px;
                     }
@@ -325,24 +331,23 @@
                       display: none;
                     }
 
-                    
-    .wr-card-image-d {
-        display: flex;
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-        margin-top: 10px;
-        object-fit: cover;
-        height: auto; /* Remove fixed height for mobile */
-        align-self: center; /* Center within the flex container */
-    }
+                    .wr-card-image-d {
+                      display: flex;
+                      justify-content: center; /* Center horizontally */
+                      align-items: center; /* Center vertically */
+                      margin-top: 10px;
+                      object-fit: cover;
+                      height: auto; /* Remove fixed height for mobile */
+                      align-self: center; /* Center within the flex container */
+                    }
 
-    .wr-card-image-d img {
-        max-height: 400px !important;
-        max-width: min(350px, calc(100vw - 64px));
-        width: min(35rem, calc(100vw - 64px));
-        height: min(27rem, 400px);
-        align-self: center; /* Center the image itself */
-    }
+                    .wr-card-image-d img {
+                      max-height: 400px !important;
+                      max-width: min(350px, calc(100vw - 64px));
+                      width: min(35rem, calc(100vw - 64px));
+                      height: min(27rem, 400px);
+                      align-self: center; /* Center the image itself */
+                    }
 
                     /* Add new text for Card C in mobile using pseudo-element */
                     .wr-card--c .wr-card-content::after {
@@ -393,6 +398,7 @@
                       display: flex;
                       justify-content: stretch; /* Stretch to full width */
                       align-items: stretch;
+                      margin-bottom: 30px;
                     }
 
                     .wr-card--e img {
@@ -402,9 +408,7 @@
                       object-fit: cover; /* Cover the full width while maintaining aspect ratio */
                       align-self: stretch; /* Stretch to container */
                       border-radius: 0; /* Remove border radius for full-width effect */
-                      transform: scale(1.15);
-                      
-
+                      transform: scale(1.35);
                     }
 
                     .wr-grid {
@@ -432,31 +436,19 @@
                     }
 
                     .wr-card-title {
-                      text-align: left;
-                      color: var(--Colour-Text-text_heading_01, #5a287d);
                       font-family: "RN House Sans";
-                      font-size: clamp(
-                        20px,
-                        4vw,
-                        22px
-                      ); /* Responsive font size */
+                      font-size: 22px;
                       font-style: normal;
                       font-weight: 700;
                       line-height: 32px;
                     }
 
-                    .wr-card-text {
-                      color: #5a287d;
-                      font-family: "RN House Sans";
-                      font-size: clamp(
-                        14px,
-                        3vw,
-                        16px
-                      ); /* Responsive font size */
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 26px;
-                      letter-spacing: 0.2px;
+                    .wr-card--d > .wr-card-content > .wr-card-text {
+                      padding: 16px 0 0px 0;
+                    }
+
+                    .wr-card--a > .wr-card-content > .wr-card-title {
+                      padding: 10px 0 16px 0;
                     }
                   }
 
@@ -471,11 +463,18 @@
                     }
 
                     /* Smaller padding for very small screens */
-                    .wr-card--a,
-                    .wr-card--b,
-                    .wr-card--c,
-                    .wr-card--d {
+
+                    .wr-card--b {
                       padding: 12px; /* Smaller padding for very small screens */
+                    }
+                    .wr-card--a {
+                      padding: 12px 0px 0px 12px;
+                    }
+                    .wr-card--c {
+                      padding: 12px 0px 12px 12px;
+                    }
+                    .wr-card--d {
+                      padding: 12px 12px 0px 12px;
                     }
 
                     .wr-container {
@@ -529,273 +528,183 @@
 
                   /* Medium devices (tablet) */
                   @media (min-width: 768px) and (max-width: 1023px) {
-  .wr-card--a {
-    max-width: 68% !important;
-    grid-template-columns: 2fr 3fr; /* Content 40%, Image 60% */
-    padding: 24px 0px 0px 24px; /* Remove right and bottom padding */
-  }
+                    .wr-card--a {
+                      max-width: 68% !important;
+                      grid-template-columns: 2fr 3fr; /* Content 40%, Image 60% */
+                      padding: 24px 0px 0px 24px; /* Remove right and bottom padding */
+                    }
 
-  /* Make Card A image container extend to edges */
-  .wr-card-image-a {
-    overflow: hidden;
-    border-bottom-right-radius: 16px;
-    margin-right: 0; /* Align with right edge */
-    margin-bottom: 0; /* Align with bottom edge */
-    height: 100%; /* Take full height of grid cell */
-    display: flex;
-    align-items: flex-end; /* Align image to bottom */
-  }
+                    /* Make Card A image container extend to edges */
+                    .wr-card-image-a {
+                      overflow: hidden;
+                      border-bottom-right-radius: 16px;
+                      margin-right: 0; /* Align with right edge */
+                      margin-bottom: 0; /* Align with bottom edge */
+                      height: 100%; /* Take full height of grid cell */
+                      display: flex;
+                      align-items: flex-end; /* Align image to bottom */
+                    }
 
-  /* Make Card A image fill the container and touch corners */
-  .wr-card-image-a img {
-    display: block;
-    width: 100%; /* Fill the 60% container width */
-    height: 100%; /* Fill container height */
-    min-height: 250px; /* Ensure minimum height */
-    object-fit: cover;
-    border-bottom-right-radius: 16px;
-    padding-top: 0; /* Remove top padding */
-  }
+                    /* Make Card A image fill the container and touch corners */
+                    .wr-card-image-a img {
+                      display: block;
+                      width: 100%; /* Fill the 60% container width */
+                      height: 100%; /* Fill container height */
+                      min-height: 250px; /* Ensure minimum height */
+                      object-fit: cover;
+                      border-bottom-right-radius: 16px;
+                      padding-top: 0; /* Remove top padding */
+                    }
 
-  .wr-card-title {
-    font-size: 24px !important;
-    line-height: 32px; /* Adjust line height accordingly */
-  }
+                    .wr-card-title {
+                      font-size: 24px !important;
+                      line-height: 32px; /* Adjust line height accordingly */
+                    }
 
-  /* ✅ Card D fixes */
-  .wr-card--d {
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: 60% 40%; /* Give more space to text */
-    gap: 10px;
-    align-items: center;
-  }
+                    /* ✅ Card D fixes */
+                    .wr-card--d {
+                      max-width: 100%;
+                      display: grid;
+                      grid-template-columns: 60% 40%; /* Give more space to text */
+                      gap: 10px;
+                      align-items: center;
+                    }
 
-  .wr-card--d > .wr-card-content {
-    width: 100%;
-    min-width: 0; /* allow shrinking */
-    padding-top: 20px;
-  }
+                    .wr-card--d > .wr-card-content {
+                      width: 100%;
+                      min-width: 0; /* allow shrinking */
+                      padding-top: 20px;
+                    }
 
-  .wr-card--d > .wr-card-content > .wr-card-title {
-    white-space: nowrap !important; /* Force single line */
-    overflow: visible !important;   /* Show full text */
-    text-overflow: unset !important;/* Disable ellipsis */
-    font-size: 22px !important;     /* Slightly smaller to fit */
-    line-height: 30px !important;
-  }
+                    .wr-card--d > .wr-card-content > .wr-card-title {
+                      white-space: nowrap !important; /* Force single line */
+                      overflow: visible !important; /* Show full text */
+                      text-overflow: unset !important; /* Disable ellipsis */
+                      font-size: 24px !important; /* Slightly smaller to fit */
+                      line-height: 30px !important;
+                    }
 
-  .wr-card--d .wr-card-image-d {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center; /* Vertically centered */
-    overflow: hidden;
-  }
+                    .wr-card--d .wr-card-image-d {
+                      display: flex;
+                      justify-content: flex-end;
+                      align-items: center; /* Vertically centered */
+                      overflow: hidden;
+                    }
 
-  .wr-card--d .wr-card-image-d img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: block;
-  }
+                    .wr-card--d .wr-card-image-d img {
+                      max-width: 100%;
+                      height: auto;
+                      object-fit: contain;
+                      display: block;
+                      align-self: flex-end;
+                    }
 
-  .wr-grid {
-    grid-template-columns: 52%; /* Keep grid balanced */
-    grid-template-areas:
-      "c e"
-      "d e";
-    max-width: 100%;
-    width: 100%;
-    gap: 20px;
-  }
+                    .wr-grid {
+                      grid-template-columns: 52%; /* Keep grid balanced */
+                      grid-template-areas:
+                        "c e"
+                        "d e";
+                      max-width: 100%;
+                      width: 100%;
+                      gap: 20px;
+                    }
 
-  .wr-card--c {
-    overflow: hidden;
-  }
-}
+                    .wr-card--c {
+                      overflow: hidden;
+                    }
 
+                    .wr-card-image-c img {
+                      width: 200px;
+                      align-self: center;
+                    }
+                  }
+
+                  @media (min-width: 768px) and (max-width: 846px) {
+                    .wr-card--d .wr-card-image-d img {
+                      max-width: 113%;
+                    }
+                  }
 
                   /* Large devices (desktop) */
                   @media (min-width: 1024px) and (max-width: 1255px) {
-    .wr-card-title {
-      color: #5a287d;
-      font-family: "RN House Sans";
-      font-size: 26px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 30px;
-    }
+                    .wr-card-title {
+                      color: #5a287d;
+                      font-family: "RN House Sans";
+                      font-size: 26px;
+                      font-style: normal;
+                      font-weight: 700;
+                      line-height: 30px;
+                    }
 
-    .wr-grid {
-      grid-template-columns: max-content;
-      justify-content: center;
-      grid-template-areas:
-        "c e"
-        "d e";
-    }
+                    .wr-grid {
+                      grid-template-columns: max-content;
+                      justify-content: center;
+                      grid-template-areas:
+                        "c e"
+                        "d e";
+                    }
 
-    .wr-ab-container {
-      justify-content: center;
-    }
+                    .wr-ab-container {
+                      justify-content: center;
+                    }
 
-    .wr-card--a {
-      display: grid;
-      grid-template-columns: 1fr minmax(260px, 52%);
-      gap: 20px;
-      align-items: center;
-      max-width: 572px;
-    }
+                    .wr-card--a {
+                      display: grid;
+                      grid-template-columns: 1fr minmax(260px, 52%);
+                      gap: 20px;
+                      align-items: center;
+                      max-width: 572px;
+                    }
 
-    .wr-card--a img {
-      height: 290px;
-    }
+                    .wr-card--a img {
+                      height: 290px;
+                    }
 
-    .wr-card--b {
-      max-width: 328px;
-    }
+                    .wr-card--b {
+                      max-width: 328px;
+                    }
 
-    .wr-card--b img {
-      height: 89px;
-    }
+                    .wr-card--b img {
+                      height: 89px;
+                    }
 
-    .wr-card--c {
-      max-width: 450px;
-    }
+                    .wr-card--c {
+                      max-width: 450px;
+                    }
 
-    .wr-card--d {
-      max-width: 450px;
-      display: grid; /* Restore grid layout */
-      grid-template-columns: 1fr 50%; /* Content takes remaining space, image takes needed space */
-      gap: 10px;
-      align-items: center;
-    }
+                    .wr-card--d {
+                      max-width: 450px;
+                      display: grid; /* Restore grid layout */
+                      grid-template-columns: 1fr 50%; /* Content takes remaining space, image takes needed space */
+                      gap: 10px;
+                      align-items: center;
+                    }
 
-    .wr-card--e {
-      max-width: 450px;
-    }
+                    .wr-card--e {
+                      max-width: 450px;
+                    }
 
-    .wr-card-image-d {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      overflow: hidden; /* Ensure image doesn't overflow */
-    }
+                    .wr-card-image-d {
+                      display: flex;
+                      justify-content: flex-end;
+                      align-items: flex-end;
+                      overflow: hidden; /* Ensure image doesn't overflow */
+                    }
 
-    .wr-card-image-d img {
-      width: 212px; /* Reduced from 276px */
-      height: 201px; /* Reduced from 238px */
-      object-fit: cover;
-      max-width: 100%; /* Ensure it doesn't exceed container */
-    }
-    
-    .wr-card--d > .wr-card-content {
-      padding-top: 20px;
-      min-width: 204px;
-    }
-}
+                    .wr-card-image-d img {
+                      width: 212px; /* Reduced from 276px */
+                      height: 201px; /* Reduced from 238px */
+                      object-fit: cover;
+                      max-width: 100%; /* Ensure it doesn't exceed container */
+                    }
+
+                    .wr-card--d > .wr-card-content {
+                      padding-top: 20px;
+                      min-width: 204px;
+                    }
+                  }
 
                   /* XL view */
                   @media (min-width: 1256px) {
                   }
                 </style>
-
-                <h2 class="wr-title">
-                  Boost your money
-                  <span class="wr-step-number"
-                    >confidence
-                    <img
-                      src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-red-underline-highlight.png"
-                      alt=""
-                      class="wr-underline-image"
-                  /></span>
-                  with a health check
-                </h2>
-
-                <!-- Card A -->
-                <div class="wr-ab-container">
-                  <article class="wr-card--a">
-                    <div class="wr-card-content">
-                      <h2 class="wr-card-title">What is a health check?</h2>
-                      <p class="wr-card-text">
-                        Financial Health Check is a free review of your
-                        finances, offering tips and ideas to help you get
-                        financially fitter now and in the future.
-                      </p>
-                    </div>
-                    <div class="wr-card-image-a">
-                      <img
-                        src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-FHC-tennis-image.png"
-                        alt="Health check image"
-                      />
-                    </div>
-                  </article>
-
-                  <!-- Card B -->
-                  <article class="wr-card--b">
-                    <h3 class="wr-card-title">Get help the way you want</h3>
-                    <p class="wr-card-text">
-                      Book a video appointment or arrange to speak to someone
-                      over the phone or in branch.
-                    </p>
-                    <div class="wr-card-image-b">
-                      <img
-                        src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-illus-fhc.png"
-                        alt="phone / video icon"
-                      />
-                    </div>
-                  </article>
-                </div>
-                <div class="wr-grid">
-                  <!-- Card C -->
-                  <article class="wr-card--c">
-                    <h3 class="wr-card-title">In-app if you prefer</h3>
-                    <div class="card-c-container">
-                      <div class="wr-card-content">
-                        <p class="wr-card-text">
-                          The Insights tab in our app offers personalised tips,
-                          tools, and insights to help you reach your financial
-                          goals.
-                        </p>
-                      </div>
-                      <div class="wr-card-image-c">
-                        <img
-                          src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-FHC-insights-tips.png"
-                          alt="app screenshot"
-                        />
-                      </div>
-                    </div>
-                  </article>
-
-                  <!-- Card D -->
-                  <article class="wr-card--d">
-                      <div class="wr-card-content">
-                        <h3 class="wr-card-title">Financial support for you</h3>
-                      <p class="wr-card-text">
-                        The ‘Just for you’ section offers personalised guidance
-                        to save, spend smarter, and boost credit score.
-                      </p>
-                    </div>
-                    <div class="wr-card-image-d">
-                      <img
-                        src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-mobile-fhc.png"
-                        alt="support screenshot"
-                      />
-                    </div>
-                  </article>
-
-                  <!-- Card E -->
-                  <article class="wr-card--e">
-                    <h3 class="wr-card-title">Own your finances</h3>
-                    <p class="wr-card-text">
-                      Take control of your money with self-paced coaching plans,
-                      tools, and progress tracking.
-                    </p>
-                    <div class="wr-card-image-e">
-                      <img
-                        src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-FHC-progress-tracking.png"
-                        alt="rocket illustration"
-                      />
-                    </div>
-                  </article>
-                </div>
-              </section>
