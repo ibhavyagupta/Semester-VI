@@ -29,7 +29,7 @@
                   .wr-title {
                     color: #5a287d;
                     text-align: center;
-                    font-family: Knile;
+                    font-family: "knilebold", "Knile", sans-serif;
                     font-size: 40px;
                     font-style: normal;
                     font-weight: 700;
@@ -73,7 +73,8 @@
 
                   .wr-card-title {
                     color: #5a287d;
-                    font-family: "RN House Sans";
+                    font-family: "RN House Sans", "RNHouseSansRegular",
+                      sans-serif;
                     font-size: 30px;
                     font-style: normal;
                     font-weight: 700;
@@ -84,7 +85,8 @@
 
                   .wr-card-text {
                     color: #5a287d;
-                    font-family: "RN House Sans";
+                    font-family: "RN House Sans", "RNHouseSansRegular",
+                      sans-serif;
                     font-size: 18px;
                     font-style: normal;
                     font-weight: 400;
@@ -172,27 +174,26 @@
 
                   .wr-card-image-a img {
                     display: block;
-                    width: 115%;
                     max-width: 520px;
-                    max-height: 286px;
+                    max-height: 276px;
                     object-fit: cover;
                     border-bottom-right-radius: 16px;
                     padding-top: 28px;
-                    transition: transform 0.1s ease, height 0.1s ease;
+                    transform: scale(1.15);
+                    transition: transform 0.2s ease;
                   }
 
                   .wr-card--a:hover .wr-card-image-a img {
-                    transform: scale(0.9) translate(-2%, 5%);
-                    max-height: 272px;
+                    transform: scale(1);
                   }
 
                   .wr-card-image-b img {
                     height: 130px;
-                    transition: transform 0.1s ease;
+                    transition: transform 0.2s ease;
                   }
 
                   .wr-card--b:hover .wr-card-image-b img {
-                    transform: scale(1.2);
+                    transform: scale(1.1);
                   }
 
                   .wr-card--b > .wr-card-text {
@@ -221,7 +222,7 @@
                     width: 237px;
                     height: 180px;
                     object-fit: cover;
-                    transition: transform 0.1s ease; 
+                    transition: transform 0.2s ease;
                   }
 
                   .wr-card--d:hover .wr-card-image-d img {
@@ -240,7 +241,7 @@
                   }
 
                   .wr-card-image-c img {
-                    transition: transform 0.1s ease;
+                    transition: transform 0.2s ease;
                   }
 
                   .wr-card--c:hover .wr-card-image-c img {
@@ -248,11 +249,11 @@
                   }
 
                   .wr-card--e > .wr-card-title {
-                    padding: 24px 24px 0px 24px;
+                    padding: 16px 16px 0px 16px;
                   }
 
                   .wr-card--e > .wr-card-text {
-                    padding: 0px 24px 0px 24px;
+                    padding: 0px 16px 0px 16px;
                   }
 
                   .wr-card-image-e {
@@ -287,14 +288,15 @@
                       gap: 16px;
                       margin-bottom: 16px;
                     }
-                    .wr-card-text{
-                      color: #5A287D;
-font-family: "RN House Sans";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 26px;
-letter-spacing: 0.2px;
+                    .wr-card-text {
+                      color: #5a287d;
+                      font-family: "RN House Sans", "RNHouseSansRegular",
+                        sans-serif;
+                      font-size: 16px;
+                      font-style: normal;
+                      font-weight: 400;
+                      line-height: 26px;
+                      letter-spacing: 0.2px;
                     }
 
                     .wr-card--a,
@@ -330,13 +332,13 @@ letter-spacing: 0.2px;
 
                     .wr-card--a .wr-card-image-a img {
                       padding-top: 0;
-                      max-height: 300px;
-                      height: 257px;
-                      transition: height 0.1s ease;
+                      transform: scale(1.2);
+                      transition: transform 0.2s ease, margin 0.2s ease;
                     }
                     .wr-card--a:hover .wr-card-image-a img {
-                      height: 232px;
-                      transform: none;
+                      transform: scale(1);
+                      margin-left: 20px;
+                      max-height: none;
                     }
 
                     .card-c-container {
@@ -382,7 +384,8 @@ letter-spacing: 0.2px;
                     .wr-card--c .wr-card-content::after {
                       content: "In the mobile app our Insights tab is packed with personalised insights, tools and tips to help you reach your financial goals.";
                       color: #5a287d;
-                      font-family: "RN House Sans";
+                      font-family: "RN House Sans", "RNHouseSansRegular",
+                        sans-serif;
                       font-size: 16px;
                       font-style: normal;
                       font-weight: 400;
@@ -397,7 +400,6 @@ letter-spacing: 0.2px;
                       align-items: center;
                     }
 
-                    .wr-card--a img,
                     .wr-card--b img,
                     .wr-card--c img,
                     .wr-card--d img {
@@ -449,7 +451,7 @@ letter-spacing: 0.2px;
                     .wr-title {
                       color: #5a287d;
                       text-align: left;
-                      font-family: Knile;
+                      font-family: "knilebold", "Knile", sans-serif;
                       font-size: clamp(28px, 5vw, 32px);
                       font-style: normal;
                       font-weight: 700;
@@ -458,7 +460,8 @@ letter-spacing: 0.2px;
                     }
 
                     .wr-card-title {
-                      font-family: "RN House Sans";
+                      font-family: "RN House Sans", "RNHouseSansRegular",
+                        sans-serif;
                       font-size: 22px;
                       font-style: normal;
                       font-weight: 700;
@@ -532,29 +535,38 @@ letter-spacing: 0.2px;
 
                   /* Medium devices (tablet) */
                   @media (min-width: 768px) and (max-width: 1023px) {
-
-                    .wr-card-text{
-                      color: #5A287D;
-font-family: "RN House Sans";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 26px;
-letter-spacing: 0.2px;
+                    .wr-card-text {
+                      color: #5a287d;
+                      font-family: "RN House Sans", "RNHouseSansRegular",
+                        sans-serif;
+                      font-size: 16px;
+                      font-style: normal;
+                      font-weight: 400;
+                      line-height: 26px;
+                      letter-spacing: 0.2px;
                     }
                     .wr-title {
                       color: #5a287d;
                       text-align: center;
-                      font-family: Knile;
+                      font-family: "knilebold", "Knile", sans-serif;
                       font-size: 38px;
                       font-style: normal;
                       font-weight: 700;
                       line-height: 48px;
                     }
                     .wr-card--a {
-                      max-width: 68% !important;
-                      grid-template-columns: 2fr 3fr;
-                      padding: 24px 0px 0px 24px;
+                      max-width: 60% !important;
+                      grid-template-columns: 40% 60%;
+                      padding: 16px 0px 0px 16px;
+                      overflow: hidden;
+                    }
+
+                    .wr-card--a > .wr-card-content > .wr-card-title {
+                      white-space: nowrap !important;
+                      overflow: visible !important;
+                      text-overflow: unset !important;
+                      font-size: 24px !important;
+                      line-height: 30px !important;
                     }
 
                     .wr-card-image-a {
@@ -569,9 +581,10 @@ letter-spacing: 0.2px;
 
                     .wr-card-image-a img {
                       display: block;
-                      width: 108%;
-                      height: 100%;
-                      min-height: 250px;
+                      width: 100%;
+                      height: 65%;
+                      transform: scale(1.15);
+                      min-height: 167px;
                       object-fit: cover;
                       border-bottom-right-radius: 16px;
                       padding-top: 0;
@@ -639,7 +652,7 @@ letter-spacing: 0.2px;
                     }
                   }
 
-                   @media (min-width: 768px) and (max-width: 846px) {
+                  @media (min-width: 768px) and (max-width: 846px) {
                     .wr-card-image-e img {
                       padding-top: 50px;
                     }
@@ -653,13 +666,14 @@ letter-spacing: 0.2px;
 
                   /* Large devices (desktop) */
                   @media (min-width: 1024px) and (max-width: 1255px) {
-                    .wr-title{
+                    .wr-title {
                       font-size: 38px !important;
                       margin: 0px 110px 0px 110px;
                     }
                     .wr-card-title {
                       color: #5a287d;
-                      font-family: "RN House Sans";
+                      font-family: "RN House Sans", "RNHouseSansRegular",
+                        sans-serif;
                       font-size: 26px;
                       font-style: normal;
                       font-weight: 700;
@@ -688,6 +702,7 @@ letter-spacing: 0.2px;
 
                     .wr-card--a img {
                       height: 255px;
+                      transform: scale(1.1);
                       align-self: flex-end;
                     }
 
@@ -735,6 +750,11 @@ letter-spacing: 0.2px;
                     }
                   }
 
+                  @media (min-width: 1255px) {
+                    .wr-card--b > .wr-card-text {
+                      margin-bottom: 20px;
+                    }
+                  }
                 </style>
 
                 <h2 class="wr-title">
