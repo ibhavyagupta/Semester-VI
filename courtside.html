@@ -1,281 +1,293 @@
 <section class="wr-container">
                 <style>
                   .wr-container {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    padding: 40px 20px;
-                  }
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
 
-                  .wr-underline-image {
-                    position: absolute;
-                    bottom: 0px;
-                    left: 0;
-                    width: 100%;
-                    height: auto;
-                    z-index: -1;
-                  }
+  .wr-underline-image {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+  }
 
-                  .wr-step-number {
-                    display: inline-block;
-                    position: relative;
-                  }
+  .wr-step-number {
+    display: inline-block;
+    position: relative;
+  }
 
-                  .wr-ab-container {
-                    display: flex;
-                    gap: 22px;
-                    margin-bottom: 24px;
-                  }
+  .wr-ab-container {
+    display: flex;
+    gap: 22px;
+    margin-bottom: 24px;
+  }
 
-                  .wr-title {
-                    color: #5a287d;
-                    text-align: center;
-                    font-family: "knilebold", "Knile", sans-serif;
-                    font-size: 40px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 50px;
-                    letter-spacing: -0.2px;
-                    position: relative;
-                    margin-bottom: 32px;
-                  }
+  .wr-title {
+    color: #5a287d;
+    text-align: center;
+    font-family: "knilebold", "Knile", sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 50px;
+    letter-spacing: -0.2px;
+    position: relative;
+    margin-bottom: 32px;
+  }
 
-                  .wr-grid {
-                    display: grid;
-                    gap: 24px;
-                    grid-template-columns: repeat(2, 1fr);
-                    grid-template-areas:
-                      "c e"
-                      "d e";
-                  }
+  .wr-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "c e"
+      "d e";
+  }
 
-                  .wr-grid:first-of-type {
-                    grid-template-columns: 2fr 1fr;
-                  }
+  .wr-grid:first-of-type {
+    grid-template-columns: 2fr 1fr;
+  }
 
-                  .wr-grid:first-of-type .wr-card--a .wr-card-image-a img {
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                    object-fit: cover;
-                    border-bottom-right-radius: 16px;
-                  }
+  .wr-grid:first-of-type .wr-card--a .wr-card-image-a img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom-right-radius: 16px;
+  }
 
-                  .wr-card {
-                    border-radius: 16px;
-                    padding: 24px;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: space-between;
-                    overflow: hidden;
-                  }
+  .wr-card {
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+  }
 
-                  .wr-card-title {
-                    color: #5a287d;
-                    font-family: "RN House Sans", "RNHouseSansRegular",
-                      sans-serif;
-                    font-size: 30px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 40px;
-                    letter-spacing: -0.2px;
-                    margin: 0;
-                  }
+  .wr-card-title {
+    color: #5a287d;
+    font-family: "RN House Sans", "RNHouseSansRegular",
+      sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: -0.2px;
+    margin: 0;
+  }
 
-                  .wr-card-text {
-                    color: #5a287d;
-                    font-family: "RN House Sans", "RNHouseSansRegular",
-                      sans-serif;
-                    font-size: 18px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 26px;
-                    letter-spacing: 0.2px;
-                  }
+  .wr-card-text {
+    color: #5a287d;
+    font-family: "RN House Sans", "RNHouseSansRegular",
+      sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0.2px;
+  }
 
-                  .wr-card--a {
-                    grid-area: a;
-                    background: #f2f2f8;
-                    padding: 0px 0px 0px 24px;
-                    border-radius: 16px;
-                  }
+  .wr-card--a {
+    grid-area: a;
+    background: #f2f2f8;
+    padding: 0px 0px 0px 24px;
+    border-radius: 16px;
+  }
 
-                  .wr-card--b {
-                    grid-area: b;
-                    background: #dbedfa;
-                    display: flex;
-                    flex-direction: column;
-                    max-width: 434px;
-                    border-radius: 16px;
-                    padding: 16px 16px 0px 16px;
-                  }
+  .wr-card--b {
+    grid-area: b;
+    background: #dbedfa;
+    display: flex;
+    flex-direction: column;
+    max-width: 434px;
+    border-radius: 16px;
+    padding: 16px 16px 0px 16px;
+  }
 
-                  .wr-card--c {
-                    grid-area: c;
-                    background: #ffeae6;
-                    max-width: 574px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                    padding: 16px 0px 16px 16px;
-                    border-radius: 16px;
-                    overflow: hidden;
-                  }
+  .wr-card--c {
+    grid-area: c;
+    background: #ffeae6;
+    max-width: 574px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 0px 16px 16px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
 
-                  .wr-card--d {
-                    grid-area: d;
-                    background: #ffdbec;
-                    max-width: 574px;
-                    display: grid;
-                    grid-template-columns: 1fr minmax(260px, 20%);
-                    gap: 10px;
-                    align-items: center;
-                    padding: 0px 0px 0px 20px;
-                    border-radius: 16px;
-                  }
+  .wr-card--d {
+    grid-area: d;
+    background: #ffdbec;
+    max-width: 574px;
+    display: grid;
+    grid-template-columns: 1fr minmax(260px, 20%);
+    gap: 10px;
+    align-items: center;
+    padding: 0px 0px 0px 20px;
+    border-radius: 16px;
+  }
 
-                  .wr-card--e {
-                    grid-area: e;
-                    background: #f2eaf9;
-                    max-width: 570px;
-                    border-radius: 16px;
-                  }
+  .wr-card--e {
+    grid-area: e;
+    background: #f2eaf9;
+    max-width: 570px;
+    border-radius: 16px;
+  }
 
-                  .card-c-container {
-                    display: flex;
-                  }
+  .card-c-container {
+    display: flex;
+  }
 
-                  .wr-card--d > .wr-card-content {
-                    padding-top: 16px;
-                  }
+  .wr-card--d > .wr-card-content {
+    padding-top: 16px;
+  }
 
-                  .wr-card--a {
-                    display: grid;
-                    grid-template-columns: 1fr minmax(260px, 52%);
-                    gap: 20px;
-                    align-items: center;
-                    max-width: 712px;
-                  }
+  .wr-card--a {
+    display: grid;
+    grid-template-columns: 1fr minmax(260px, 52%);
+    gap: 20px;
+    align-items: center;
+    max-width: 712px;
+  }
 
-                  .wr-card--a .wr-card-content {
-                    padding-right: 8px;
-                  }
+  .wr-card--a .wr-card-content {
+    padding-right: 8px;
+  }
 
-                  .wr-card--c > .wr-card-text {
-                    max-width: 272px;
-                  }
+  .wr-card--c > .wr-card-text {
+    max-width: 272px;
+  }
 
-                  .wr-card-image-a {
-                    overflow: hidden;
-                    align-self: flex-end !important;
-                    border-bottom-right-radius: 16px;
-                  }
+  .wr-card-image-a {
+    overflow: hidden;
+    align-self: flex-end !important;
+    border-bottom-right-radius: 16px;
+  }
 
-                  .wr-card-image-a img {
-                    display: block;
-                    max-width: 520px;
-                    max-height: 276px;
-                    object-fit: cover;
-                    border-bottom-right-radius: 16px;
-                    padding-top: 28px;
-                    transform: scale(1.15);
-                    transition: transform 0.2s ease;
-                  }
+  .wr-card-image-a img {
+    display: block;
+    max-width: 520px;
+    max-height: 276px;
+    object-fit: cover;
+    border-bottom-right-radius: 16px;
+    padding-top: 28px;
+    transform: scale(1.15);
+    transition: transform 0.2s ease;
+  }
 
-                  .wr-card--a:hover .wr-card-image-a img {
-                    transform: scale(1);
-                  }
+  .wr-card-image-b img {
+    height: 130px;
+    transition: transform 0.2s ease;
+  }
 
-                  .wr-card-image-b img {
-                    height: 130px;
-                    transition: transform 0.2s ease;
-                  }
+  .wr-card--b > .wr-card-text {
+    margin-bottom: 0px;
+    margin-top: 8px;
+  }
 
-                  .wr-card--b:hover .wr-card-image-b img {
-                    transform: scale(1.1);
-                  }
+  .wr-card-image-b {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 10px;
+  }
 
-                  .wr-card--b > .wr-card-text {
-                    margin-bottom: 0px;
-                    margin-top: 8px;
-                  }
+  .wr-card-image-d {
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 0;
+    align-self: end;
+    height: 100%;
+  }
 
-                  .wr-card-image-b {
-                    display: flex;
-                    justify-content: center;
-                    align-items: flex-end;
-                    padding-bottom: 10px;
-                  }
+  .wr-card-image-d img {
+    width: 237px;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+  }
 
-                  .wr-card-image-d {
-                    overflow: hidden;
-                    display: flex;
-                    align-items: flex-end;
-                    justify-content: flex-end;
-                    margin-top: 0;
-                    align-self: end;
-                    height: 100%;
-                  }
+  .wr-card-image-c {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 10px;
+  }
 
-                  .wr-card-image-d img {
-                    width: 237px;
-                    height: 180px;
-                    object-fit: cover;
-                    transition: transform 0.2s ease;
-                  }
+  .wr-card-image-c {
+    margin-top: -26px !important;
+  }
 
-                  .wr-card--d:hover .wr-card-image-d img {
-                    transform: scale(1.1);
-                  }
+  .wr-card-image-c img {
+    transition: transform 0.2s ease;
+  }
 
-                  .wr-card-image-c {
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: flex-end;
-                    margin-top: 10px;
-                  }
+  .wr-card--e > .wr-card-title {
+    padding: 16px 16px 0px 16px;
+  }
 
-                  .wr-card-image-c {
-                    margin-top: -26px !important;
-                  }
+  .wr-card--e > .wr-card-text {
+    padding: 0px 16px 0px 16px;
+  }
 
-                  .wr-card-image-c img {
-                    transition: transform 0.2s ease;
-                  }
+  .wr-card-image-e {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 6rem;
+  }
 
-                  .wr-card--c:hover .wr-card-image-c img {
-                    transform: scale(1.1);
-                  }
+  .wr-card-image-e img {
+    width: 95%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.45);
+    transition: transform 0.2s ease;
+  }
 
-                  .wr-card--e > .wr-card-title {
-                    padding: 16px 16px 0px 16px;
-                  }
+  /* ✅ Hover animations only when motion is allowed */
+  @media (prefers-reduced-motion: no-preference) {
+    .wr-card--a:hover .wr-card-image-a img {
+      transform: scale(1);
+    }
 
-                  .wr-card--e > .wr-card-text {
-                    padding: 0px 16px 0px 16px;
-                  }
+    .wr-card--b:hover .wr-card-image-b img {
+      transform: scale(1.1);
+    }
 
-                  .wr-card-image-e {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    overflow: hidden;
-                    margin-top: 6rem;
-                  }
+    .wr-card--d:hover .wr-card-image-d img {
+      transform: scale(1.1);
+    }
 
-                  .wr-card-image-e img {
-                    width: 95%;
-                    height: auto;
-                    object-fit: cover;
-                    object-position: center;
-                    transform: scale(1.45);
-                    transition: transform 0.2s ease;
-                  }
+    .wr-card--c:hover .wr-card-image-c img {
+      transform: scale(1.1);
+    }
 
-                  .wr-card--e:hover .wr-card-image-e img {
-                    transform: scale(1.15);
-                  }
+    .wr-card--e:hover .wr-card-image-e img {
+      transform: scale(1.15);
+    }
+
+    /* Mobile-specific hover for card A */
+    @media (max-width: 767px) {
+      .wr-card--a:hover .wr-card-image-a img {
+        transform: scale(1);
+        margin-left: 20px;
+        max-height: none;
+      }
+    }
+  }
 
                   @media (max-width: 767px) {
                     .wr-container {
