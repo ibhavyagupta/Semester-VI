@@ -1,1 +1,1 @@
-<img width="572" height="555" alt="image" src="https://github.com/user-attachments/assets/f68a06df-f7f8-4c16-b189-178a22b5dcc5" />
+Cloud & DevOps Engineer skilled in multi-cloud (AWS, Azure, GCP), Kubernetes, Terraform, Ansible & CI/CD, with a track record of improving reliability, reducing costs, and automating large-scale deployments at Sprinklr.
