@@ -12,7 +12,7 @@
       padding: 40px;
     }
 
-    .container {
+    .wr-bhavya-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
@@ -20,7 +20,7 @@
       margin: auto;
     }
 
-    .card {
+    .wr-bhavya-card {
       background: #fff;
       border-radius: 12px;
       padding: 20px;
@@ -28,55 +28,55 @@
       transition: transform 0.2s ease;
     }
 
-    .card:hover {
+    .wr-bhavya-card:hover {
       transform: translateY(-5px);
     }
 
-    .card img {
+    .wr-bhavya-card img.wr-bhavya-icon {
       width: 40px;
       margin-bottom: 10px;
     }
 
-    .card h3 {
+    .wr-bhavya-card h3 {
       margin: 10px 0;
       font-size: 1.2rem;
       color: #333;
     }
 
-    .card ul {
+    .wr-bhavya-card ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
 
-    .card ul li {
+    .wr-bhavya-card ul li {
       margin: 6px 0;
     }
 
-    .card ul li a {
+    .wr-bhavya-card ul li a {
       text-decoration: none;
       font-size: 0.95rem;
       color: #6a1b9a;
       transition: color 0.2s ease;
     }
 
-    .card ul li a:hover {
+    .wr-bhavya-card ul li a:hover {
       color: #000;
     }
 
     /* Tablet view (2x2 layout) */
     @media (max-width: 1225px) and (min-width: 768px) {
-      .container {
+      .wr-bhavya-container {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
     /* Mobile view: Accordion */
     @media (max-width: 767px) {
-      .container {
+      .wr-bhavya-container {
         display: block;
       }
-      .card {
+      .wr-bhavya-card {
         padding: 0;
         margin-bottom: 12px;
         box-shadow: none;
@@ -84,7 +84,7 @@
         overflow: hidden;
       }
 
-      .accordion-header {
+      .wr-bhavya-accordion-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -96,45 +96,63 @@
         color: #4a148c;
       }
 
-      .accordion-header img {
-        width: 28px;
-        margin-right: 10px;
+      .wr-bhavya-accordion-header span {
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
 
-      .accordion-body {
+      .wr-bhavya-accordion-header img.wr-bhavya-icon {
+        width: 28px;
+        margin: 0;
+      }
+
+      .wr-bhavya-accordion-header img.wr-bhavya-arrow {
+        width: 18px;
+        transition: transform 0.3s ease;
+      }
+
+      .wr-bhavya-accordion-body {
         display: none;
         padding: 15px;
         background: #f8f6fb;
       }
 
-      .accordion-body ul li {
+      .wr-bhavya-accordion-body ul li {
         margin: 8px 0;
       }
 
-      .accordion-header.active {
+      .wr-bhavya-accordion-header.wr-bhavya-active {
         background: #4a148c;
         color: #fff;
       }
 
-      .accordion-header.active img {
+      .wr-bhavya-accordion-header.wr-bhavya-active img.wr-bhavya-icon {
         filter: brightness(0) invert(1);
       }
 
-      .accordion-header.active + .accordion-body {
+      .wr-bhavya-accordion-header.wr-bhavya-active img.wr-bhavya-arrow {
+        transform: rotate(180deg);
+      }
+
+      .wr-bhavya-accordion-header.wr-bhavya-active + .wr-bhavya-accordion-body {
         display: block;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="wr-bhavya-container">
     <!-- Banking -->
-    <div class="card">
-      <div class="accordion-header">
-        <span><img src="https://img.icons8.com/color/48/debit-card.png" alt="">Banking</span>
-        <span class="arrow">▼</span>
+    <div class="wr-bhavya-card">
+      <div class="wr-bhavya-accordion-header">
+        <span>
+          <img class="wr-bhavya-icon" src="https://img.icons8.com/color/48/debit-card.png" alt="Banking">
+          Banking
+        </span>
+        <img class="wr-bhavya-arrow" src="https://img.icons8.com/ios-glyphs/30/000000/chevron-down.png" alt="arrow">
       </div>
-      <div class="accordion-body">
+      <div class="wr-bhavya-accordion-body">
         <ul>
           <li><a href="#">Current accounts</a></li>
           <li><a href="#">Child and teen accounts</a></li>
@@ -144,12 +162,15 @@
     </div>
 
     <!-- Saving -->
-    <div class="card">
-      <div class="accordion-header">
-        <span><img src="https://img.icons8.com/color/48/piggy-bank.png" alt="">Saving</span>
-        <span class="arrow">▶</span>
+    <div class="wr-bhavya-card">
+      <div class="wr-bhavya-accordion-header">
+        <span>
+          <img class="wr-bhavya-icon" src="https://img.icons8.com/color/48/piggy-bank.png" alt="Saving">
+          Saving
+        </span>
+        <img class="wr-bhavya-arrow" src="https://img.icons8.com/ios-glyphs/30/000000/chevron-down.png" alt="arrow">
       </div>
-      <div class="accordion-body">
+      <div class="wr-bhavya-accordion-body">
         <ul>
           <li><a href="#">Savings accounts</a></li>
           <li><a href="#">ISAs</a></li>
@@ -159,12 +180,15 @@
     </div>
 
     <!-- Home -->
-    <div class="card">
-      <div class="accordion-header">
-        <span><img src="https://img.icons8.com/color/48/home.png" alt="">Home</span>
-        <span class="arrow">▶</span>
+    <div class="wr-bhavya-card">
+      <div class="wr-bhavya-accordion-header">
+        <span>
+          <img class="wr-bhavya-icon" src="https://img.icons8.com/color/48/home.png" alt="Home">
+          Home
+        </span>
+        <img class="wr-bhavya-arrow" src="https://img.icons8.com/ios-glyphs/30/000000/chevron-down.png" alt="arrow">
       </div>
-      <div class="accordion-body">
+      <div class="wr-bhavya-accordion-body">
         <ul>
           <li><a href="#">Mortgages</a></li>
           <li><a href="#">First Time Buyers</a></li>
@@ -174,12 +198,15 @@
     </div>
 
     <!-- Borrowing -->
-    <div class="card">
-      <div class="accordion-header">
-        <span><img src="https://img.icons8.com/color/48/bank-card-back-side.png" alt="">Borrowing</span>
-        <span class="arrow">▶</span>
+    <div class="wr-bhavya-card">
+      <div class="wr-bhavya-accordion-header">
+        <span>
+          <img class="wr-bhavya-icon" src="https://img.icons8.com/color/48/bank-card-back-side.png" alt="Borrowing">
+          Borrowing
+        </span>
+        <img class="wr-bhavya-arrow" src="https://img.icons8.com/ios-glyphs/30/000000/chevron-down.png" alt="arrow">
       </div>
-      <div class="accordion-body">
+      <div class="wr-bhavya-accordion-body">
         <ul>
           <li><a href="#">Credit cards</a></li>
           <li><a href="#">Loans</a></li>
@@ -190,27 +217,24 @@
   </div>
 
   <script>
-    // Accordion JS
-    document.querySelectorAll('.accordion-header').forEach(header => {
+    // Accordion JS (mobile only)
+    document.querySelectorAll('.wr-bhavya-accordion-header').forEach(header => {
       header.addEventListener('click', () => {
-        // Close all
-        document.querySelectorAll('.accordion-header').forEach(h => {
+        // close others
+        document.querySelectorAll('.wr-bhavya-accordion-header').forEach(h => {
           if (h !== header) {
-            h.classList.remove('active');
+            h.classList.remove('wr-bhavya-active');
             h.nextElementSibling.style.display = 'none';
-            h.querySelector('.arrow').textContent = '▶';
           }
         });
 
-        // Toggle current
-        header.classList.toggle('active');
+        // toggle current
+        header.classList.toggle('wr-bhavya-active');
         const body = header.nextElementSibling;
-        if (header.classList.contains('active')) {
+        if (header.classList.contains('wr-bhavya-active')) {
           body.style.display = 'block';
-          header.querySelector('.arrow').textContent = '▼';
         } else {
           body.style.display = 'none';
-          header.querySelector('.arrow').textContent = '▶';
         }
       });
     });
