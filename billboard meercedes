@@ -92,65 +92,101 @@
                     }
 
                     /* Mobile accordion view */
-                    @media (max-width: 767px) {
-                      .wr-bhavya-container {
-                        display: block;
-                      }
+                    /* Mobile accordion view */
+@media (max-width: 767px) {
+  .wr-bhavya-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-                      .wr-bhavya-card {
-                        margin-bottom: 10px;
-                        padding: 0;
-                        border-radius: 8px;
-                        overflow: hidden;
-                      }
+  .wr-bhavya-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
 
-                      .wr-bhavya-card h2 {
-                        overflow: hidden;
-                        color: #5e10b1;
-                        text-overflow: ellipsis;
-                        font-family: "RN House Sans";
-                        font-size: 16px;
-                        font-style: normal;
-                        font-weight: 400;
-                        line-height: 24px;
-                        letter-spacing: 0;
-                      }
+  /* Header row */
+  .wr-bhavya-card h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 16px;
+    background: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    color: #5e10b1;
+    cursor: pointer;
+  }
 
-                      .wr-bhavya-card h2 img:first-child {
-                        margin-right: 10px;
-                      }
+  /* Left icon inside h2 */
+  .wr-bhavya-card > img {
+    width: 24px;
+    height: 24px;
+    margin: 0 12px 0 0;
+  }
 
-                      .wr-bhavya-card h2 .wr-bhavya-arrow {
-                        display: inline-block;
-                        width: 20px;
-                        transition: transform 0.3s ease;
-                      }
+  /* Keep icon and text aligned */
+  .wr-bhavya-card h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-                      .wr-bhavya-links {
-                        display: none;
-                        padding: 10px 20px;
-                        background: #fff;
-                      }
+  /* Chevron arrow on the right */
+  .wr-bhavya-card h2 .wr-bhavya-arrow {
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
 
-                      .wr-bhavya-links li {
-                        overflow: hidden;
-                        color: #5e10b1;
-                        text-overflow: ellipsis;
-                        font-family: "RN House Sans";
-                        font-size: 16px;
-                        font-style: normal;
-                        font-weight: 400;
-                        line-height: 24px;
-                        letter-spacing: 0;
-                      }
-                      .wr-bhavya-card.active .wr-bhavya-links {
-                        display: block;
-                      }
+  .wr-bhavya-card.active h2 .wr-bhavya-arrow {
+    transform: rotate(180deg);
+  }
 
-                      .wr-bhavya-card.active h2 .wr-bhavya-arrow {
-                        transform: rotate(180deg);
-                      }
-                    }
+  /* Sub-links list */
+  .wr-bhavya-links {
+    display: none;
+    flex-direction: column;
+    background: #f9f9f9;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .wr-bhavya-card.active .wr-bhavya-links {
+    display: flex;
+  }
+
+  /* Sub-links items */
+  .wr-bhavya-links li a {
+    position: relative;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #5e10b1;
+    text-decoration: none;
+    display: block;
+  }
+
+  /* Small chevron before sub-links */
+  .wr-bhavya-links li a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    transform: translateY(-50%);
+    background: url("./ChevronRight.svg") no-repeat center center;
+    background-size: contain;
+  }
+}
+
                   </style>
 
                   <div class="wr-bhavya-container">
