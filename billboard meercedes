@@ -108,6 +108,25 @@
     border-radius: 8px; /* Overall radius */
     overflow: hidden; /* ensures corners clip nicely */
   }
+.wr-bhavya-card {
+  position: relative; /* allow absolute child positioning */
+}
+
+/* Create inset border line */
+.wr-bhavya-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 16px;   /* space from left side */
+  right: 16px;  /* space from right side */
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+/* Remove border for the last card */
+.wr-bhavya-card:last-child::after {
+  display: none;
+}
 
   .wr-bhavya-card {
     display: flex;
