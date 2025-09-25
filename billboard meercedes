@@ -26,6 +26,27 @@
                                         letter-spacing: 0;
                                     }
 
+.wr-bhavya-links li a {
+    position: relative;
+    padding-left: 28px; /* space for arrow */
+    display: inline-block;
+    color: #5E10B1;
+    text-decoration: none;
+}
+
+.wr-bhavya-links li a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 18px;   /* adjust according to arrow.png size */
+    height: 18px;
+    transform: translateY(-50%);
+    background: url("arrow.png") no-repeat center center;
+    background-size: contain;
+}
+
+
                                     /* Tablet view: 2x2 grid */
                                     @media (min-width: 768px) and (max-width: 1225px) {
                                         .wr-bhavya-container {
