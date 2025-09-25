@@ -1,193 +1,189 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Banking Categories</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4ecfc;
-      margin: 0;
-      padding: 20px;
-    }
+                                    .wr-bhavya-container {
+                                        display: grid;
+                                        grid-template-columns: repeat(4, 1fr);
+                                        gap: 20px;
+                                        margin-top: 60px;
+                                    }
 
-    /* Container grid for desktop & tablet */
-    .wr-bhavya-container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
+                                     .wr-bhavya-card h2 {
+                                      color: #333;
+                                      font-family: "RN House Sans";
+                                      font-size: 40px;
+                                      font-style: normal;
+                                      font-weight: 400;
+                                      line-height: 125%; /* 50px */
+                                      letter-spacing: -0.2;
+                                    }
 
-    /* Tablet view: 2x2 grid */
-    @media (min-width: 768px) and (max-width: 1225px) {
-      .wr-bhavya-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+                                    .wr-bhavya-links li {
+                                        color:  #5E10B1;
+                                        font-family:  "RN House Sans";
+                                        font-size: 20px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: 36px;
+                                        letter-spacing: 0;
+                                    }
 
-    /* Card styling */
-    .wr-bhavya-card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-    }
+                                    /* Tablet view: 2x2 grid */
+                                    @media (min-width: 768px) and (max-width: 1225px) {
+                                        .wr-bhavya-container {
+                                            grid-template-columns: repeat(2, 1fr);
+                                            
+                                        }
 
-    .wr-bhavya-card:hover {
-      transform: translateY(-5px);
-    }
+                                    .wr-bhavya-card h2 {     
+                                        font-size: 32px;
+                                    }
 
-    .wr-bhavya-card h3 {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      font-size: 20px;
-      margin-bottom: 15px;
-      color: #333;
-      gap: 10px;
-    }
+                                    .wr-bhavya-links li {
+                                       font-size: 18px;
+                                       line-height: 36px;
+                                    }
+                                    }
 
-    .wr-bhavya-card h3 img {
-      width: 30px;
-    }
+                                    /* Card styling */
+                                    .wr-bhavya-card {
+                                        background: white;
+                                        border-radius: 24px;
+                                        padding: 20px;
+                                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                        transition: transform 0.2s ease;
+                                    }
 
-    .wr-bhavya-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
 
-    .wr-bhavya-links li {
-      margin-bottom: 10px;
-    }
+                                    .wr-bhavya-card img {
+                                        width: 30px;
+                                    }
 
-    .wr-bhavya-links a {
-      text-decoration: none;
-      color: #6a0dad;
-      font-weight: 500;
-    }
+                                    .wr-bhavya-links {
+                                        list-style: none;
+                                        padding: 0;
+                                        margin: 0;
+                                    }
 
-    /* Hide accordion arrow in tablet & desktop */
-    .wr-bhavya-arrow {
-      display: none;
-    }
+                                    
 
-    /* Mobile accordion view */
-    @media (max-width: 767px) {
-      .wr-bhavya-container {
-        display: block;
-      }
+                                   
 
-      .wr-bhavya-card {
-        margin-bottom: 10px;
-        padding: 0;
-        border-radius: 8px;
-        overflow: hidden;
-      }
+                                    /* Hide accordion arrow in tablet & desktop */
+                                    .wr-bhavya-arrow {
+                                        display: none;
+                                    }
 
-      .wr-bhavya-card h3 {
-        margin: 0;
-        padding: 15px;
-        background: #f9f9f9;
-        font-size: 18px;
-        justify-content: space-between;
-        cursor: pointer;
-      }
+                                    /* Mobile accordion view */
+                                    @media (max-width: 767px) {
+                                        .wr-bhavya-container {
+                                            display: block;
+                                        }
 
-      .wr-bhavya-card h3 img:first-child {
-        margin-right: 10px;
-      }
+                                        .wr-bhavya-card {
+                                            margin-bottom: 10px;
+                                            padding: 0;
+                                            border-radius: 8px;
+                                            overflow: hidden;
+                                        }
 
-      .wr-bhavya-card h3 .wr-bhavya-arrow {
-        display: inline-block;
-        width: 20px;
-        transition: transform 0.3s ease;
-      }
+                                        .wr-bhavya-card h3 {
+                                            margin: 0;
+                                            padding: 15px;
+                                            background: #f9f9f9;
+                                            font-size: 18px;
+                                            justify-content: space-between;
+                                            cursor: pointer;
+                                        }
 
-      .wr-bhavya-links {
-        display: none;
-        padding: 10px 20px;
-        background: #fff;
-      }
+                                        .wr-bhavya-card h3 img:first-child {
+                                            margin-right: 10px;
+                                        }
 
-      .wr-bhavya-card.active .wr-bhavya-links {
-        display: block;
-      }
+                                        .wr-bhavya-card h3 .wr-bhavya-arrow {
+                                            display: inline-block;
+                                            width: 20px;
+                                            transition: transform 0.3s ease;
+                                        }
 
-      .wr-bhavya-card.active h3 .wr-bhavya-arrow {
-        transform: rotate(180deg);
-      }
-    }
-  </style>
-</head>
-<body>
+                                        .wr-bhavya-links {
+                                            display: none;
+                                            padding: 10px 20px;
+                                            background: #fff;
+                                        }
 
-  <div class="wr-bhavya-container">
-    <div class="wr-bhavya-card">
-      <h3>
-        <img src="banking.png" alt="Banking">
-        Banking
-        <img src="arrow.png" alt="Arrow" class="wr-bhavya-arrow">
-      </h3>
-      <ul class="wr-bhavya-links">
-        <li><a href="#">Current accounts</a></li>
-        <li><a href="#">Child and teen accounts</a></li>
-        <li><a href="#">Reward accounts</a></li>
-      </ul>
-    </div>
+                                        .wr-bhavya-card.active .wr-bhavya-links {
+                                            display: block;
+                                        }
 
-    <div class="wr-bhavya-card">
-      <h3>
-        <img src="saving.png" alt="Saving">
-        Saving
-        <img src="arrow.png" alt="Arrow" class="wr-bhavya-arrow">
-      </h3>
-      <ul class="wr-bhavya-links">
-        <li><a href="#">Savings accounts</a></li>
-        <li><a href="#">ISAs</a></li>
-        <li><a href="#">Investing</a></li>
-      </ul>
-    </div>
+                                        .wr-bhavya-card.active h3 .wr-bhavya-arrow {
+                                            transform: rotate(180deg);
+                                        }
+                                    }
+                                </style>
+                                
 
-    <div class="wr-bhavya-card">
-      <h3>
-        <img src="home.png" alt="Home">
-        Home
-        <img src="arrow.png" alt="Arrow" class="wr-bhavya-arrow">
-      </h3>
-      <ul class="wr-bhavya-links">
-        <li><a href="#">Mortgages</a></li>
-        <li><a href="#">First Time Buyers</a></li>
-        <li><a href="#">Home insurance</a></li>
-      </ul>
-    </div>
+                                    <div class="wr-bhavya-container">
+                                        <div class="wr-bhavya-card">
+                                            <img src="banking.png" alt="Banking">
+                                            <h2>
+                                                
+                                                Banking
+                                                <img src="arrow.png" alt="Arrow" class="wr-bhavya-arrow">
+                                            </h2>
+                                            <ul class="wr-bhavya-links">
+                                                <li><a href="#">Current accounts</a></li>
+                                                <li><a href="#">Child and teen accounts</a></li>
+                                                <li><a href="#">Reward accounts</a></li>
+                                            </ul>
+                                        </div>
 
-    <div class="wr-bhavya-card">
-      <h3>
-        <img src="borrowing.png" alt="Borrowing">
-        Borrowing
-        <img src="arrow.png" alt="Arrow" class="wr-bhavya-arrow">
-      </h3>
-      <ul class="wr-bhavya-links">
-        <li><a href="#">Credit cards</a></li>
-        <li><a href="#">Loans</a></li>
-        <li><a href="#">Overdrafts</a></li>
-      </ul>
-    </div>
-  </div>
+                                        <div class="wr-bhavya-card">
+                                            <img src="saving.png" alt="Saving">
+                                            <h2>
+                                                Saving
+                                                <img src="arrow.png" alt="Arrow" class="wr-bhavya-arrow">
+                                            </h2>
+                                            <ul class="wr-bhavya-links">
+                                                <li><a href="#">Savings accounts</a></li>
+                                                <li><a href="#">ISAs</a></li>
+                                                <li><a href="#">Investing</a></li>
+                                            </ul>
+                                        </div>
 
-  <script>
-    // Accordion only for mobile
-    const cards = document.querySelectorAll('.wr-bhavya-card h3');
-    cards.forEach(header => {
-      header.addEventListener('click', () => {
-        if (window.innerWidth <= 767) {
-          header.parentElement.classList.toggle('active');
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+                                        <div class="wr-bhavya-card">
+                                            <img src="home.png" alt="Home">
+                                            <h2>
+                                                Home
+                                                <img src="arrow.png" alt="Arrow" class="wr-bhavya-arrow">
+                                            </h2>
+                                            <ul class="wr-bhavya-links">
+                                                <li><a href="#">Mortgages</a></li>
+                                                <li><a href="#">First Time Buyers</a></li>
+                                                <li><a href="#">Home insurance</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="wr-bhavya-card">
+                                            <img src="borrowing.png" alt="Borrowing">
+                                            <h2>
+                                                Borrowing
+                                                <img src="arrow.png" alt="Arrow" class="wr-bhavya-arrow">
+                                            </h2>
+                                            <ul class="wr-bhavya-links">
+                                                <li><a href="#">Credit cards</a></li>
+                                                <li><a href="#">Loans</a></li>
+                                                <li><a href="#">Overdrafts</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                            </div>
+                            <script>
+                                // Accordion only for mobile
+                                const cards = document.querySelectorAll('.wr-bhavya-card h3');
+                                cards.forEach(header => {
+                                    header.addEventListener('click', () => {
+                                        if (window.innerWidth <= 767) {
+                                            header.parentElement.classList.toggle('active');
+                                        }
+                                    });
+                                });
+                            </script>
