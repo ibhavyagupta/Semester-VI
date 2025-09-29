@@ -519,9 +519,9 @@
                   }
                 </style>
 
-                <div class="container wr-container">
+               <div class="container wr-container">
   <h1 class="wr-title" id="main-heading">What are you looking for today?</h1>
-  
+
   <div class="wr-tab-container" role="tablist" aria-labelledby="main-heading">
     <div class="wr-tabs">
       <button
@@ -564,37 +564,21 @@
         <h2 id="banking-heading" tabindex="0" aria-expanded="false" aria-controls="banking-links">
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-1.svg"
-            alt="decorative"
-            role="img"
+            alt=""
+            aria-hidden="true"
           />
           Banking
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
             alt=""
             class="wr-ptql-arrow"
-            role="presentation"
             aria-hidden="true"
           />
         </h2>
-        <ul class="wr-ptql-links" id="banking-links" role="list" aria-labelledby="banking-heading">
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/current-accounts.html"
-              aria-describedby="banking-heading"
-            >Current accounts</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/current-accounts/childrens-accounts.html"
-              aria-describedby="banking-heading"
-            >Child and teen accounts</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/current-accounts/joint-account.html"
-              aria-describedby="banking-heading"
-            >Joint accounts</a>
-          </li>
+        <ul class="wr-ptql-links" id="banking-links" aria-labelledby="banking-heading">
+          <li><a href="https://www.natwest.com/current-accounts.html">Current accounts</a></li>
+          <li><a href="https://www.natwest.com/current-accounts/childrens-accounts.html">Child and teen accounts</a></li>
+          <li><a href="https://www.natwest.com/current-accounts/joint-account.html">Joint accounts</a></li>
         </ul>
       </article>
 
@@ -602,37 +586,21 @@
         <h2 id="mortgages-heading" tabindex="0" aria-expanded="false" aria-controls="mortgages-links">
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-house.svg"
-            alt="decorative"
-            role="img"
+            alt=""
+            aria-hidden="true"
           />
           Mortgages
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
             alt=""
             class="wr-ptql-arrow"
-            role="presentation"
             aria-hidden="true"
           />
         </h2>
-        <ul class="wr-ptql-links" id="mortgages-links" role="list" aria-labelledby="mortgages-heading">
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/mortgages/mortgage-calculators/how-much-can-i-borrow.html"
-              aria-describedby="mortgages-heading"
-            >How much can I borrow</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/mortgages/first-time-buyers.html"
-              aria-describedby="mortgages-heading"
-            >First Time Buyers</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/mortgages/remortgage-to-natwest.html"
-              aria-describedby="mortgages-heading"
-            >Remortgage</a>
-          </li>
+        <ul class="wr-ptql-links" id="mortgages-links" aria-labelledby="mortgages-heading">
+          <li><a href="https://www.natwest.com/mortgages/mortgage-calculators/how-much-can-i-borrow.html">How much can I borrow</a></li>
+          <li><a href="https://www.natwest.com/mortgages/first-time-buyers.html">First Time Buyers</a></li>
+          <li><a href="https://www.natwest.com/mortgages/remortgage-to-natwest.html">Remortgage</a></li>
         </ul>
       </article>
 
@@ -640,37 +608,21 @@
         <h2 id="savings-heading" tabindex="0" aria-expanded="false" aria-controls="savings-links">
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-saving-money.svg"
-            alt="decorative"
-            role="img"
+            alt=""
+            aria-hidden="true"
           />
           Savings
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
             alt=""
             class="wr-ptql-arrow"
-            role="presentation"
             aria-hidden="true"
           />
         </h2>
-        <ul class="wr-ptql-links" id="savings-links" role="list" aria-labelledby="savings-heading">
-          <li role="listitem">
-            <a 
-              href="https://www.natwest.com/savings.html"
-              aria-describedby="savings-heading"
-            >Savings accounts</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/savings/isa-overview.html"
-              aria-describedby="savings-heading"
-            >ISAs</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/savings/first-saver.html"
-              aria-describedby="savings-heading"
-            >Children's savings</a>
-          </li>
+        <ul class="wr-ptql-links" id="savings-links" aria-labelledby="savings-heading">
+          <li><a href="https://www.natwest.com/savings.html">Savings accounts</a></li>
+          <li><a href="https://www.natwest.com/savings/isa-overview.html">ISAs</a></li>
+          <li><a href="https://www.natwest.com/savings/first-saver.html">Children's savings</a></li>
         </ul>
       </article>
 
@@ -678,37 +630,21 @@
         <h2 id="borrowing-heading" tabindex="0" aria-expanded="false" aria-controls="borrowing-links">
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-bank-cards.svg"
-            alt="decorative"
-            role="img"
+            alt=""
+            aria-hidden="true"
           />
           Borrowing
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
             alt=""
             class="wr-ptql-arrow"
-            role="presentation"
             aria-hidden="true"
           />
         </h2>
-        <ul class="wr-ptql-links" id="borrowing-links" role="list" aria-labelledby="borrowing-heading">
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/credit-cards.html?intcam=PC_HP-P4-1-ALL-DEF"
-              aria-describedby="borrowing-heading"
-            >Credit cards</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/loans.html?intcam=PC_HP-P4-1-ALL-DEF"
-              aria-describedby="borrowing-heading"
-            >Loans</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/current-accounts/overdrafts.html"
-              aria-describedby="borrowing-heading"
-            >Overdrafts</a>
-          </li>
+        <ul class="wr-ptql-links" id="borrowing-links" aria-labelledby="borrowing-heading">
+          <li><a href="https://www.natwest.com/credit-cards.html?intcam=PC_HP-P4-1-ALL-DEF">Credit cards</a></li>
+          <li><a href="https://www.natwest.com/loans.html?intcam=PC_HP-P4-1-ALL-DEF">Loans</a></li>
+          <li><a href="https://www.natwest.com/current-accounts/overdrafts.html">Overdrafts</a></li>
         </ul>
       </article>
     </div>
@@ -728,168 +664,100 @@
         <h2 id="banking-help-heading" tabindex="0" aria-expanded="false" aria-controls="banking-help-links">
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-signpost.svg"
-            alt="decorative"
-            role="img"
+            alt=""
+            aria-hidden="true"
           />
           Help with your banking
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
             alt=""
             class="wr-ptql-arrow"
-            role="presentation"
             aria-hidden="true"
           />
         </h2>
-        <ul class="wr-ptql-links" id="banking-help-links" role="list" aria-labelledby="banking-help-heading">
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/banking-with-natwest/register-for-online-banking.html?q=lost+or+stolen+cards&brand=NATWEST&section=personal&enginekey=wYnTjXmfABgYKBU6GMG3"
-              aria-describedby="banking-help-heading"
-            >Register for Online Banking</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/support-centre/banking-from-home/login-help.html"
-              aria-describedby="banking-help-heading"
-            >Login help</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/search-results/locator.html"
-              aria-describedby="banking-help-heading"
-            >Branch locator</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/support-centre/banking-from-home/make-payments.html"
-              aria-describedby="banking-help-heading"
-            >Make a payment</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/support-centre/view-or-change-your-details.html"
-              aria-describedby="banking-help-heading"
-            >Change my details</a>
-          </li>
-          <div class="wr-cta-wrapper">
-            <a
-              href="https://www.natwest.com/banking-with-natwest.html"
-              class="wr-cta-button"
-              role="button"
-              aria-label="Learn more about banking with us - opens in same window"
-            >
-              Banking with us
-            </a>
-          </div>
+        <ul class="wr-ptql-links" id="banking-help-links" aria-labelledby="banking-help-heading">
+          <li><a href="https://www.natwest.com/banking-with-natwest/register-for-online-banking.html">Register for Online Banking</a></li>
+          <li><a href="https://www.natwest.com/support-centre/banking-from-home/login-help.html">Login help</a></li>
+          <li><a href="https://www.natwest.com/search-results/locator.html">Branch locator</a></li>
+          <li><a href="https://www.natwest.com/support-centre/banking-from-home/make-payments.html">Make a payment</a></li>
+          <li><a href="https://www.natwest.com/support-centre/view-or-change-your-details.html">Change my details</a></li>
         </ul>
+        <div class="wr-cta-wrapper">
+          <a
+            href="https://www.natwest.com/banking-with-natwest.html"
+            class="wr-cta-button"
+            role="button"
+            aria-label="Learn more about banking with us"
+          >
+            Banking with us
+          </a>
+        </div>
       </article>
 
       <article class="wr-ptql-card" aria-labelledby="security-help-heading">
         <h2 id="security-help-heading" tabindex="0" aria-expanded="false" aria-controls="security-help-links">
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-prevention.svg"
-            alt="decorative"
-            role="img"
+            alt=""
+            aria-hidden="true"
           />
           Support and Security
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
-            alt="decorative"
+            alt=""
             class="wr-ptql-arrow"
-            role="presentation"
             aria-hidden="true"
           />
         </h2>
-        <ul class="wr-ptql-links" id="security-help-links" role="list" aria-labelledby="security-help-heading">
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/support-centre/help-with-your-product.html?q=lost+or+stolen+cards&brand=NATWEST&section=personal&enginekey=wYnTjXmfABgYKBU6GMG3"
-              aria-describedby="security-help-heading"
-            >Product help</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/support-centre/help-with-your-card/card-functionality/how-do-i-report-a-lost-stolen-or-damaged-debit-card-and-order-a-replacement.html"
-              aria-describedby="security-help-heading"
-            >Lost or stolen card</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/fraud-and-security/report-fraud.html"
-              aria-describedby="security-help-heading"
-            >Report fraud</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/fraud-and-security/fraud-guide.html#What"
-              aria-describedby="security-help-heading"
-            >Latest scams</a>
-          </li>
-          <div class="wr-cta-wrapper">
-            <a
-              href="https://www.natwest.com/support-centre.html"
-              class="wr-cta-button"
-              role="button"
-              aria-label="Visit our Support Centre - opens in same window"
-            >
-              Visit our Support Centre
-            </a>
-          </div>
+        <ul class="wr-ptql-links" id="security-help-links" aria-labelledby="security-help-heading">
+          <li><a href="https://www.natwest.com/support-centre/help-with-your-product.html">Product help</a></li>
+          <li><a href="https://www.natwest.com/support-centre/help-with-your-card/card-functionality/how-do-i-report-a-lost-stolen-or-damaged-debit-card-and-order-a-replacement.html">Lost or stolen card</a></li>
+          <li><a href="https://www.natwest.com/fraud-and-security/report-fraud.html">Report fraud</a></li>
+          <li><a href="https://www.natwest.com/fraud-and-security/fraud-guide.html#What">Latest scams</a></li>
         </ul>
+        <div class="wr-cta-wrapper">
+          <a
+            href="https://www.natwest.com/support-centre.html"
+            class="wr-cta-button"
+            role="button"
+            aria-label="Visit our Support Centre"
+          >
+            Visit our Support Centre
+          </a>
+        </div>
       </article>
 
       <article class="wr-ptql-card" aria-labelledby="life-help-heading">
         <h2 id="life-help-heading" tabindex="0" aria-expanded="false" aria-controls="life-help-links">
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-life-ring.svg"
-            alt="decorative"
-            role="img"
+            alt=""
+            aria-hidden="true"
           />
           Life and family
           <img
             src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
             alt=""
             class="wr-ptql-arrow"
-            role="presentation"
             aria-hidden="true"
           />
         </h2>
-        <ul class="wr-ptql-links" id="life-help-links" role="list" aria-labelledby="life-help-heading">
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/life-moments/bereavement.html"
-              aria-describedby="life-help-heading"
-            >Bereavement support</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/life-moments/Struggling-financially.html?q=lost+or+stolen+cards&brand=NATWEST&section=personal&enginekey=wYnTjXmfABgYKBU6GMG3"
-              aria-describedby="life-help-heading"
-            >Struggling financially</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/support-centre/view-or-change-your-details/add-a-party-to-an-account/registering-a-power-of-attorney.html?q=power+of+attorney&brand=NATWEST&section=personal&enginekey=wYnTjXmfABgYKBU6GMG3"
-              aria-describedby="life-help-heading"
-            >Register a power of attorney</a>
-          </li>
-          <li role="listitem">
-            <a
-              href="https://www.natwest.com/financial-health-check.html?q=get+a+financial+health+check&brand=NATWEST&section=personal&enginekey=wYnTjXmfABgYKBU6GMG3#what"
-              aria-describedby="life-help-heading"
-            >Get a financial health check</a>
-          </li>
-          <div class="wr-cta-wrapper">
-            <a
-              href="https://www.natwest.com/life-moments.html"
-              class="wr-cta-button"
-              role="button"
-              aria-label="Discover more ways we can help - opens in same window"
-            >
-              More ways we can help
-            </a>
-          </div>
+        <ul class="wr-ptql-links" id="life-help-links" aria-labelledby="life-help-heading">
+          <li><a href="https://www.natwest.com/life-moments/bereavement.html">Bereavement support</a></li>
+          <li><a href="https://www.natwest.com/life-moments/Struggling-financially.html">Struggling financially</a></li>
+          <li><a href="https://www.natwest.com/support-centre/view-or-change-your-details/add-a-party-to-an-account/registering-a-power-of-attorney.html">Register a power of attorney</a></li>
+          <li><a href="https://www.natwest.com/financial-health-check.html#what">Get a financial health check</a></li>
         </ul>
+        <div class="wr-cta-wrapper">
+          <a
+            href="https://www.natwest.com/life-moments.html"
+            class="wr-cta-button"
+            role="button"
+            aria-label="Discover more ways we can help"
+          >
+            More ways we can help
+          </a>
+        </div>
       </article>
     </div>
   </div>
@@ -1053,6 +921,92 @@
                       }
                     }, 100); // Small delay to ensure orientation change is complete
                   });
+
+                  document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll('[role="tab"]');
+  const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+
+  // Handle tab key navigation
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("keydown", (e) => {
+      let newIndex;
+      switch (e.key) {
+        case "ArrowRight":
+          newIndex = (index + 1) % tabs.length;
+          tabs[newIndex].focus();
+          break;
+        case "ArrowLeft":
+          newIndex = (index - 1 + tabs.length) % tabs.length;
+          tabs[newIndex].focus();
+          break;
+        case "Home":
+          tabs[0].focus();
+          break;
+        case "End":
+          tabs[tabs.length - 1].focus();
+          break;
+        case "Enter":
+        case " ":
+          e.preventDefault();
+          activateTab(tab);
+          break;
+      }
+    });
+
+    tab.addEventListener("click", () => activateTab(tab));
+  });
+
+  function activateTab(tab) {
+    // Deactivate all tabs
+    tabs.forEach(t => {
+      t.setAttribute("aria-selected", "false");
+      t.setAttribute("tabindex", "-1");
+    });
+    tabPanels.forEach(p => {
+      p.classList.remove("active");
+      p.setAttribute("aria-hidden", "true");
+    });
+
+    // Activate selected tab
+    tab.setAttribute("aria-selected", "true");
+    tab.setAttribute("tabindex", "0");
+    const target = document.getElementById(tab.getAttribute("aria-controls"));
+    target.classList.add("active");
+    target.setAttribute("aria-hidden", "false");
+
+    // Announce for screen readers
+    const announcer = document.getElementById("tab-announcements");
+    announcer.textContent = `${tab.textContent.trim()} tab selected`;
+  }
+
+  // Handle expandable headings (accordion-like)
+  const headings = document.querySelectorAll("article h2");
+
+  headings.forEach((heading) => {
+    heading.setAttribute("tabindex", "0"); // make focusable
+    heading.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleSection(heading);
+      }
+    });
+    heading.addEventListener("click", () => toggleSection(heading));
+  });
+
+  function toggleSection(heading) {
+    const expanded = heading.getAttribute("aria-expanded") === "true";
+    const content = document.getElementById(heading.getAttribute("aria-controls"));
+
+    heading.setAttribute("aria-expanded", String(!expanded));
+    if (expanded) {
+      content.classList.remove("active");
+      content.setAttribute("hidden", "");
+    } else {
+      content.classList.add("active");
+      content.removeAttribute("hidden");
+    }
+  }
+});
                 </script>
               </section>
               <!-- prototyping code ends -->
