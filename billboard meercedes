@@ -936,6 +936,42 @@
                     }
                   }, 100); // Small delay to ensure orientation change is complete
                 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const tabButtons = document.querySelectorAll(".wr-tab-option");
+  const tabContents = document.querySelectorAll(".wr-tab-content");
+  const announcer = document.getElementById("tab-announcements");
+
+  tabButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      // Reset all tabs
+      tabButtons.forEach(btn => {
+        btn.classList.remove("active");
+        btn.setAttribute("aria-selected", "false");
+        btn.setAttribute("tabindex", "-1");
+      });
+      tabContents.forEach(content => {
+        content.classList.remove("active");
+        content.setAttribute("aria-hidden", "true");
+      });
+
+      // Activate clicked tab
+      button.classList.add("active");
+      button.setAttribute("aria-selected", "true");
+      button.setAttribute("tabindex", "0");
+
+      const tabId = button.getAttribute("aria-controls");
+      const tabContent = document.getElementById(tabId);
+      tabContent.classList.add("active");
+      tabContent.setAttribute("aria-hidden", "false");
+
+      // Optional: announce change to screen readers
+      if (announcer) {
+        announcer.textContent = `${button.textContent.trim()} tab selected`;
+      }
+    });
+  });
+});
               </script>
             </section>
             <!-- prototyping code ends -->
