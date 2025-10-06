@@ -1144,177 +1144,95 @@ onclick="showSupport()"
                 </div>
 
                 <script>
-                  document.addEventListener("DOMContentLoaded", function () {
-                    const productsTab =
-                      document.getElementById("wr-productsTab");
-                    const supportTab = document.getElementById("supportTab");
-                    const productsContent =
-                      document.getElementById("productsContent");
-                    const supportContent =
-                      document.getElementById("supportContent");
+  document.addEventListener("DOMContentLoaded", function () {
+    const productsTab = document.getElementById("wr-productsTab");
+    const supportTab = document.getElementById("supportTab");
+    const productsContent = document.getElementById("productsContent");
+    const supportContent = document.getElementById("supportContent");
 
-                    function switchTab(
-                      activeTab,
-                      activeContent,
-                      inactiveTab,
-                      inactiveContent
-                    ) {
-                      if (activeTab.classList.contains("switching")) return;
+    // Products onclick
+    productsTab.onclick = function () {
+      productsTab.classList.add("active");
+      supportTab.classList.remove("active");
 
-                      activeTab.classList.add("switching");
-                      inactiveTab.classList.add("switching");
+      productsContent.classList.add("active");
+      supportContent.classList.remove("active");
+    };
 
-                      // Update tab states
-                      activeTab.classList.add("active");
-                      inactiveTab.classList.remove("active");
+    // Support onclick
+    supportTab.onclick = function () {
+      supportTab.classList.add("active");
+      productsTab.classList.remove("active");
 
-                      inactiveContent.classList.add("fade-out");
+      supportContent.classList.add("active");
+      productsContent.classList.remove("active");
+    };
 
-                      setTimeout(() => {
-                        inactiveContent.classList.remove("active", "fade-out");
-                        activeContent.classList.add("active");
+    // Keep your accordion behavior for mobile cards
+    const cards = document.querySelectorAll(".wr-ptql-card h2");
+    cards.forEach((header) => {
+      header.addEventListener("click", () => {
+        if (window.innerWidth <= 767) {
+          const card = header.parentElement;
+          const links = card.querySelector(".wr-ptql-links");
+          const isCurrentlyActive = card.classList.contains("active");
 
-                        // Start fade in animation for active content
-                        setTimeout(() => {
-                          activeContent.classList.add("fade-in");
-                          const allCards =
-                            document.querySelectorAll(".wr-ptql-card");
-                          allCards.forEach((card) => {
-                            card.classList.remove("active");
-                            // Reset max-height for smooth transitions
-                            const links = card.querySelector(".wr-ptql-links");
-                            if (links) {
-                              links.style.maxHeight = "";
-                            }
-                          });
+          if (isCurrentlyActive) {
+            card.classList.remove("active");
+            links.style.maxHeight = "0px";
+          } else {
+            card.classList.add("active");
+            const scrollHeight = links.scrollHeight;
+            links.style.maxHeight = scrollHeight + "px";
 
-                          // Remove switching state and fade classes after animation
-                          setTimeout(() => {
-                            activeTab.classList.remove("switching");
-                            inactiveTab.classList.remove("switching");
-                            activeContent.classList.remove("fade-in");
-                          }, 300);
-                        }, 50);
-                      }, 300);
-                    }
+            setTimeout(() => {
+              if (card.classList.contains("active")) {
+                links.style.maxHeight = "auto";
+              }
+            }, 400);
+          }
+        }
+      });
+    });
 
-                    productsTab.addEventListener("click", () => {
-                      if (!productsTab.classList.contains("active")) {
-                        switchTab(
-                          productsTab,
-                          productsContent,
-                          supportTab,
-                          supportContent
-                        );
-                      }
-                    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 767) {
+        const allCards = document.querySelectorAll(".wr-ptql-card");
+        allCards.forEach((card) => {
+          card.classList.remove("active");
+          const links = card.querySelector(".wr-ptql-links");
+          if (links) {
+            links.style.maxHeight = "";
+          }
+        });
+      } else {
+        const activeCards = document.querySelectorAll(".wr-ptql-card.active");
+        activeCards.forEach((card) => {
+          const links = card.querySelector(".wr-ptql-links");
+          if (links) {
+            const scrollHeight = links.scrollHeight;
+            links.style.maxHeight = scrollHeight + "px";
+          }
+        });
+      }
+    });
 
-                    supportTab.addEventListener("click", () => {
-                      if (!supportTab.classList.contains("active")) {
-                        switchTab(
-                          supportTab,
-                          supportContent,
-                          productsTab,
-                          productsContent
-                        );
-                      }
-                    });
-function showProducts() {
-  const productsTab = document.getElementById("wr-productsTab");
-  const supportTab = document.getElementById("supportTab");
-  const productsContent = document.getElementById("productsContent");
-  const supportContent = document.getElementById("supportContent");
+    window.addEventListener("orientationchange", () => {
+      setTimeout(() => {
+        if (window.innerWidth <= 767) {
+          const activeCards = document.querySelectorAll(".wr-ptql-card.active");
+          activeCards.forEach((card) => {
+            const links = card.querySelector(".wr-ptql-links");
+            if (links) {
+              const scrollHeight = links.scrollHeight;
+              links.style.maxHeight = scrollHeight + "px";
+            }
+          });
+        }
+      }, 100);
+    });
+  });
+</script>
 
-  if (!productsTab.classList.contains("active")) {
-    switchTab(productsTab, productsContent, supportTab, supportContent);
-  }
-}
-
-function showSupport() {
-  const productsTab = document.getElementById("wr-productsTab");
-  const supportTab = document.getElementById("supportTab");
-  const productsContent = document.getElementById("productsContent");
-  const supportContent = document.getElementById("supportContent");
-
-  if (!supportTab.classList.contains("active")) {
-    switchTab(supportTab, supportContent, productsTab, productsContent);
-  }
-}
-
-
-                    const cards = document.querySelectorAll(".wr-ptql-card h2");
-                    cards.forEach((header) => {
-                      header.addEventListener("click", () => {
-                        if (window.innerWidth <= 767) {
-                          const card = header.parentElement;
-                          const links = card.querySelector(".wr-ptql-links");
-                          const isCurrentlyActive =
-                            card.classList.contains("active");
-
-                          if (isCurrentlyActive) {
-                            card.classList.remove("active");
-                            links.style.maxHeight = "0px";
-                          } else {
-                            // Opening the card
-                            card.classList.add("active");
-
-                            // Calculate the actual height needed
-                            const scrollHeight = links.scrollHeight;
-                            links.style.maxHeight = scrollHeight + "px";
-
-                            setTimeout(() => {
-                              if (card.classList.contains("active")) {
-                                links.style.maxHeight = "auto";
-                              }
-                            }, 400);
-                          }
-                        }
-                      });
-                    });
-
-                    window.addEventListener("resize", () => {
-                      if (window.innerWidth > 767) {
-                        const allCards =
-                          document.querySelectorAll(".wr-ptql-card");
-                        allCards.forEach((card) => {
-                          card.classList.remove("active");
-                          const links = card.querySelector(".wr-ptql-links");
-                          if (links) {
-                            links.style.maxHeight = "";
-                          }
-                        });
-                      } else {
-                        const activeCards = document.querySelectorAll(
-                          ".wr-ptql-card.active"
-                        );
-                        activeCards.forEach((card) => {
-                          const links = card.querySelector(".wr-ptql-links");
-                          if (links) {
-                            const scrollHeight = links.scrollHeight;
-                            links.style.maxHeight = scrollHeight + "px";
-                          }
-                        });
-                      }
-                    });
-
-                    // Handle orientation change on mobile devices
-                    window.addEventListener("orientationchange", () => {
-                      setTimeout(() => {
-                        if (window.innerWidth <= 767) {
-                          const activeCards = document.querySelectorAll(
-                            ".wr-ptql-card.active"
-                          );
-                          activeCards.forEach((card) => {
-                            const links = card.querySelector(".wr-ptql-links");
-                            if (links) {
-                              const scrollHeight = links.scrollHeight;
-                              links.style.maxHeight = scrollHeight + "px";
-                            }
-                          });
-                        }
-                      }, 100); // Small delay to ensure orientation change is complete
-                    });
-                  });
-                </script>
               </section>
               <!-- prototyping code ends -->
