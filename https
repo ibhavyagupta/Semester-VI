@@ -592,6 +592,7 @@
                         aria-controls="productsContent"
                         tabindex="0"
                         title="View products and services"
+onclick="showProducts()"
                       >
                         Products
                       </button>
@@ -604,6 +605,7 @@
                         aria-controls="supportContent"
                         tabindex="0"
                         title="View support and help options"
+onclick="showSupport()"
                       >
                         Support
                       </button>
@@ -1217,6 +1219,28 @@
                         );
                       }
                     });
+function showProducts() {
+  const productsTab = document.getElementById("wr-productsTab");
+  const supportTab = document.getElementById("supportTab");
+  const productsContent = document.getElementById("productsContent");
+  const supportContent = document.getElementById("supportContent");
+
+  if (!productsTab.classList.contains("active")) {
+    switchTab(productsTab, productsContent, supportTab, supportContent);
+  }
+}
+
+function showSupport() {
+  const productsTab = document.getElementById("wr-productsTab");
+  const supportTab = document.getElementById("supportTab");
+  const productsContent = document.getElementById("productsContent");
+  const supportContent = document.getElementById("supportContent");
+
+  if (!supportTab.classList.contains("active")) {
+    switchTab(supportTab, supportContent, productsTab, productsContent);
+  }
+}
+
 
                     const cards = document.querySelectorAll(".wr-ptql-card h2");
                     cards.forEach((header) => {
