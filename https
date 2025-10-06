@@ -1,3 +1,6 @@
+The page's tab sequence must not include more than one focusable child element within a composite UI element (such as a grid, tree, or menu).
+How to Fix
+Ensure that only one focusable child element within the composite UI element is included in the page’s tab sequence. Set tabindex=&quot;-1&quot; for all other child elements to exclude them from the tab sequence. Users should navigate between these focusable elements using arrow keys only.
 <div class="container wr-container">
                   <h1 class="wr-title" id="main-heading">
                     What are you looking for today?
