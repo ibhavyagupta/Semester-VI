@@ -11,6 +11,30 @@ onclick @ ?at_preview_token=vAVk2sFutrMmEIXOK6OYjg&at_preview_index=1_2&at_previ
     at HTMLButtonElement.onclick (?at_preview_token=vAVk2sFutrMmEIXOK6OYjg&at_preview_index=1_2&at_preview_listed_activities_only=true:117:141466)
 
 <script>
+window.showSupport = function () {
+  const supportTab = document.getElementById("supportTab");
+  const productsTab = document.getElementById("wr-productsTab");
+  const supportContent = document.getElementById("supportContent");
+  const productsContent = document.getElementById("productsContent");
+
+  supportTab.classList.add("active");
+  productsTab.classList.remove("active");
+  supportContent.classList.add("active");
+  productsContent.classList.remove("active");
+};
+
+window.showProducts = function () {
+  const supportTab = document.getElementById("supportTab");
+  const productsTab = document.getElementById("wr-productsTab");
+  const supportContent = document.getElementById("supportContent");
+  const productsContent = document.getElementById("productsContent");
+
+  productsTab.classList.add("active");
+  supportTab.classList.remove("active");
+  productsContent.classList.add("active");
+  supportContent.classList.remove("active");
+};
+
                   document.addEventListener("DOMContentLoaded", function () {
                     const productsTab =
                       document.getElementById("wr-productsTab");
@@ -20,19 +44,7 @@ onclick @ ?at_preview_token=vAVk2sFutrMmEIXOK6OYjg&at_preview_index=1_2&at_previ
                     const supportContent =
                       document.getElementById("supportContent");
 
-                    productsTab.onclick = function () {
-                      productsTab.classList.add("active");
-                      supportTab.classList.remove("active");
-                      productsContent.classList.add("active");
-                      supportContent.classList.remove("active");
-                    };
-
-                    supportTab.onclick = function () {
-                      supportTab.classList.add("active");
-                      productsTab.classList.remove("active");
-                      supportContent.classList.add("active");
-                      productsContent.classList.remove("active");
-                    };
+                
 
                     const cards = document.querySelectorAll(".wr-ptql-card h2");
                     cards.forEach((header) => {
