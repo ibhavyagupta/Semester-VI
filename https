@@ -1,112 +1,129 @@
 <!-- prototyping code starts -->
               <section class="wr-ptql-parent">
                 <script>
-                  function showProducts() {
-                    const productsTab =
-                      document.getElementById("wr-productsTab");
-                    const supportTab = document.getElementById("supportTab");
-                    const productsContent =
-                      document.getElementById("productsContent");
-                    const supportContent =
-                      document.getElementById("supportContent");
-                    productsTab.classList.add("active");
-                    supportTab.classList.remove("active");
-                    productsContent.classList.add("active");
-                    supportContent.classList.remove("active");
-                  }
+function showProducts() {
+  console.log("Products tab clicked");
+  const productsTab = document.getElementById("wr-productsTab");
+  const supportTab = document.getElementById("supportTab");
+  const productsContent = document.getElementById("productsContent");
+  const supportContent = document.getElementById("supportContent");
 
-                  function showSupport() {
-                    const productsTab =
-                      document.getElementById("wr-productsTab");
-                    const supportTab = document.getElementById("supportTab");
-                    const productsContent =
-                      document.getElementById("productsContent");
-                    const supportContent =
-                      document.getElementById("supportContent");
-                    supportTab.classList.add("active");
-                    productsTab.classList.remove("active");
-                    supportContent.classList.add("active");
-                    productsContent.classList.remove("active");
-                  }
-                  document.addEventListener("DOMContentLoaded", function () {
-                    const productsTab =
-                      document.getElementById("wr-productsTab");
-                    const supportTab = document.getElementById("supportTab");
-                    const productsContent =
-                      document.getElementById("productsContent");
-                    const supportContent =
-                      document.getElementById("supportContent");
+  if (!productsTab || !supportTab || !productsContent || !supportContent) {
+    console.warn("Product tab elements missing");
+    return;
+  }
 
-                    const cards = document.querySelectorAll(".wr-ptql-card h2");
-                    cards.forEach((header) => {
-                      header.addEventListener("click", () => {
-                        if (window.innerWidth <= 767) {
-                          const card = header.parentElement;
-                          const links = card.querySelector(".wr-ptql-links");
-                          const isCurrentlyActive =
-                            card.classList.contains("active");
+  productsTab.classList.add("active");
+  supportTab.classList.remove("active");
+  productsContent.classList.add("active");
+  supportContent.classList.remove("active");
+}
 
-                          if (isCurrentlyActive) {
-                            card.classList.remove("active");
-                            links.style.maxHeight = "0px";
-                          } else {
-                            card.classList.add("active");
-                            const scrollHeight = links.scrollHeight;
-                            links.style.maxHeight = scrollHeight + "px";
+function showSupport() {
+  console.log("Support tab clicked");
+  const productsTab = document.getElementById("wr-productsTab");
+  const supportTab = document.getElementById("supportTab");
+  const productsContent = document.getElementById("productsContent");
+  const supportContent = document.getElementById("supportContent");
 
-                            setTimeout(() => {
-                              if (card.classList.contains("active")) {
-                                links.style.maxHeight = "auto";
-                              }
-                            }, 400);
-                          }
-                        }
-                      });
-                    });
+  if (!productsTab || !supportTab || !productsContent || !supportContent) {
+    console.warn("Support tab elements missing");
+    return;
+  }
 
-                    window.addEventListener("resize", () => {
-                      if (window.innerWidth > 767) {
-                        const allCards =
-                          document.querySelectorAll(".wr-ptql-card");
-                        allCards.forEach((card) => {
-                          card.classList.remove("active");
-                          const links = card.querySelector(".wr-ptql-links");
-                          if (links) {
-                            links.style.maxHeight = "";
-                          }
-                        });
-                      } else {
-                        const activeCards = document.querySelectorAll(
-                          ".wr-ptql-card.active"
-                        );
-                        activeCards.forEach((card) => {
-                          const links = card.querySelector(".wr-ptql-links");
-                          if (links) {
-                            const scrollHeight = links.scrollHeight;
-                            links.style.maxHeight = scrollHeight + "px";
-                          }
-                        });
-                      }
-                    });
+  supportTab.classList.add("active");
+  productsTab.classList.remove("active");
+  supportContent.classList.add("active");
+  productsContent.classList.remove("active");
+}
 
-                    window.addEventListener("orientationchange", () => {
-                      setTimeout(() => {
-                        if (window.innerWidth <= 767) {
-                          const activeCards = document.querySelectorAll(
-                            ".wr-ptql-card.active"
-                          );
-                          activeCards.forEach((card) => {
-                            const links = card.querySelector(".wr-ptql-links");
-                            if (links) {
-                              const scrollHeight = links.scrollHeight;
-                              links.style.maxHeight = scrollHeight + "px";
-                            }
-                          });
-                        }
-                      }, 100);
-                    });
-                  });
-                </script>
+function initTabs() {
+  const productsTab = document.getElementById("wr-productsTab");
+  const supportTab = document.getElementById("supportTab");
+  const productsContent = document.getElementById("productsContent");
+  const supportContent = document.getElementById("supportContent");
+
+  // Check if all required elements are ready
+  if (!productsTab || !supportTab || !productsContent || !supportContent) {
+    console.log("Tabs not yet found, retrying...");
+    setTimeout(initTabs, 300); // Retry every 300ms until ready
+    return;
+  }
+
+  console.log("Tabs initialized successfully");
+
+  // Attach click handlers
+  productsTab.onclick = showProducts;
+  supportTab.onclick = showSupport;
+
+  // Accordion logic for small screens
+  const cards = document.querySelectorAll(".wr-ptql-card h2");
+  cards.forEach((header) => {
+    header.addEventListener("click", () => {
+      if (window.innerWidth <= 767) {
+        const card = header.parentElement;
+        const links = card.querySelector(".wr-ptql-links");
+        const isActive = card.classList.contains("active");
+
+        if (isActive) {
+          card.classList.remove("active");
+          links.style.maxHeight = "0px";
+        } else {
+          card.classList.add("active");
+          const scrollHeight = links.scrollHeight;
+          links.style.maxHeight = scrollHeight + "px";
+          setTimeout(() => {
+            if (card.classList.contains("active")) {
+              links.style.maxHeight = "auto";
+            }
+          }, 400);
+        }
+      }
+    });
+  });
+
+  // Handle screen resizing
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 767) {
+      const allCards = document.querySelectorAll(".wr-ptql-card");
+      allCards.forEach((card) => {
+        card.classList.remove("active");
+        const links = card.querySelector(".wr-ptql-links");
+        if (links) links.style.maxHeight = "";
+      });
+    } else {
+      const activeCards = document.querySelectorAll(".wr-ptql-card.active");
+      activeCards.forEach((card) => {
+        const links = card.querySelector(".wr-ptql-links");
+        if (links) links.style.maxHeight = links.scrollHeight + "px";
+      });
+    }
+  });
+
+  // Recalculate after orientation change
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => {
+      if (window.innerWidth <= 767) {
+        const activeCards = document.querySelectorAll(".wr-ptql-card.active");
+        activeCards.forEach((card) => {
+          const links = card.querySelector(".wr-ptql-links");
+          if (links) links.style.maxHeight = links.scrollHeight + "px";
+        });
+      }
+    }, 100);
+  });
+}
+
+// Initialize when DOM is ready and ensure compatibility with Adobe Target
+document.addEventListener("DOMContentLoaded", () => {
+  initTabs();
+
+  // Watch for Adobe Target re-rendering or replacing DOM nodes
+  const observer = new MutationObserver(() => initTabs());
+  observer.observe(document.body, { childList: true, subtree: true });
+});
+</script>
+
                 <section class="wr-page-tab-quick-links">
                   <link
                     rel="stylesheet"
