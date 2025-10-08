@@ -1,881 +1,472 @@
-<!-- prototyping code starts -->
-              <section class="wr-container">
-                <style>
-                  .wr-container {
-                    /* max-width: 1200px; */
-                    margin: 0 auto;
-                    padding: 40px 20px;
-                  }
-
-                  .wr-underline-image {
-                    position: absolute;
-                    bottom: 0px;
-                    left: 0;
-                    width: 100%;
-                    height: auto;
-                    z-index: -1;
-                  }
-
-                  .wr-step-number {
-                    display: inline-block;
-                    position: relative;
-                  }
-
-                  .wr-ab-container {
-                    display: flex;
-                    gap: 22px;
-                    margin-bottom: 24px;
-                    justify-content: center;
-                  }
-
-                  .wr-title {
-                    color: #5a287d;
-                    text-align: center;
-                    font-family: "knilebold", "Knile", sans-serif;
-                    font-size: 40px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 50px;
-                    letter-spacing: -0.2px;
-                    position: relative;
-                    margin-bottom: 32px;
-                  }
-
-                  .wr-grid {
-                    display: grid;
-                    gap: 24px;
-                    grid-template-columns: repeat(2, 1fr);
-                    grid-template-areas:
-                      "c e"
-                      "d e";
-                      max-width: 1175px;
-                      margin: 0 auto;
-                  }
-
-                  .wr-grid:first-of-type {
-                    grid-template-columns: 2fr 1fr;
-                  }
-
-                  .wr-grid:first-of-type .wr-card--a .wr-card-image-a img {
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                    object-fit: cover;
-                    border-bottom-right-radius: 16px;
-                  }
-
-                  .wr-card {
-                    border-radius: 16px;
-                    padding: 24px;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: space-between;
-                    overflow: hidden;
-                  }
-
-                  .wr-card-title {
-                    color: #5a287d;
-                    font-family: "RN House Sans", "RNHouseSansRegular",
-                      sans-serif;
-                    font-size: 30px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 40px;
-                    letter-spacing: -0.2px;
-                    margin: 0;
-                  }
-
-                  .wr-card-text {
-                    color: #5a287d;
-                    font-family: "RN House Sans", "RNHouseSansRegular",
-                      sans-serif;
-                    font-size: 18px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 26px;
-                    letter-spacing: 0.2px;
-                  }
-
-                  .wr-card--a {
-                    grid-area: a;
-                    background: #f2f2f8;
-                    padding: 0px 0px 0px 24px;
-                    border-radius: 16px;
-                  }
-
-                  .wr-card--b {
-                    grid-area: b;
-                    background: #dbedfa;
-                    display: flex;
-                    flex-direction: column;
-                    max-width: 434px;
-                    border-radius: 16px;
-                    padding: 16px 16px 0px 16px;
-                  }
-
-                  .wr-card--c {
-                    grid-area: c;
-                    background: #ffeae6;
-                    max-width: 574px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                    padding: 16px 0px 16px 16px;
-                    border-radius: 16px;
-                    overflow: hidden;
-                  }
-
-                  .wr-card--d {
-                    grid-area: d;
-                    background: #ffdbec;
-                    max-width: 574px;
-                    display: grid;
-                    grid-template-columns: 1fr minmax(260px, 20%);
-                    gap: 10px;
-                    align-items: center;
-                    padding: 0px 0px 0px 20px;
-                    border-radius: 16px;
-                  }
-
-                  .wr-card--e {
-                    grid-area: e;
-                    background: #f2eaf9;
-                    max-width: 570px;
-                    border-radius: 16px;
-                  }
-
-                  .card-c-container {
-                    display: flex;
-                  }
-
-                  .wr-card--d > .wr-card-content {
-                    padding-top: 16px;
-                  }
-
-                  .wr-card--a {
-                    display: grid;
-                    grid-template-columns: 1fr minmax(260px, 52%);
-                    gap: 20px;
-                    align-items: center;
-                    max-width: 712px;
-                  }
-
-                  .wr-card--a .wr-card-content {
-                    padding-right: 8px;
-                  }
-
-                  .wr-card--c > .wr-card-text {
-                    max-width: 272px;
-                  }
-
-                  .wr-card-image-a {
-                    overflow: hidden;
-                    align-self: flex-end !important;
-                    border-bottom-right-radius: 16px;
-                  }
-
-                  .wr-card-image-a img {
-                    display: block;
-                    max-width: 520px;
-                    max-height: 276px;
-                    object-fit: cover;
-                    border-bottom-right-radius: 16px;
-                    padding-top: 28px;
-                    transform: scale(1.15);
-                    transition: transform 0.2s ease;
-                  }
-
-                  .wr-card-image-b img {
-                    height: 130px;
-                    transition: transform 0.2s ease;
-                  }
-
-                  .wr-card--b > .wr-card-text {
-                    margin-bottom: 0px;
-                    margin-top: 8px;
-                  }
-
-                  .wr-card-image-b {
-                    display: flex;
-                    justify-content: center;
-                    align-items: flex-end;
-                    padding-bottom: 10px;
-                  }
-
-                  .wr-card-image-d {
-                    overflow: hidden;
-                    display: flex;
-                    align-items: flex-end;
-                    justify-content: flex-end;
-                    margin-top: 0;
-                    align-self: end;
-                    height: 100%;
-                  }
-
-                  .wr-card-image-d img {
-                    width: 237px;
-                    height: 180px;
-                    object-fit: cover;
-                    transition: transform 0.2s ease;
-                  }
-
-                  .wr-card-image-c {
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: flex-end;
-                    margin-top: 10px;
-                  }
-
-                  .wr-card-image-c {
-                    margin-top: -26px !important;
-                  }
-
-                  .wr-card-image-c img {
-                    transition: transform 0.2s ease;
-                  }
-
-                  .wr-card--e > .wr-card-title {
-                    padding: 16px 16px 0px 16px;
-                  }
-
-                  .wr-card--e > .wr-card-text {
-                    padding: 0px 16px 0px 16px;
-                  }
-
-                  .wr-card-image-e {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    overflow: hidden;
-                    margin-top: 60px;
-                  }
-
-                  .wr-card-image-e img {
-                    width: 95%;
-                    height: auto;
-                    object-fit: cover;
-                    object-position: center;
-                    transform: scale(1.45);
-                    transition: transform 0.2s ease;
-                  }
-
-                  @media (prefers-reduced-motion: no-preference) {
-                    .wr-card--a:hover .wr-card-image-a img {
-                      transform: scale(1);
-                    }
-
-                    .wr-card--b:hover .wr-card-image-b img {
-                      transform: scale(1.1);
-                    }
-
-                    .wr-card--d:hover .wr-card-image-d img {
-                      transform: scale(1.1);
-                    }
-
-                    .wr-card--c:hover .wr-card-image-c img {
-                      transform: scale(1.1);
-                    }
-
-                    .wr-card--e:hover .wr-card-image-e img {
-                      transform: scale(1.15);
-                    }
-
-                    /* Mobile-specific hover for card A */
-                    @media (max-width: 767px) {
-                      .wr-card--a:hover .wr-card-image-a img {
-                        transform: scale(1);
-                        margin-left: 20px;
-                        max-height: none;
-                      }
-                    }
-                  }
-
-                  @media (max-width: 767px) {
-                    .wr-container {
-                      width: 100%;
-                      padding: 20px 16px;
-                    }
-
-                    .wr-ab-container {
-                      flex-direction: column;
-                      gap: 16px;
-                      margin-bottom: 16px;
-                    }
-                    .wr-card-text {
-                      color: #5a287d;
-                      font-family: "RN House Sans", "RNHouseSansRegular",
-                        sans-serif;
-                      font-size: 16px;
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 26px;
-                      letter-spacing: 0.2px;
-                    }
-
-                    .wr-card--a,
-                    .wr-card--b,
-                    .wr-card--c,
-                    .wr-card--d,
-                    .wr-card--e {
-                      display: flex;
-                      flex-direction: column;
-                      max-width: 100%;
-                      margin: 0;
-                      width: 100%;
-                      box-sizing: border-box;
-                    }
-
-                    .wr-card--a {
-                      grid-template-columns: 1fr;
-                      gap: 12px;
-                      align-items: flex-start;
-                    }
-
-                    .wr-card--a .wr-card-content {
-                      padding-right: 20px;
-                      width: 100%;
-                    }
-
-                    .wr-card--a .wr-card-image-a {
-                      width: 100%;
-                      display: flex;
-                      justify-content: flex-end;
-                      align-items: center;
-                    }
-
-                    .wr-card--a .wr-card-image-a img {
-                      padding-top: 0;
-                      transform: scale(1.2);
-                      transition: transform 0.2s ease, margin 0.2s ease;
-                    }
-                    .wr-card--a:hover .wr-card-image-a img {
-                      transform: scale(1);
-                      margin-left: 20px;
-                      max-height: none;
-                    }
-
-                    .card-c-container {
-                      display: flex;
-                      flex-direction: column;
-                      gap: 16px;
-                    }
-
-                    .wr-card-text {
-                      font-size: 18px;
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 26px;
-                      letter-spacing: 0.2px;
-                    }
-
-                    .card-c-container > .wr-card-content {
-                      padding-right: 10px;
-                    }
-
-                    .wr-card--c .wr-card-text {
-                      display: none;
-                    }
-
-                    .wr-card-image-d {
-                      display: flex;
-                      justify-content: center;
-                      align-items: center;
-                      margin-top: 10px;
-                      object-fit: cover;
-                      height: auto;
-                      align-self: center;
-                    }
-
-                    .wr-card-image-d img {
-                      max-height: 400px !important;
-                      max-width: min(350px, calc(100vw - 64px));
-                      width: min(35rem, calc(100vw - 64px));
-                      height: min(27rem, 400px);
-                      align-self: center;
-                    }
-
-                    .wr-card--c .wr-card-content::after {
-                      content: "In the mobile app our Insights tab is packed with personalised insights, tools and tips to help you reach your financial goals.";
-                      color: #5a287d;
-                      font-family: "RN House Sans", "RNHouseSansRegular",
-                        sans-serif;
-                      font-size: 16px;
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 26px;
-                      letter-spacing: 0.2px;
-                      display: block;
-                    }
-
-                    .wr-card-image-c {
-                      margin-top: 0 !important;
-                      justify-content: flex-end;
-                      align-items: center;
-                    }
-
-                    .wr-card--b img,
-                    .wr-card--c img,
-                    .wr-card--d img {
-                      max-height: 160px;
-                      align-self: center;
-                    }
-
-                    .wr-card--e {
-                      padding: 0 !important;
-                      overflow: hidden;
-                    }
-
-                    .wr-card--e .wr-card-title {
-                      padding: 16px 16px 16px 16px;
-                    }
-
-                    .wr-card--e .wr-card-text {
-                      padding: 0 16px 16px 16px;
-                    }
-
-                    .wr-card--e .wr-card-image-e {
-                      width: 100%;
-                      margin: 0;
-                      display: flex;
-                      justify-content: stretch;
-                      align-items: stretch;
-                      margin-bottom: 30px;
-                    }
-
-                    .wr-card--e img {
-                      width: 100% !important;
-                      max-width: none !important;
-                      height: auto;
-                      object-fit: cover;
-                      align-self: stretch;
-                      border-radius: 0;
-                      transform: scale(1.35);
-                    }
-
-                    .wr-grid {
-                      grid-template-columns: 1fr !important;
-                      gap: 16px;
-                      grid-template-areas:
-                        "c"
-                        "d"
-                        "e";
-                    }
-
-                    .wr-title {
-                      color: #5a287d;
-                      text-align: left;
-                      font-family: "knilebold", "Knile", sans-serif;
-                      font-size: clamp(28px, 5vw, 32px);
-                      font-style: normal;
-                      font-weight: 700;
-                      line-height: 40px;
-                      letter-spacing: -0.1px;
-                    }
-
-                    .wr-card-title {
-                      font-family: "RN House Sans", "RNHouseSansRegular",
-                        sans-serif;
-                      font-size: 22px;
-                      font-style: normal;
-                      font-weight: 700;
-                      line-height: 32px;
-                    }
-
-                    .wr-card--d > .wr-card-content > .wr-card-text {
-                      padding: 16px 0 0px 0;
-                    }
-
-                    .wr-card--a > .wr-card-content > .wr-card-title {
-                      padding: 10px 0 16px 0;
-                    }
-                  }
-
-                  @media (min-width: 320px) and (max-width: 374px) {
-                    .wr-card-image-d img {
-                      width: min(29rem, calc(100vw - 48px));
-                      height: min(22rem, 350px);
-                    }
-
-                    .wr-card--b {
-                      padding: 12px;
-                    }
-                    .wr-card--a {
-                      padding: 12px 0px 0px 12px;
-                    }
-                    .wr-card--c {
-                      padding: 12px 0px 12px 12px;
-                    }
-                    .wr-card--d {
-                      padding: 12px 12px 0px 12px;
-                    }
-
-                    .wr-container {
-                      padding: 16px 12px;
-                    }
-                  }
-
-                  /* Adjustments for small screens */
-                  @media (min-width: 375px) and (max-width: 480px) {
-                    .wr-card-image-d img {
-                      width: min(32rem, calc(100vw - 64px));
-                      height: min(24rem, 380px);
-                    }
-                  }
-
-                  /* Adjustments for medium mobile screens */
-                  @media (min-width: 481px) and (max-width: 767px) {
-                    .wr-card-image-d img {
-                      width: min(35rem, calc(100vw - 64px));
-                      height: min(27rem, 400px);
-                    }
-                  }
-
-                  /* Adjustments for small screens */
-                  @media (min-width: 375px) and (max-width: 480px) {
-                    .wr-card-image-d img {
-                      width: min(32rem, calc(100vw - 64px));
-                      height: min(24rem, 380px);
-                    }
-                  }
-
-                  /* Adjustments for medium mobile screens */
-                  @media (min-width: 481px) and (max-width: 767px) {
-                    .wr-card-image-d img {
-                      width: min(35rem, calc(100vw - 64px));
-                      height: min(27rem, 400px);
-                    }
-                  }
-
-                  /* Medium devices (tablet) */
-                  @media (min-width: 768px) and (max-width: 1023px) {
-                    .wr-card-text {
-                      color: #5a287d;
-                      font-family: "RN House Sans", "RNHouseSansRegular",
-                        sans-serif;
-                      font-size: 16px;
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 26px;
-                      letter-spacing: 0.2px;
-                    }
-                    .wr-title {
-                      color: #5a287d;
-                      text-align: center;
-                      font-family: "knilebold", "Knile", sans-serif;
-                      font-size: 38px;
-                      font-style: normal;
-                      font-weight: 700;
-                      line-height: 48px;
-                    }
-                    .wr-card--a {
-                      max-width: 60% !important;
-                      grid-template-columns: 40% 60%;
-                      padding: 16px 0px 0px 16px;
-                      overflow: hidden;
-                    }
-
-                    .wr-card--a > .wr-card-content > .wr-card-title {
-                      white-space: nowrap !important;
-                      overflow: visible !important;
-                      text-overflow: unset !important;
-                      font-size: 24px !important;
-                      line-height: 30px !important;
-                    }
-
-                    .wr-card-image-a {
-                      overflow: hidden;
-                      border-bottom-right-radius: 16px;
-                      margin-right: 0;
-                      margin-bottom: 0;
-                      height: 100%;
-                      display: flex;
-                      align-items: flex-end;
-                    }
-
-                    .wr-card-image-a img {
-                      display: block;
-                      width: 100%;
-                      height: 65%;
-                      transform: scale(1.15);
-                      min-height: 167px;
-                      object-fit: cover;
-                      border-bottom-right-radius: 16px;
-                      padding-top: 0;
-                    }
-
-                    .wr-card-title {
-                      font-size: 24px !important;
-                      line-height: 32px;
-                    }
-
-                    .wr-card--d {
-                      max-width: 100%;
-                      display: grid;
-                      grid-template-columns: 60% 40%;
-                      gap: 10px;
-                      align-items: center;
-                    }
-
-                    .wr-card--d > .wr-card-content {
-                      width: 100%;
-                      min-width: 0;
-                      padding-top: 20px;
-                    }
-
-                    .wr-card--d > .wr-card-content > .wr-card-title {
-                      white-space: nowrap !important;
-                      overflow: visible !important;
-                      text-overflow: unset !important;
-                      font-size: 24px !important;
-                      line-height: 30px !important;
-                    }
-
-                    .wr-card--d .wr-card-image-d {
-                      display: flex;
-                      justify-content: flex-end;
-                      align-items: center;
-                      overflow: hidden;
-                    }
-
-                    .wr-card--d .wr-card-image-d img {
-                      max-width: 100%;
-                      height: auto;
-                      object-fit: contain;
-                      display: block;
-                      align-self: flex-end;
-                    }
-
-                    .wr-grid {
-                      grid-template-columns: 52%;
-                      grid-template-areas:
-                        "c e"
-                        "d e";
-                      max-width: 100%;
-                      width: 100%;
-                      gap: 20px;
-                    }
-
-                    .wr-card--c {
-                      overflow: hidden;
-                    }
-
-                    .wr-card-image-c img {
-                      width: 200px;
-                      align-self: center;
-                    }
-                  }
-
-                  
-
-                  @media (min-width: 768px) and (max-width: 846px) {
-                    .wr-card--d .wr-card-image-d img {
-                      max-width: 105%;
-                    }
-                  }
-
-                  /* Large devices (desktop) */
-                  @media (min-width: 1024px) and (max-width: 1255px) {
-                    .wr-title {
-                      font-size: 38px !important;
-                      margin: 0px 110px 0px 110px;
-                    }
-                    .wr-card-title {
-                      color: #5a287d;
-                      font-family: "RN House Sans", "RNHouseSansRegular",
-                        sans-serif;
-                      font-size: 26px;
-                      font-style: normal;
-                      font-weight: 700;
-                      line-height: 30px;
-                    }
-
-                    .wr-grid {
-                      grid-template-columns: max-content;
-                      justify-content: center;
-                      grid-template-areas:
-                        "c e"
-                        "d e";
-                    }
-
-                    .wr-ab-container {
-                      justify-content: center;
-                    }
-
-                    .wr-card--a {
-                      display: grid;
-                      grid-template-columns: 1fr minmax(260px, 56%);
-                      gap: 20px;
-                      align-items: center;
-                      max-width: 572px;
-                    }
-
-                    .wr-card--a img {
-                      height: 255px;
-                      transform: scale(1.1);
-                      align-self: flex-end;
-                    }
-
-                    .wr-card--b {
-                      max-width: 328px;
-                    }
-
-                    .wr-card--b img {
-                      height: 89px;
-                    }
-
-                    .wr-card--c {
-                      max-width: 450px;
-                    }
-
-                    .wr-card--d {
-                      max-width: 450px;
-                      display: grid;
-                      grid-template-columns: 1fr 50%;
-                      gap: 10px;
-                      align-items: center;
-                    }
-
-                    .wr-card--e {
-                      max-width: 450px;
-                    }
-
-                    .wr-card-image-d {
-                      display: flex;
-                      justify-content: flex-end;
-                      align-items: flex-end;
-                      overflow: hidden;
-                    }
-
-                    .wr-card-image-d img {
-                      width: 212px;
-                      height: 201px;
-                      object-fit: cover;
-                      max-width: 100%;
-                    }
-
-                    .wr-card-image-e img {
-                      padding-top: 50px;
-                    }
-
-                    .wr-card--d > .wr-card-content {
-                      padding-top: 20px;
-                      min-width: 204px;
-                    }
-                  }
-
-                  @media (min-width: 1005px) and (max-width: 1023px) {
-                    .wr-card--e {
-                      padding-bottom: 30px;
-                    }
-                  }
-
-                  @media (min-width: 1255px) {
-                    .wr-card--b > .wr-card-text {
-                      margin-bottom: 20px;
-                    }
-                  }
-                </style>
-
-                 <h2 id="health-check-heading" class="wr-title">
-    Boost your money
-    <span class="wr-step-number">
-      confidence
-      <img
-        src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-red-underline-highlight.png"
-        alt=""
-        class="wr-underline-image"
-      />
-    </span>
-    with a health check
-  </h2>
-
-  <!-- Card A -->
-  <div class="wr-ab-container">
-    <article class="wr-card--a">
-      <div class="wr-card-content">
-        <h3 class="wr-card-title">What is a health check?</h3>
-        <p class="wr-card-text">
-          Financial Health Check is a free review of your finances, offering tips
-          and ideas to help you get financially fitter now and in the future.
-        </p>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Compare Credit Cards — Prototype</title>
+<style>
+  :root{
+    --bg:#f3eaf6;
+    --panel:#fff;
+    --purple:#5b1f7a;
+    --light-purple:#f2e9f7;
+    --muted:#6b6b6b;
+    --pill-bg:#efe6f7;
+    --card-shadow: 0 6px 18px rgba(88,40,114,0.08);
+    --radius:14px;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background: linear-gradient(#f6eef7, #f0e6f6 60%);
+    color:#322;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wr-container{
+    max-width:1180px;
+    margin:36px auto;
+    padding:32px;
+  }
+
+  /* Header */
+  .wr-hero{
+    text-align:center;
+    padding:28px 16px;
+  }
+  .wr-hero h1{
+    font-size:42px;
+    margin:4px 0 8px;
+    color:var(--purple);
+    letter-spacing:0.2px;
+  }
+  .wr-hero p{color:var(--muted); margin:0 auto; max-width:720px;}
+
+  /* Four features area */
+  .wr-features{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:28px;
+    margin:28px 0 40px;
+  }
+  .wr-feature{
+    background:linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.9) 100%);
+    border-radius:18px;
+    padding:22px;
+    text-align:center;
+    box-shadow: var(--card-shadow);
+  }
+  .wr-illustration{
+    display:block;
+    width:100%;
+    height:120px;
+    margin-bottom:14px;
+  }
+  .wr-feature h3{margin:8px 0 6px; font-size:16px; color:var(--purple);}
+  .wr-feature p{color:var(--muted); font-size:14px; margin:0;}
+
+  /* Filters panel */
+  .wr-filters-panel{
+    margin-top:18px;
+    background:var(--panel);
+    border-radius:16px;
+    padding:20px;
+    box-shadow: var(--card-shadow);
+  }
+  .wr-filters-title{
+    font-weight:700;
+    color:var(--purple);
+    font-size:20px;
+    text-align:center;
+    margin-bottom:12px;
+  }
+  .wr-filters{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+  .wr-filter-btn{
+    border: none;
+    background:var(--pill-bg);
+    padding:10px 18px;
+    border-radius:40px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    transition:all .18s ease;
+    box-shadow: none;
+    font-weight:600;
+    color:var(--purple);
+  }
+  .wr-filter-btn:focus{outline:3px solid rgba(91,31,122,0.12);}
+  .wr-filter-btn.active{
+    background:linear-gradient(90deg,#4f1570,#6d2a9b);
+    color:white;
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(91,31,122,0.18);
+  }
+  .wr-filter-icon{
+    width:18px; height:18px; display:inline-block; flex:0 0 18px;
+  }
+
+  .wr-count{
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+    margin-top:8px;
+  }
+
+  /* Cards grid */
+  .wr-cards{
+    margin-top:22px;
+    display:grid;
+    gap:18px;
+  }
+  .wr-card{
+    background:var(--panel);
+    border-radius:16px;
+    padding:18px;
+    box-shadow:var(--card-shadow);
+    display:flex;
+    gap:16px;
+    align-items:center;
+  }
+  .wr-card .art{
+    width:84px; height:84px; flex:0 0 84px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(180deg,#f4ecfa,#efe4f8);
+  }
+  .wr-card h4{margin:0 0 6px; color:var(--purple); font-size:16px;}
+  .wr-card p{margin:0;color:var(--muted); font-size:13px;}
+
+  /* mobile-only icons (hide on desktop) */
+  .mobile-icon{ display:none; width:36px; height:36px; }
+
+  /* Layout breakpoints */
+  /* Large/XL: 4 columns */
+  @media (min-width:1024px){
+    .wr-cards{ grid-template-columns: repeat(4, 1fr); }
+    .wr-features{ grid-template-columns: repeat(4,1fr); }
+    .wr-filter-btn{ padding:12px 18px; }
+  }
+
+  /* Medium (tablet): 2 columns; filters over two rows */
+  @media (min-width:768px) and (max-width:1023px){
+    .wr-cards{ grid-template-columns: repeat(2, 1fr); }
+    .wr-features{ grid-template-columns: repeat(2,1fr); }
+    .wr-filters{ justify-content:center; gap:12px; }
+  }
+
+  /* Small / Mobile: single column; icons instead of illustrations */
+  @media (max-width:767px){
+    .wr-container{ padding:16px; max-width:420px; }
+    .wr-hero h1{ font-size:28px; }
+    .wr-features{ display:none; } /* hide large illustrations on mobile - we will list options instead */
+    .wr-filters{ flex-direction:column; gap:12px; align-items:stretch; }
+    .wr-filter-btn{ justify-content:flex-start; width:100%; padding:14px; border-radius:12px; background: #efe6f7; color:var(--purple); }
+    .wr-filter-btn.active{ border-radius:12px; }
+    .wr-cards{ grid-template-columns: 1fr; }
+    .wr-card{ align-items:flex-start; }
+    .wr-card .art{ width:60px; height:60px; flex:0 0 60px; border-radius:10px; }
+    .mobile-icon{ display:inline-block; }
+    .wr-illustration{ display:none; } /* hide large illustrations */
+  }
+
+  /* utility */
+  .visually-hidden{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+</style>
+</head>
+<body>
+  <main class="wr-container" id="page">
+    <header class="wr-hero" role="banner">
+      <h1>Choose the best credit card for you</h1>
+      <p>The best card is the one that best suits your needs. So, why do you want it?</p>
+    </header>
+
+    <!-- desktop / tablet features (illustrations) -->
+    <section class="wr-features" aria-hidden="false">
+      <article class="wr-feature">
+        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f2e9f7"/><stop offset="1" stop-color="#efe4f8"/></linearGradient></defs>
+          <rect rx="60" width="120" height="120" fill="url(#g1)"/>
+          <g transform="translate(18,30)" fill="#6d2a9b">
+            <rect x="4" y="30" width="70" height="34" rx="6" fill="#6d2a9b" />
+            <rect x="18" y="6" width="44" height="24" rx="4" fill="#fff" />
+          </g>
+        </svg>
+        <h3>0% on purchases</h3>
+        <p>Big purchase? Spread the cost with a 0% introductory offer.</p>
+      </article>
+
+      <article class="wr-feature">
+        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect rx="60" width="120" height="120" fill="#efe4f8"/>
+          <g transform="translate(22,26)" fill="#6d2a9b">
+            <rect x="8" y="8" width="54" height="36" rx="6" fill="#6d2a9b"/>
+            <path d="M0 64c20 0 40-6 56-20" stroke="#6d2a9b" stroke-width="2" fill="none"/>
+          </g>
+        </svg>
+        <h3>0% on balance transfers</h3>
+        <p>Moving debt to 0% interest could save you money.</p>
+      </article>
+
+      <article class="wr-feature">
+        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect rx="60" width="120" height="120" fill="#efeaf8"/>
+          <g transform="translate(22,26)" fill="#6d2a9b">
+            <rect x="6" y="12" width="52" height="36" rx="6" fill="#6d2a9b"/>
+            <text x="10" y="36" fill="#fff" font-size="10">£££</text>
+          </g>
+        </svg>
+        <h3>Everyday spending</h3>
+        <p>Want an everyday card? It could help build your credit history.</p>
+      </article>
+
+      <article class="wr-feature">
+        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect rx="60" width="120" height="120" fill="#f5ecf8"/>
+          <g transform="translate(24,28)" fill="#6d2a9b">
+            <rect x="6" y="18" width="48" height="34" rx="6" fill="#6d2a9b"/>
+            <circle cx="38" cy="6" r="6" fill="#6d2a9b"/>
+          </g>
+        </svg>
+        <h3>Rewards and travel</h3>
+        <p>Want to earn rewards or save money when you travel? Try these.</p>
+      </article>
+    </section>
+
+    <!-- Filters -->
+    <section class="wr-filters-panel" aria-labelledby="filters-heading">
+      <h2 id="filters-heading" class="wr-filters-title">What cards do you want to see?</h2>
+
+      <div class="wr-filters" role="tablist" aria-label="Filter credit cards">
+        <button id="filter-all" class="wr-filter-btn" role="tab" aria-pressed="true" data-filter="all">
+          <span class="wr-filter-icon" aria-hidden="true">
+            <!-- eye icon -->
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 5C7 5 2.73 8.11 1 12c1.73 3.89 6 7 11 7s9.27-3.11 11-7c-1.73-3.89-6-7-11-7zm0 11a4 4 0 110-8 4 4 0 010 8z"></path></svg>
+          </span>
+          See all cards
+        </button>
+
+        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="0-interest">
+          <span class="wr-filter-icon" aria-hidden="true">
+            <!-- percent/money icon -->
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M10 3l11 11-1.5 1.5L8.5 4.5 10 3zm-7 9a2 2 0 100 4 2 2 0 000-4zm14 6a2 2 0 100 4 2 2 0 000-4z"></path></svg>
+          </span>
+          0% interest
+        </button>
+
+        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="everyday">
+          <span class="wr-filter-icon" aria-hidden="true">
+            <!-- wallet icon -->
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21 7H3v10h18V7zm-2 6h-6v-2h6v2z"/></svg>
+          </span>
+          Everyday spending
+        </button>
+
+        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="rewards">
+          <span class="wr-filter-icon" aria-hidden="true">
+            <!-- gift icon -->
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 7l2-2h4v6H6V5h4l2 2zM4 13v6h16v-6H4z"></path></svg>
+          </span>
+          Rewards
+        </button>
+
+        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="travel">
+          <span class="wr-filter-icon" aria-hidden="true">
+            <!-- plane icon -->
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21 16v-2l-8-5V3.5c0-.8-.7-1.5-1.5-1.5S10 2.7 10 3.5V9L2 14v2l8-1v4l-2 .5V22l4-1 4 1v-2.5L13 19v-4l8 1z"/></svg>
+          </span>
+          Travel
+        </button>
       </div>
-      <div class="wr-card-image-a">
-        <img
-          src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-FHC-tennis-image.png"
-          alt=""
-        />
-      </div>
-    </article>
 
-    <!-- Card B -->
-    <article class="wr-card--b">
-      <h3 class="wr-card-title">Get help the way you want</h3>
-      <p class="wr-card-text">
-        Book a video appointment or arrange to speak to someone over the phone
-        or in branch.
-      </p>
-      <div class="wr-card-image-b">
-        <img
-          src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-illus-fhc.png"
-          alt=""
-        />
-      </div>
-    </article>
-  </div>
+      <div class="wr-count" id="wr-count" aria-live="polite">Showing 8 of 8 credit cards</div>
+    </section>
 
-  <div class="wr-grid">
-    <!-- Card C -->
-    <article class="wr-card--c">
-      <h3 class="wr-card-title">In-app if you prefer</h3>
-      <div class="card-c-container">
-        <div class="wr-card-content">
-          <p class="wr-card-text">
-            The Insights tab in our app offers personalised tips, tools, and
-            insights to help you reach your financial goals.
-          </p>
+    <!-- Cards results -->
+    <section id="results" class="wr-cards" aria-live="polite" aria-label="Credit card results">
+      <!-- Example dataset: each card has categories in data-category attribute -->
+      <!-- We'll include 8 cards; some overlap categories -->
+      <article class="wr-card" data-categories="0-interest,everyday">
+        <div class="art" aria-hidden="true">
+          <!-- Big illustration for desktop -->
+          <svg class="wr-illustration" viewBox="0 0 100 100" width="84" height="84"><rect rx="12" width="100" height="100" fill="#efe4f8"/><rect x="14" y="26" width="72" height="48" rx="8" fill="#6d2a9b"/></svg>
+          <!-- compact icon for mobile -->
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M2 7h20v10H2z"/></svg>
         </div>
-        <div class="wr-card-image-c">
-          <img
-            src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-FHC-insights-tips.png"
-            alt=""
-          />
+        <div>
+          <h4>Everyday Plus — Classic</h4>
+          <p>Low rate, no frills — great for everyday use. (Categories: Everyday, 0% interest)</p>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <!-- Card D -->
-    <article class="wr-card--d">
-      <div class="wr-card-content">
-        <h3 class="wr-card-title">Financial support for you</h3>
-        <p class="wr-card-text">
-          The ‘Just for you’ section offers personalised guidance to save, spend
-          smarter, and boost credit score.
-        </p>
-      </div>
-      <div class="wr-card-image-d">
-        <img
-          src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-mobile-fhc.png"
-          alt=""
-        />
-      </div>
-    </article>
+      <article class="wr-card" data-categories="rewards,travel">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f4ecfa"/><circle cx="50" cy="44" r="20" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L2 7l10 5 10-5z"/></svg>
+        </div>
+        <div>
+          <h4>Rewards Travel Elite</h4>
+          <p>Higher rewards on travel and dining. (Categories: Rewards, Travel)</p>
+        </div>
+      </article>
 
-    <!-- Card E -->
-    <article class="wr-card--e">
-      <h3 class="wr-card-title">Own your finances</h3>
-      <p class="wr-card-text">
-        Take control of your money with self-paced coaching plans, tools, and
-        progress tracking.
-      </p>
-      <div class="wr-card-image-e">
-        <img
-          src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nw-pers-illus-fhc-rocket.png"
-          alt=""
-        />
-      </div>
-    </article>
-  </div>
-</section>
-              <!-- prototyping code ends -->
+      <article class="wr-card" data-categories="0-interest">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#efeaf8"/><path d="M20 26h60v48H20z" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h18v6H3z"/></svg>
+        </div>
+        <div>
+          <h4>0% Purchase — Intro Offer</h4>
+          <p>0% for 18 months on purchases. (Category: 0% interest)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="everyday">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f5ecf8"/><rect x="22" y="30" width="56" height="40" rx="6" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M2 12h20v2H2z"/></svg>
+        </div>
+        <div>
+          <h4>Everyday Cashback</h4>
+          <p>Cashback on groceries and utilities. (Category: Everyday)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="rewards">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f2e9f7"/><path d="M18 34h64v40H18z" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+        </div>
+        <div>
+          <h4>Rewards Everyday</h4>
+          <p>Good everyday rewards and partner offers. (Category: Rewards)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="travel,0-interest">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#efe6f8"/><path d="M12 40h76v28H12z" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 16V8l-9 4z"/></svg>
+        </div>
+        <div>
+          <h4>Travel Saver 0%</h4>
+          <p>Travel benefits and 0% on transfers. (Categories: Travel, 0% interest)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="everyday,rewards">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f7eefb"/><rect x="28" y="30" width="44" height="32" rx="6" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h16v16H4z"/></svg>
+        </div>
+        <div>
+          <h4>Daily Rewards Card</h4>
+          <p>Small rewards for daily purchases. (Categories: Everyday, Rewards)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="travel">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#efe3f8"/><path d="M22 32h56v36H22z" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M2 12l20-8v16z"/></svg>
+        </div>
+        <div>
+          <h4>Global Traveller</h4>
+          <p>Premium travel perks and lounge passes. (Category: Travel)</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+<script>
+(function(){
+  const totalCards = document.querySelectorAll('.wr-card').length;
+  const countEl = document.getElementById('wr-count');
+  const results = document.getElementById('results');
+  const filterButtons = Array.from(document.querySelectorAll('.wr-filter-btn'));
+  let activeFilter = 'all';
+
+  // initialize - set All active
+  function setActiveButtonByFilter(f) {
+    filterButtons.forEach(btn => {
+      const isActive = (btn.dataset.filter === f);
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  setActiveButtonByFilter('all');
+  countEl.textContent = `Showing ${totalCards} of ${totalCards} credit cards`;
+
+  function showFiltered(filter) {
+    const cards = Array.from(document.querySelectorAll('.wr-card'));
+    if (filter === 'all') {
+      cards.forEach(c => c.style.display = '');
+      countEl.textContent = `Showing ${totalCards} of ${totalCards} credit cards`;
+      activeFilter = 'all';
+      setActiveButtonByFilter('all');
+      return;
+    }
+
+    const matching = cards.filter(c => {
+      const cats = c.dataset.categories.split(',');
+      return cats.includes(filter);
+    });
+
+    // show/hide
+    cards.forEach(c => c.style.display = 'none');
+    matching.forEach(c => c.style.display = '');
+
+    countEl.textContent = `Showing ${matching.length} of ${totalCards} credit cards`;
+    activeFilter = filter;
+    setActiveButtonByFilter(filter);
+  }
+
+  // click handling
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const filter = btn.dataset.filter;
+      // toggle behavior: if clicked same as active -> reset to all
+      if (filter === activeFilter || (filter === 'all' && activeFilter === 'all')) {
+        // if clicked All while All active -> nothing (keep)
+        if (filter === 'all' && activeFilter === 'all') {
+          showFiltered('all');
+          return;
+        }
+        // otherwise, unselect -> show all
+        showFiltered('all');
+      } else {
+        // select the clicked filter
+        showFiltered(filter);
+      }
+
+      // accessibility: ensure keyboard focus remains visible
+      btn.focus();
+
+      // mobile behaviour: when a filter (not all) is selected, scroll to results
+      if (window.matchMedia('(max-width:767px)').matches) {
+        // only scroll when a specific filter selected (not 'all')
+        if (activeFilter !== 'all') {
+          // animate scroll
+          results.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      }
+    });
+  });
+
+  // Keyboard support: allow Enter/Space on focused buttons (native already handles button)
+  // Add small console debugging hook if dev needs to trace
+  window.__wr_debug_filters = {
+    getActive: () => activeFilter,
+    setFilter: (f) => showFiltered(f)
+  };
+
+})();
+</script>
+</body>
+</html>
