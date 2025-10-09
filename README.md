@@ -1,6 +1,8 @@
 <img width="998" height="680" alt="image" src="https://github.com/user-attachments/assets/64db2e00-4f17-4dae-8ae8-3509149f8779" />
 <img width="271" height="822" alt="image" src="https://github.com/user-attachments/assets/8855e65e-1965-40a5-9e89-d17bb5dad9c0" />
 
+<img width="758" height="52" alt="image" src="https://github.com/user-attachments/assets/4bddac0b-bc7d-47ee-81e3-6c0953a53a18" />
+
 Feature Specific Acceptance Criteria
 
 Desktop / tablet:
