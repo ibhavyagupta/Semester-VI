@@ -1,1269 +1,472 @@
-<!-- prototyping code starts -->
-              <section class="wr-ptql-parent">
-                <script>
-function showProducts() {
-  console.log("Products tab clicked");
-  const productsTab = document.getElementById("wr-productsTab");
-  const supportTab = document.getElementById("supportTab");
-  const productsContent = document.getElementById("productsContent");
-  const supportContent = document.getElementById("supportContent");
-
-  if (!productsTab || !supportTab || !productsContent || !supportContent) {
-    console.warn("Product tab elements missing");
-    return;
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Compare Credit Cards — Prototype</title>
+<style>
+  :root{
+    --bg:#f3eaf6;
+    --panel:#fff;
+    --purple:#5b1f7a;
+    --light-purple:#f2e9f7;
+    --muted:#6b6b6b;
+    --pill-bg:#efe6f7;
+    --card-shadow: 0 6px 18px rgba(88,40,114,0.08);
+    --radius:14px;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background: linear-gradient(#f6eef7, #f0e6f6 60%);
+    color:#322;
+    -webkit-font-smoothing:antialiased;
   }
 
-  productsTab.classList.add("active");
-  supportTab.classList.remove("active");
-  productsContent.classList.add("active");
-  supportContent.classList.remove("active");
-}
-
-function showSupport() {
-  console.log("Support tab clicked");
-  const productsTab = document.getElementById("wr-productsTab");
-  const supportTab = document.getElementById("supportTab");
-  const productsContent = document.getElementById("productsContent");
-  const supportContent = document.getElementById("supportContent");
-
-  if (!productsTab || !supportTab || !productsContent || !supportContent) {
-    console.warn("Support tab elements missing");
-    return;
+  .wr-container{
+    max-width:1180px;
+    margin:36px auto;
+    padding:32px;
   }
 
-  supportTab.classList.add("active");
-  productsTab.classList.remove("active");
-  supportContent.classList.add("active");
-  productsContent.classList.remove("active");
-}
+  /* Header */
+  .wr-hero{
+    text-align:center;
+    padding:28px 16px;
+  }
+  .wr-hero h1{
+    font-size:42px;
+    margin:4px 0 8px;
+    color:var(--purple);
+    letter-spacing:0.2px;
+  }
+  .wr-hero p{color:var(--muted); margin:0 auto; max-width:720px;}
 
-function initTabs() {
-  const productsTab = document.getElementById("wr-productsTab");
-  const supportTab = document.getElementById("supportTab");
-  const productsContent = document.getElementById("productsContent");
-  const supportContent = document.getElementById("supportContent");
+  /* Four features area */
+  .wr-features{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:28px;
+    margin:28px 0 40px;
+  }
+  .wr-feature{
+    background:linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.9) 100%);
+    border-radius:18px;
+    padding:22px;
+    text-align:center;
+    box-shadow: var(--card-shadow);
+  }
+  .wr-illustration{
+    display:block;
+    width:100%;
+    height:120px;
+    margin-bottom:14px;
+  }
+  .wr-feature h3{margin:8px 0 6px; font-size:16px; color:var(--purple);}
+  .wr-feature p{color:var(--muted); font-size:14px; margin:0;}
 
-  // Check if all required elements are ready
-  if (!productsTab || !supportTab || !productsContent || !supportContent) {
-    console.log("Tabs not yet found, retrying...");
-    setTimeout(initTabs, 300); // Retry every 300ms until ready
-    return;
+  /* Filters panel */
+  .wr-filters-panel{
+    margin-top:18px;
+    background:var(--panel);
+    border-radius:16px;
+    padding:20px;
+    box-shadow: var(--card-shadow);
+  }
+  .wr-filters-title{
+    font-weight:700;
+    color:var(--purple);
+    font-size:20px;
+    text-align:center;
+    margin-bottom:12px;
+  }
+  .wr-filters{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+  .wr-filter-btn{
+    border: none;
+    background:var(--pill-bg);
+    padding:10px 18px;
+    border-radius:40px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    transition:all .18s ease;
+    box-shadow: none;
+    font-weight:600;
+    color:var(--purple);
+  }
+  .wr-filter-btn:focus{outline:3px solid rgba(91,31,122,0.12);}
+  .wr-filter-btn.active{
+    background:linear-gradient(90deg,#4f1570,#6d2a9b);
+    color:white;
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(91,31,122,0.18);
+  }
+  .wr-filter-icon{
+    width:18px; height:18px; display:inline-block; flex:0 0 18px;
   }
 
-  console.log("Tabs initialized successfully");
+  .wr-count{
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+    margin-top:8px;
+  }
 
-  // Attach click handlers
-  productsTab.onclick = showProducts;
-  supportTab.onclick = showSupport;
+  /* Cards grid */
+  .wr-cards{
+    margin-top:22px;
+    display:grid;
+    gap:18px;
+  }
+  .wr-card{
+    background:var(--panel);
+    border-radius:16px;
+    padding:18px;
+    box-shadow:var(--card-shadow);
+    display:flex;
+    gap:16px;
+    align-items:center;
+  }
+  .wr-card .art{
+    width:84px; height:84px; flex:0 0 84px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(180deg,#f4ecfa,#efe4f8);
+  }
+  .wr-card h4{margin:0 0 6px; color:var(--purple); font-size:16px;}
+  .wr-card p{margin:0;color:var(--muted); font-size:13px;}
 
-  // Accordion logic for small screens
-  const cards = document.querySelectorAll(".wr-ptql-card h2");
-  cards.forEach((header) => {
-    header.addEventListener("click", () => {
-      if (window.innerWidth <= 767) {
-        const card = header.parentElement;
-        const links = card.querySelector(".wr-ptql-links");
-        const isActive = card.classList.contains("active");
+  /* mobile-only icons (hide on desktop) */
+  .mobile-icon{ display:none; width:36px; height:36px; }
 
-        if (isActive) {
-          card.classList.remove("active");
-          links.style.maxHeight = "0px";
-        } else {
-          card.classList.add("active");
-          const scrollHeight = links.scrollHeight;
-          links.style.maxHeight = scrollHeight + "px";
-          setTimeout(() => {
-            if (card.classList.contains("active")) {
-              links.style.maxHeight = "auto";
-            }
-          }, 400);
+  /* Layout breakpoints */
+  /* Large/XL: 4 columns */
+  @media (min-width:1024px){
+    .wr-cards{ grid-template-columns: repeat(4, 1fr); }
+    .wr-features{ grid-template-columns: repeat(4,1fr); }
+    .wr-filter-btn{ padding:12px 18px; }
+  }
+
+  /* Medium (tablet): 2 columns; filters over two rows */
+  @media (min-width:768px) and (max-width:1023px){
+    .wr-cards{ grid-template-columns: repeat(2, 1fr); }
+    .wr-features{ grid-template-columns: repeat(2,1fr); }
+    .wr-filters{ justify-content:center; gap:12px; }
+  }
+
+  /* Small / Mobile: single column; icons instead of illustrations */
+  @media (max-width:767px){
+    .wr-container{ padding:16px; max-width:420px; }
+    .wr-hero h1{ font-size:28px; }
+    .wr-features{ display:none; } /* hide large illustrations on mobile - we will list options instead */
+    .wr-filters{ flex-direction:column; gap:12px; align-items:stretch; }
+    .wr-filter-btn{ justify-content:flex-start; width:100%; padding:14px; border-radius:12px; background: #efe6f7; color:var(--purple); }
+    .wr-filter-btn.active{ border-radius:12px; }
+    .wr-cards{ grid-template-columns: 1fr; }
+    .wr-card{ align-items:flex-start; }
+    .wr-card .art{ width:60px; height:60px; flex:0 0 60px; border-radius:10px; }
+    .mobile-icon{ display:inline-block; }
+    .wr-illustration{ display:none; } /* hide large illustrations */
+  }
+
+  /* utility */
+  .visually-hidden{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+</style>
+</head>
+<body>
+  <main class="wr-container" id="page">
+    <header class="wr-hero" role="banner">
+      <h1>Choose the best credit card for you</h1>
+      <p>The best card is the one that best suits your needs. So, why do you want it?</p>
+    </header>
+
+    <!-- desktop / tablet features (illustrations) -->
+    <section class="wr-features" aria-hidden="false">
+      <article class="wr-feature">
+        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f2e9f7"/><stop offset="1" stop-color="#efe4f8"/></linearGradient></defs>
+          <rect rx="60" width="120" height="120" fill="url(#g1)"/>
+          <g transform="translate(18,30)" fill="#6d2a9b">
+            <rect x="4" y="30" width="70" height="34" rx="6" fill="#6d2a9b" />
+            <rect x="18" y="6" width="44" height="24" rx="4" fill="#fff" />
+          </g>
+        </svg>
+        <h3>0% on purchases</h3>
+        <p>Big purchase? Spread the cost with a 0% introductory offer.</p>
+      </article>
+
+      <article class="wr-feature">
+        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect rx="60" width="120" height="120" fill="#efe4f8"/>
+          <g transform="translate(22,26)" fill="#6d2a9b">
+            <rect x="8" y="8" width="54" height="36" rx="6" fill="#6d2a9b"/>
+            <path d="M0 64c20 0 40-6 56-20" stroke="#6d2a9b" stroke-width="2" fill="none"/>
+          </g>
+        </svg>
+        <h3>0% on balance transfers</h3>
+        <p>Moving debt to 0% interest could save you money.</p>
+      </article>
+
+      <article class="wr-feature">
+        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect rx="60" width="120" height="120" fill="#efeaf8"/>
+          <g transform="translate(22,26)" fill="#6d2a9b">
+            <rect x="6" y="12" width="52" height="36" rx="6" fill="#6d2a9b"/>
+            <text x="10" y="36" fill="#fff" font-size="10">£££</text>
+          </g>
+        </svg>
+        <h3>Everyday spending</h3>
+        <p>Want an everyday card? It could help build your credit history.</p>
+      </article>
+
+      <article class="wr-feature">
+        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect rx="60" width="120" height="120" fill="#f5ecf8"/>
+          <g transform="translate(24,28)" fill="#6d2a9b">
+            <rect x="6" y="18" width="48" height="34" rx="6" fill="#6d2a9b"/>
+            <circle cx="38" cy="6" r="6" fill="#6d2a9b"/>
+          </g>
+        </svg>
+        <h3>Rewards and travel</h3>
+        <p>Want to earn rewards or save money when you travel? Try these.</p>
+      </article>
+    </section>
+
+    <!-- Filters -->
+    <section class="wr-filters-panel" aria-labelledby="filters-heading">
+      <h2 id="filters-heading" class="wr-filters-title">What cards do you want to see?</h2>
+
+      <div class="wr-filters" role="tablist" aria-label="Filter credit cards">
+        <button id="filter-all" class="wr-filter-btn" role="tab" aria-pressed="true" data-filter="all">
+          <span class="wr-filter-icon" aria-hidden="true">
+            <!-- eye icon -->
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 5C7 5 2.73 8.11 1 12c1.73 3.89 6 7 11 7s9.27-3.11 11-7c-1.73-3.89-6-7-11-7zm0 11a4 4 0 110-8 4 4 0 010 8z"></path></svg>
+          </span>
+          See all cards
+        </button>
+
+        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="0-interest">
+          <span class="wr-filter-icon" aria-hidden="true">
+            <!-- percent/money icon -->
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M10 3l11 11-1.5 1.5L8.5 4.5 10 3zm-7 9a2 2 0 100 4 2 2 0 000-4zm14 6a2 2 0 100 4 2 2 0 000-4z"></path></svg>
+          </span>
+          0% interest
+        </button>
+
+        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="everyday">
+          <span class="wr-filter-icon" aria-hidden="true">
+            <!-- wallet icon -->
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21 7H3v10h18V7zm-2 6h-6v-2h6v2z"/></svg>
+          </span>
+          Everyday spending
+        </button>
+
+        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="rewards">
+          <span class="wr-filter-icon" aria-hidden="true">
+            <!-- gift icon -->
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 7l2-2h4v6H6V5h4l2 2zM4 13v6h16v-6H4z"></path></svg>
+          </span>
+          Rewards
+        </button>
+
+        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="travel">
+          <span class="wr-filter-icon" aria-hidden="true">
+            <!-- plane icon -->
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21 16v-2l-8-5V3.5c0-.8-.7-1.5-1.5-1.5S10 2.7 10 3.5V9L2 14v2l8-1v4l-2 .5V22l4-1 4 1v-2.5L13 19v-4l8 1z"/></svg>
+          </span>
+          Travel
+        </button>
+      </div>
+
+      <div class="wr-count" id="wr-count" aria-live="polite">Showing 8 of 8 credit cards</div>
+    </section>
+
+    <!-- Cards results -->
+    <section id="results" class="wr-cards" aria-live="polite" aria-label="Credit card results">
+      <!-- Example dataset: each card has categories in data-category attribute -->
+      <!-- We'll include 8 cards; some overlap categories -->
+      <article class="wr-card" data-categories="0-interest,everyday">
+        <div class="art" aria-hidden="true">
+          <!-- Big illustration for desktop -->
+          <svg class="wr-illustration" viewBox="0 0 100 100" width="84" height="84"><rect rx="12" width="100" height="100" fill="#efe4f8"/><rect x="14" y="26" width="72" height="48" rx="8" fill="#6d2a9b"/></svg>
+          <!-- compact icon for mobile -->
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M2 7h20v10H2z"/></svg>
+        </div>
+        <div>
+          <h4>Everyday Plus — Classic</h4>
+          <p>Low rate, no frills — great for everyday use. (Categories: Everyday, 0% interest)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="rewards,travel">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f4ecfa"/><circle cx="50" cy="44" r="20" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L2 7l10 5 10-5z"/></svg>
+        </div>
+        <div>
+          <h4>Rewards Travel Elite</h4>
+          <p>Higher rewards on travel and dining. (Categories: Rewards, Travel)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="0-interest">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#efeaf8"/><path d="M20 26h60v48H20z" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h18v6H3z"/></svg>
+        </div>
+        <div>
+          <h4>0% Purchase — Intro Offer</h4>
+          <p>0% for 18 months on purchases. (Category: 0% interest)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="everyday">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f5ecf8"/><rect x="22" y="30" width="56" height="40" rx="6" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M2 12h20v2H2z"/></svg>
+        </div>
+        <div>
+          <h4>Everyday Cashback</h4>
+          <p>Cashback on groceries and utilities. (Category: Everyday)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="rewards">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f2e9f7"/><path d="M18 34h64v40H18z" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+        </div>
+        <div>
+          <h4>Rewards Everyday</h4>
+          <p>Good everyday rewards and partner offers. (Category: Rewards)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="travel,0-interest">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#efe6f8"/><path d="M12 40h76v28H12z" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 16V8l-9 4z"/></svg>
+        </div>
+        <div>
+          <h4>Travel Saver 0%</h4>
+          <p>Travel benefits and 0% on transfers. (Categories: Travel, 0% interest)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="everyday,rewards">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f7eefb"/><rect x="28" y="30" width="44" height="32" rx="6" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h16v16H4z"/></svg>
+        </div>
+        <div>
+          <h4>Daily Rewards Card</h4>
+          <p>Small rewards for daily purchases. (Categories: Everyday, Rewards)</p>
+        </div>
+      </article>
+
+      <article class="wr-card" data-categories="travel">
+        <div class="art" aria-hidden="true">
+          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#efe3f8"/><path d="M22 32h56v36H22z" fill="#6d2a9b"/></svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M2 12l20-8v16z"/></svg>
+        </div>
+        <div>
+          <h4>Global Traveller</h4>
+          <p>Premium travel perks and lounge passes. (Category: Travel)</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+<script>
+(function(){
+  const totalCards = document.querySelectorAll('.wr-card').length;
+  const countEl = document.getElementById('wr-count');
+  const results = document.getElementById('results');
+  const filterButtons = Array.from(document.querySelectorAll('.wr-filter-btn'));
+  let activeFilter = 'all';
+
+  // initialize - set All active
+  function setActiveButtonByFilter(f) {
+    filterButtons.forEach(btn => {
+      const isActive = (btn.dataset.filter === f);
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  setActiveButtonByFilter('all');
+  countEl.textContent = `Showing ${totalCards} of ${totalCards} credit cards`;
+
+  function showFiltered(filter) {
+    const cards = Array.from(document.querySelectorAll('.wr-card'));
+    if (filter === 'all') {
+      cards.forEach(c => c.style.display = '');
+      countEl.textContent = `Showing ${totalCards} of ${totalCards} credit cards`;
+      activeFilter = 'all';
+      setActiveButtonByFilter('all');
+      return;
+    }
+
+    const matching = cards.filter(c => {
+      const cats = c.dataset.categories.split(',');
+      return cats.includes(filter);
+    });
+
+    // show/hide
+    cards.forEach(c => c.style.display = 'none');
+    matching.forEach(c => c.style.display = '');
+
+    countEl.textContent = `Showing ${matching.length} of ${totalCards} credit cards`;
+    activeFilter = filter;
+    setActiveButtonByFilter(filter);
+  }
+
+  // click handling
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const filter = btn.dataset.filter;
+      // toggle behavior: if clicked same as active -> reset to all
+      if (filter === activeFilter || (filter === 'all' && activeFilter === 'all')) {
+        // if clicked All while All active -> nothing (keep)
+        if (filter === 'all' && activeFilter === 'all') {
+          showFiltered('all');
+          return;
+        }
+        // otherwise, unselect -> show all
+        showFiltered('all');
+      } else {
+        // select the clicked filter
+        showFiltered(filter);
+      }
+
+      // accessibility: ensure keyboard focus remains visible
+      btn.focus();
+
+      // mobile behaviour: when a filter (not all) is selected, scroll to results
+      if (window.matchMedia('(max-width:767px)').matches) {
+        // only scroll when a specific filter selected (not 'all')
+        if (activeFilter !== 'all') {
+          // animate scroll
+          results.scrollIntoView({behavior:'smooth', block:'start'});
         }
       }
     });
   });
 
-  // Handle screen resizing
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 767) {
-      const allCards = document.querySelectorAll(".wr-ptql-card");
-      allCards.forEach((card) => {
-        card.classList.remove("active");
-        const links = card.querySelector(".wr-ptql-links");
-        if (links) links.style.maxHeight = "";
-      });
-    } else {
-      const activeCards = document.querySelectorAll(".wr-ptql-card.active");
-      activeCards.forEach((card) => {
-        const links = card.querySelector(".wr-ptql-links");
-        if (links) links.style.maxHeight = links.scrollHeight + "px";
-      });
-    }
-  });
+  // Keyboard support: allow Enter/Space on focused buttons (native already handles button)
+  // Add small console debugging hook if dev needs to trace
+  window.__wr_debug_filters = {
+    getActive: () => activeFilter,
+    setFilter: (f) => showFiltered(f)
+  };
 
-  // Recalculate after orientation change
-  window.addEventListener("orientationchange", () => {
-    setTimeout(() => {
-      if (window.innerWidth <= 767) {
-        const activeCards = document.querySelectorAll(".wr-ptql-card.active");
-        activeCards.forEach((card) => {
-          const links = card.querySelector(".wr-ptql-links");
-          if (links) links.style.maxHeight = links.scrollHeight + "px";
-        });
-      }
-    }, 100);
-  });
-}
-
-// Initialize when DOM is ready and ensure compatibility with Adobe Target
-document.addEventListener("DOMContentLoaded", () => {
-  initTabs();
-
-  // Watch for Adobe Target re-rendering or replacing DOM nodes
-  const observer = new MutationObserver(() => initTabs());
-  observer.observe(document.body, { childList: true, subtree: true });
-});
+})();
 </script>
-
-                <section class="wr-page-tab-quick-links">
-                  <link
-                    rel="stylesheet"
-                    href="https://www.natwest.com/etc.clientlibs/responsive/editable/shelves/productlistingmultiple/clientlibs/clientlib_productlisting_multiple_shelf_champion-_694ba27fb7f1cc92fd31001e7a2183b0.min.css"
-                    type="text/css"
-                  />
-                  <link
-                    rel="stylesheet"
-                    href="https://www.natwest.com/etc.clientlibs/responsive/editable/components/foundation/product/clientlibs/clientlib_product_champion-_2fa3e43c71271aeb7e00075d1a1153a0.min.css"
-                    type="text/css"
-                  />
-                  <link
-                    rel="stylesheet"
-                    href="https://www.natwest.com/etc.clientlibs/responsive/editable/components/foundation/text/clientlibs/clientlib_text_champion-_694ba27fb7f1cc92fd31001e7a2183b0.min.css"
-                    type="text/css"
-                  />
-                  <link
-                    rel="stylesheet"
-                    href="https://www.natwest.com/etc.clientlibs/responsive/editable/components/composite/compliance/clientlibs/clientlib_compliance_champion-_c77e7a0ac5d4ca9c7d2e768804a9e5f8.min.css"
-                    type="text/css"
-                  />
-                  <script
-                    src="https://www.natwest.com/etc.clientlibs/responsive/components/foundation/rte/clientlibs/clientlib_rtedynamicnumber_base-_7ad603327c300d88c7efdd686a27d4b6.min.js"
-                    defer=""
-                  ></script>
-                  <script
-                    src="https://www.natwest.com/etc.clientlibs/responsive/editable/shelves/productlistingmultiple/clientlibs/clientlib_productlisting_multiple_shelf_base-_fe98640fa2e72d9f3e4e5eae26fdf004.min.js"
-                    defer=""
-                  ></script>
-                  <script
-                    src="https://www.natwest.com/etc.clientlibs/responsive/editable/components/foundation/textLinkImage/clientlibs/clientlib_global_image_base-_349e7ae5cf4eedf7a6686283641ada58.min.js"
-                    defer=""
-                  ></script>
-                  <script
-                    src="https://www.natwest.com/etc.clientlibs/responsive/components/foundation/image/clientlibs/clientlib_global_image_base-_7ad603327c300d88c7efdd686a27d4b6.min.js"
-                    defer=""
-                  ></script>
-                  <script
-                    src="https://www.natwest.com/etc.clientlibs/responsive/editable/components/foundation/text/clientlibs/clientlib_text_base_dtm-_d50122aa25f15e46d6102870b4c20749.min.js"
-                    defer=""
-                  ></script>
-                  <script
-                    src="https://www.natwest.com/etc.clientlibs/responsive/editable/components/foundation/text/clientlibs/clientlib_text_base-_99ab1bd418eaaad69164c566ec8f1e6c.min.js"
-                    defer=""
-                  ></script>
-
-                  <style>
-                    .wr-page-tab-quick-links {
-                      background-color: #f2eaf9;
-                      padding-top: 40px;
-                      padding-bottom: 40px;
-                    }
-
-                    .wr-title {
-                      color: #5a287d;
-                      text-align: center;
-                      font-family: "RN House Sans", "RNHouseSansRegular",
-                        sans-serif;
-                      font-size: 64px;
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 125%;
-                      letter-spacing: -0.2;
-                      margin-bottom: 40px;
-                    }
-
-                    .wr-tab-container {
-                      display: flex;
-                      flex-direction: row;
-                      justify-content: center;
-                      align-items: center;
-                      padding: 8px 0px;
-                    }
-
-                    .wr-tabs {
-                      display: flex;
-                      flex-direction: row;
-                      align-items: center;
-                      justify-content: center;
-                      background-color: #ffffff;
-                      padding: 4px;
-                      border-radius: 32px;
-                      box-shadow: 0 12px 20px 0 rgba(33, 33, 33, 0.12);
-                    }
-
-                    .wr-tab-option {
-                      display: flex;
-                      flex-direction: row;
-                      align-items: center;
-                      justify-content: center;
-                      text-align: center;
-                      color: #5e10b1;
-                      font-family: "RN House Sans", "RNHouseSansRegular",
-                        sans-serif;
-                      font-size: 20px;
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 24px;
-                      letter-spacing: 0px;
-                      background-color: #ffffff;
-                      border: unset;
-                      border-radius: 32px;
-                      height: 48px;
-                      width: 192px;
-                      padding: 0px 12px;
-                      cursor: pointer;
-                      text-decoration: none;
-                      transition: all 0.3s ease;
-                    }
-
-                    .wr-tab-option:hover,
-                    .wr-tab-option:focus {
-                      text-decoration: none;
-                    }
-
-                    .wr-tab-option:hover {
-                      background-color: #f2eaf9;
-                      color: #3c1053;
-                    }
-                    .wr-page-tab-quick-links .wr-cta-button:hover {
-                      background-color: #f2eaf9 !important;
-                      text-decoration: underline;
-                    }
-
-                    .wr-page-tab-quick-links .wr-cta-button:focus {
-                      outline: 2px solid #5e10b1 !important;
-                      outline-offset: 2px !important;
-                    }
-                    .wr-page-tab-quick-links .wr-cta-button:focus {
-                      background-color: #f2eaf9 !important;
-                      outline: 2px solid #5e10b1 !important;
-                      outline-offset: 2px !important;
-                    }
-
-                    .wr-tab-option:focus {
-                      border: 2px solid #5e10b1;
-                    }
-
-                    .wr-tab-option.active {
-                      color: #ffffff;
-                      background-color: #3c1053;
-                    }
-
-                    .wr-tab-option.switching {
-                      pointer-events: none;
-                    }
-
-                    /* Smooth tab content transitions */
-                    .wr-tab-content {
-                      display: none;
-                      opacity: 0;
-                      transition: opacity 0.3s ease-in-out;
-                    }
-
-                    .wr-tab-content.active {
-                      display: block;
-                      opacity: 1;
-                    }
-
-                    .wr-tab-content.fade-out {
-                      opacity: 0;
-                    }
-
-                    .wr-tab-content.fade-in {
-                      opacity: 1;
-                    }
-
-                    .wr-ptql-container {
-                      display: grid;
-                      grid-template-columns: repeat(4, 1fr);
-                      gap: 20px;
-                      margin-top: 60px;
-                    }
-
-                    .wr-support-layout {
-                      display: grid;
-                      grid-template-columns: repeat(3, 1fr);
-                      gap: 20px;
-                      margin-top: 60px;
-                    }
-
-                    .wr-ptql-card {
-                      display: flex;
-                      flex-direction: column;
-                      background: white;
-                      border-radius: 24px;
-                      padding: 15px 20px 30px 20px;
-                      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                      transition: transform 0.2s ease;
-                    }
-
-                    .wr-ptql-card > h2 {
-                      color: #333;
-                      font-family: "RN House Sans", "RNHouseSansRegular",
-                        sans-serif;
-                      font-size: 28px;
-                      font-style: normal;
-                      font-weight: 400;
-                      display: flex;
-                      flex-direction: column;
-                      margin: 0 0 20px 0;
-                    }
-
-                    .wr-ptql-links > li {
-                      color: #5e10b1;
-                      font-family: "RN House Sans", "RNHouseSansRegular",
-                        sans-serif;
-                      font-size: 20px;
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 24px;
-                      letter-spacing: 0;
-                    }
-
-                    .wr-ptql-links > li > a {
-                      position: relative;
-                      padding-left: 28px;
-                      display: inline-block;
-                      color: #5e10b1;
-                      text-decoration: none;
-                    }
-
-                    .wr-ptql-links li > a::before {
-                      content: "";
-                      position: absolute;
-                      left: 0;
-                      top: 50%;
-                      width: 18px;
-                      height: 18px;
-                      transform: translateY(-50%);
-                      background: url("https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg")
-                        no-repeat center center;
-                      background-size: contain;
-                    }
-
-                    .wr-ptql-decorative {
-                      width: 80px;
-                    }
-
-                    .wr-ptql-links li > a:hover {
-                      text-decoration: underline;
-                    }
-
-                    .wr-ptql-links {
-                      list-style: none;
-                      padding: 0;
-                      margin: 0;
-                      display: flex;
-                      flex-direction: column;
-                      gap: 20px;
-                    }
-
-                    .wr-ptql-arrow {
-                      display: none;
-                    }
-
-                    .wr-cta-wrapper {
-                      display: flex;
-                      min-width: 96px;
-                      max-width: 416px;
-                      padding: 12px;
-                      justify-content: center;
-                      align-items: center;
-                      gap: 16px;
-                      align-self: stretch;
-                    }
-
-                    .wr-support-layout .wr-ptql-card {
-                      display: flex;
-                      flex-direction: column;
-                      justify-content: space-between;
-                      height: 100%;
-                    }
-
-                    .wr-support-layout .wr-ptql-links {
-                      flex-grow: 1;
-                      display: flex;
-                      flex-direction: column;
-                      gap: 20px;
-                    }
-
-                    .wr-cta-wrapper {
-                      display: flex;
-                      width: 100%;
-                      max-width: none;
-                      padding: 12px 0;
-                      justify-content: center;
-                      align-items: center;
-                      gap: 16px;
-                      align-self: stretch;
-                      margin-top: auto;
-                    }
-
-                    .wr-cta-button {
-                      background-color: #fff;
-                      color: #5e10b1 !important;
-                      border: 2px solid #5e10b1;
-                      font-family: "RN House Sans", "RNHouseSansRegular",
-                        sans-serif;
-                      font-size: 18px;
-                      font-style: normal;
-                      font-weight: 400;
-                      line-height: 26px;
-                      padding: 12px 24px;
-                      text-align: center;
-                      letter-spacing: 0.2px;
-                      border-radius: 104px;
-                      width: 100%;
-                      max-width: 300px;
-                      text-decoration: none;
-                      display: inline-block;
-                      transition: background-color 0.3s ease,
-                        text-decoration 0.3s ease;
-                    }
-
-                    @media (min-width: 767px) and (max-width: 1224px) {
-                      .wr-support-layout .wr-ptql-card {
-                        min-height: 400px;
-                      }
-                      .wr-support-layout
-                        .wr-ptql-card:nth-child(3)
-                        .wr-cta-wrapper {
-                        justify-content: flex-start;
-                      }
-                      .wr-support-layout
-                        .wr-ptql-card:nth-child(3)
-                        .wr-cta-wrapper
-                        .wr-cta-button {
-                        max-width: 400px !important;
-                      }
-                    }
-
-                    @media (min-width: 1225px) {
-                      .wr-support-layout .wr-ptql-card {
-                        min-height: 450px;
-                      }
-                    }
-
-                    @media (max-width: 767px) {
-                      .wr-cta-wrapper {
-                        padding: 12px 16px;
-                      }
-
-                      .wr-cta-button {
-                        width: 100%;
-                        max-width: none;
-                      }
-
-                      .wr-page-tab-quick-links {
-                        padding-top: 16px;
-                        padding-bottom: 16px;
-                      }
-
-                      .wr-title {
-                        font-size: 40px;
-                        margin-bottom: 24px;
-                      }
-
-                      .wr-tab-option {
-                        font-size: 16px;
-                        width: 160px;
-                      }
-
-                      .wr-ptql-container,
-                      .wr-support-layout {
-                        display: flex;
-                        flex-direction: column;
-                        border-radius: 8px;
-                        overflow: hidden;
-                        gap: 0px;
-                      }
-
-                      .wr-ptql-decorative {
-                        width: 32px;
-                        margin-right: 12px;
-                      }
-
-                      .wr-ptql-card {
-                        position: relative;
-                        display: flex;
-                        flex-direction: column;
-                        overflow: hidden;
-                        background: #fff;
-                        padding: 0;
-                        box-shadow: none;
-                        border-radius: 0px;
-                      }
-
-                      .wr-ptql-card::after {
-                        content: "";
-                        position: absolute;
-                        bottom: 0;
-                        left: 16px;
-                        right: 16px;
-                        height: 1px;
-                        background-color: #e0e0e0;
-                      }
-
-                      .wr-ptql-card:last-child::after {
-                        display: none;
-                      }
-
-                      .wr-ptql-card:last-child {
-                        border-bottom: none;
-                      }
-
-                      .wr-ptql-card:first-child {
-                        border-top-left-radius: 12px;
-                        border-top-right-radius: 12px;
-                      }
-
-                      .wr-ptql-card:last-child {
-                        border-bottom-left-radius: 12px;
-                        border-bottom-right-radius: 12px;
-                      }
-
-                      .wr-ptql-card h2 {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        margin: 0;
-                        padding: 8px 16px;
-                        background: #fff;
-                        font-size: 16px;
-                        font-weight: 400;
-                        color: #5e10b1;
-                        cursor: pointer;
-                        transition: background 0.3s ease, color 0.3s ease,
-                          padding 0.3s ease;
-                      }
-
-                      .wr-ptql-arrow {
-                        display: block;
-                      }
-
-                      .wr-ptql-card h2 .wr-ptql-arrow {
-                        margin-left: auto;
-                        width: 20px;
-                        height: 20px;
-                        transition: transform 0.3s ease;
-                        content: url("https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg");
-                      }
-
-                      .wr-ptql-card.active h2 {
-                        background-color: #3c1053;
-                        color: #fff;
-                      }
-
-                      .wr-ptql-card.active h2 .wr-ptql-arrow {
-                        content: url("https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-white-chevron-down.svg");
-                      }
-
-                      .wr-ptql-links {
-                        max-height: 0;
-                        overflow: hidden;
-                        opacity: 0;
-                        padding: 0px 16px;
-                        gap: 12px;
-                        transition: max-height 0.4s ease, padding 0.4s ease,
-                          opacity 0.3s ease;
-                        display: flex;
-                        flex-direction: column;
-                      }
-
-                      .wr-ptql-card.active .wr-ptql-links li a:hover {
-                        text-decoration: underline;
-                      }
-
-                      .wr-ptql-card.active .wr-ptql-links {
-                        max-height: 500px !important;
-                        opacity: 1;
-                        padding: 12px 16px;
-                      }
-
-                      .wr-ptql-links li a {
-                        color: #5e10b1;
-                        font-family: "RN House Sans", "RNHouseSansRegular",
-                          sans-serif;
-                        font-size: 16px;
-                        font-style: normal;
-                        font-weight: 400;
-                        line-height: 24px;
-                        letter-spacing: 0;
-                      }
-
-                      .wr-ptql-card.active .wr-ptql-links li a::before {
-                        content: "";
-                        position: absolute;
-                        left: 0;
-                        top: 50%;
-                        width: 12px;
-                        height: 12px;
-                        transform: translateY(-50%);
-                        background: url("https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg")
-                          no-repeat center center;
-                        background-size: contain;
-                      }
-                    }
-
-                    @media (max-width: 355px) {
-                      .wr-tabs {
-                        width: 100%;
-                      }
-                    }
-
-                    @media (min-width: 767px) and (max-width: 1224px) {
-                      .wr-ptql-decorative {
-                        width: 64px;
-                      }
-
-                      .wr-page-tab-quick-links {
-                        padding-top: 24px;
-                        padding-bottom: 24px;
-                      }
-
-                      .wr-title {
-                        font-size: 48px;
-                        margin-bottom: 32px;
-                      }
-
-                      .wr-tab-option {
-                        font-size: 18px;
-                      }
-
-                      .wr-ptql-container {
-                        grid-template-columns: repeat(2, 1fr);
-                      }
-
-                      .wr-cta-wrapper.nth {
-                        justify-content: flex-start;
-                      }
-
-                      .wr-support-layout {
-                        grid-template-columns: repeat(2, 1fr);
-                        grid-template-rows: auto auto;
-                      }
-
-                      .wr-support-layout .wr-ptql-card:nth-child(1) {
-                        grid-column: 1;
-                        grid-row: 1;
-                      }
-
-                      .wr-support-layout .wr-ptql-card:nth-child(2) {
-                        grid-column: 2;
-                        grid-row: 1;
-                      }
-
-                      .wr-support-layout .wr-ptql-card:nth-child(3) {
-                        grid-column: 1 / -1;
-                        grid-row: 2;
-                      }
-
-                      .wr-ptql-card h2 {
-                        font-size: 32px;
-                      }
-
-                      .wr-ptql-links li {
-                        font-size: 18px;
-                        line-height: 20px;
-                      }
-                    }
-
-                    /* Desktop view */
-                    @media (min-width: 1225px) {
-                      .wr-support-layout {
-                        grid-template-columns: repeat(3, 1fr);
-                      }
-                    }
-                  </style>
-
-                  <div class="container wr-container">
-                    <h1 class="wr-title" id="main-heading">
-                      What are you looking for today?
-                    </h1>
-
-                    <div
-                      class="wr-tab-container"
-                      role="tablist"
-                      aria-labelledby="main-heading"
-                    >
-                      <div class="wr-tabs">
-                        <button
-                          id="wr-productsTab"
-                          class="wr-tab-option active"
-                          type="button"
-                          role="tab"
-                          aria-selected="true"
-                          aria-controls="productsContent"
-                          tabindex="0"
-                          title="View products and services"
-                          onclick="showProducts()"
-                        >
-                          Products
-                        </button>
-                        <button
-                          id="supportTab"
-                          class="wr-tab-option"
-                          type="button"
-                          role="tab"
-                          aria-selected="false"
-                          aria-controls="supportContent"
-                          tabindex="0"
-                          title="View support and help options"
-                          onclick="showSupport()"
-                        >
-                          Support
-                        </button>
-                      </div>
-                    </div>
-
-                    <!-- Products Tab Content -->
-                    <div
-                      id="productsContent"
-                      class="wr-tab-content active"
-                      role="tabpanel"
-                      aria-labelledby="wr-productsTab"
-                      tabindex="-1"
-                    >
-                      <div class="wr-ptql-container">
-                        <article
-                          class="wr-ptql-card"
-                          aria-labelledby="banking-heading"
-                        >
-                          <h2
-                            id="banking-heading"
-                            tabindex="-1"
-                            aria-expanded="false"
-                            aria-controls="banking-links"
-                          >
-                            <img
-                              class="wr-ptql-decorative"
-                              src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-1.svg"
-                              alt="decorative"
-                              role="img"
-                            />
-                            Banking
-                            <img
-                              src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
-                              alt=""
-                              class="wr-ptql-arrow"
-                              role="presentation"
-                              aria-hidden="true"
-                            />
-                          </h2>
-                          <ul
-                            class="wr-ptql-links"
-                            id="banking-links"
-                            role="list"
-                            aria-labelledby="banking-heading"
-                          >
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/current-accounts.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="banking-heading"
-                                >Current accounts</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/current-accounts/childrens-accounts.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="banking-heading"
-                                >Child and teen accounts</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/current-accounts/joint-account.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="banking-heading"
-                                >Joint accounts</a
-                              >
-                            </li>
-                          </ul>
-                        </article>
-
-                        <article
-                          class="wr-ptql-card"
-                          aria-labelledby="mortgages-heading"
-                        >
-                          <h2
-                            id="mortgages-heading"
-                            tabindex="-1"
-                            aria-expanded="false"
-                            aria-controls="mortgages-links"
-                          >
-                            <img
-                              class="wr-ptql-decorative"
-                              src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-house.svg"
-                              alt="decorative"
-                              role="img"
-                            />
-                            Mortgages
-                            <img
-                              src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
-                              alt=""
-                              class="wr-ptql-arrow"
-                              role="presentation"
-                              aria-hidden="true"
-                            />
-                          </h2>
-                          <ul
-                            class="wr-ptql-links"
-                            id="mortgages-links"
-                            role="list"
-                            aria-labelledby="mortgages-heading"
-                          >
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/mortgages/mortgage-calculators/how-much-can-i-borrow.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="mortgages-heading"
-                                >How much can you borrow?</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/mortgages/first-time-buyers.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="mortgages-heading"
-                                >First time buyers</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/mortgages/remortgage-to-natwest.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="mortgages-heading"
-                                >Remortgage</a
-                              >
-                            </li>
-                          </ul>
-                        </article>
-
-                        <article
-                          class="wr-ptql-card"
-                          aria-labelledby="savings-heading"
-                        >
-                          <h2
-                            id="savings-heading"
-                            tabindex="-1"
-                            aria-expanded="false"
-                            aria-controls="savings-links"
-                          >
-                            <img
-                              class="wr-ptql-decorative"
-                              src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-saving-money.svg"
-                              alt="decorative"
-                              role="img"
-                            />
-                            Savings
-                            <img
-                              src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
-                              alt=""
-                              class="wr-ptql-arrow"
-                              role="presentation"
-                              aria-hidden="true"
-                            />
-                          </h2>
-                          <ul
-                            class="wr-ptql-links"
-                            id="savings-links"
-                            role="list"
-                            aria-labelledby="savings-heading"
-                          >
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/savings.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="savings-heading"
-                                >Savings accounts</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/savings/isa-overview.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="savings-heading"
-                                >ISAs</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/savings/first-saver.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="savings-heading"
-                                >Children's savings</a
-                              >
-                            </li>
-                          </ul>
-                        </article>
-
-                        <article
-                          class="wr-ptql-card"
-                          aria-labelledby="borrowing-heading"
-                        >
-                          <h2
-                            id="borrowing-heading"
-                            tabindex="-1"
-                            aria-expanded="false"
-                            aria-controls="borrowing-links"
-                          >
-                            <img
-                              class="wr-ptql-decorative"
-                              src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-bank-cards.svg"
-                              alt="decorative"
-                              role="img"
-                            />
-                            Borrowing
-                            <img
-                              src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
-                              alt=""
-                              class="wr-ptql-arrow"
-                              role="presentation"
-                              aria-hidden="true"
-                            />
-                          </h2>
-                          <ul
-                            class="wr-ptql-links"
-                            id="borrowing-links"
-                            role="list"
-                            aria-labelledby="borrowing-heading"
-                          >
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/credit-cards.html?intcam=PC_HP-P4-1-ALL-DEF"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="borrowing-heading"
-                                >Credit cards</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/loans.html?intcam=PC_HP-P4-1-ALL-DEF"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="borrowing-heading"
-                                >Loans</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/current-accounts/overdrafts.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="borrowing-heading"
-                                >Overdrafts</a
-                              >
-                            </li>
-                          </ul>
-                        </article>
-                      </div>
-                    </div>
-
-                    <!-- Support Tab Content -->
-                    <div
-                      id="supportContent"
-                      class="wr-tab-content"
-                      role="tabpanel"
-                      aria-labelledby="supportTab"
-                      tabindex="-1"
-                      aria-hidden="true"
-                    >
-                      <div class="wr-ptql-container wr-support-layout">
-                        <article
-                          class="wr-ptql-card"
-                          aria-labelledby="banking-help-heading"
-                        >
-                          <h2
-                            id="banking-help-heading"
-                            tabindex="-1"
-                            aria-expanded="false"
-                            aria-controls="banking-help-links"
-                          >
-                            <img
-                              class="wr-ptql-decorative"
-                              src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-signpost.svg"
-                              alt="decorative"
-                              role="img"
-                            />
-                            Help with your banking
-                            <img
-                              src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
-                              alt=""
-                              class="wr-ptql-arrow"
-                              role="presentation"
-                              aria-hidden="true"
-                            />
-                          </h2>
-                          <ul
-                            class="wr-ptql-links"
-                            id="banking-help-links"
-                            role="list"
-                            aria-labelledby="banking-help-heading"
-                          >
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/banking-with-natwest/register-for-online-banking.html?q=lost+or+stolen+cards&brand=NATWEST&section=personal&enginekey=********************"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="banking-help-heading"
-                                >Register for Online Banking</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/support-centre/banking-from-home/login-help.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="banking-help-heading"
-                                >Login help</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/search-results/locator.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="banking-help-heading"
-                                >Branch locator</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/support-centre/banking-from-home/make-payments.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="banking-help-heading"
-                                >Make a payment</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/support-centre/view-or-change-your-details.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="banking-help-heading"
-                                >Change my details</a
-                              >
-                            </li>
-                            <div class="wr-cta-wrapper">
-                              <a
-                                href="https://www.natwest.com/banking-with-natwest.html"
-                                class="wr-cta-button"
-                                role="button"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Learn more about banking with us - opens in new window"
-                              >
-                                Banking with us
-                              </a>
-                            </div>
-                          </ul>
-                        </article>
-
-                        <article
-                          class="wr-ptql-card"
-                          aria-labelledby="security-help-heading"
-                        >
-                          <h2
-                            id="security-help-heading"
-                            tabindex="-1"
-                            aria-expanded="false"
-                            aria-controls="security-help-links"
-                          >
-                            <img
-                              class="wr-ptql-decorative"
-                              src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-prevention.svg"
-                              alt="decorative"
-                              role="img"
-                            />
-                            Support and Security
-                            <img
-                              src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
-                              alt="decorative"
-                              class="wr-ptql-arrow"
-                              role="presentation"
-                              aria-hidden="true"
-                            />
-                          </h2>
-                          <ul
-                            class="wr-ptql-links"
-                            id="security-help-links"
-                            role="list"
-                            aria-labelledby="security-help-heading"
-                          >
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/support-centre/help-with-your-product.html?q=lost+or+stolen+cards&brand=NATWEST&section=personal&enginekey=********************"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="security-help-heading"
-                                >Product help</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/support-centre/help-with-your-card/card-functionality/how-do-i-report-a-lost-stolen-or-damaged-debit-card-and-order-a-replacement.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="security-help-heading"
-                                >Lost or stolen card</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/fraud-and-security/report-fraud.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="security-help-heading"
-                                >Report fraud</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/fraud-and-security/fraud-guide.html#What"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="security-help-heading"
-                                >Latest scams</a
-                              >
-                            </li>
-                            <div class="wr-cta-wrapper">
-                              <a
-                                href="https://www.natwest.com/support-centre.html"
-                                class="wr-cta-button"
-                                role="button"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Visit our Support Centre - opens in new window"
-                              >
-                                Visit our Support Centre
-                              </a>
-                            </div>
-                          </ul>
-                        </article>
-
-                        <article
-                          class="wr-ptql-card"
-                          aria-labelledby="life-help-heading"
-                        >
-                          <h2
-                            id="life-help-heading"
-                            tabindex="-1"
-                            aria-expanded="false"
-                            aria-controls="life-help-links"
-                          >
-                            <img
-                              class="wr-ptql-decorative"
-                              src="https://www.natwest.com/content/dam/natwest/assets/prototyping/nws-pers-life-ring.svg"
-                              alt="decorative"
-                              role="img"
-                            />
-                            Life and family
-                            <img
-                              src="https://www.natwest.com/content/dam/natwest/assets/shared/icons/icons-web-purple-chevron-right.svg"
-                              alt=""
-                              class="wr-ptql-arrow"
-                              role="presentation"
-                              aria-hidden="true"
-                            />
-                          </h2>
-                          <ul
-                            class="wr-ptql-links"
-                            id="life-help-links"
-                            role="list"
-                            aria-labelledby="life-help-heading"
-                          >
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/life-moments/bereavement.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="life-help-heading"
-                                >Bereavement support</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/life-moments/Struggling-financially.html?q=lost+or+stolen+cards&brand=NATWEST&section=personal&enginekey=********************"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="life-help-heading"
-                                >Struggling financially</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/support-centre/view-or-change-your-details/add-a-party-to-an-account/registering-a-power-of-attorney.html?q=power+of+attorney&brand=NATWEST&section=personal&enginekey=********************"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="life-help-heading"
-                                >Register a power of attorney</a
-                              >
-                            </li>
-                            <li role="listitem">
-                              <a
-                                href="https://www.natwest.com/financial-health-check.html?q=get+a+financial+health+check&brand=NATWEST&section=personal&enginekey=wYnTjXmfABgYKBU6GMG3#what"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-describedby="life-help-heading"
-                                >Get a financial health check</a
-                              >
-                            </li>
-                            <div class="wr-cta-wrapper">
-                              <a
-                                href="https://www.natwest.com/life-moments.html"
-                                class="wr-cta-button"
-                                role="button"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Discover more ways we can help - opens in new window"
-                              >
-                                More ways we can help
-                              </a>
-                            </div>
-                          </ul>
-                        </article>
-                      </div>
-                    </div>
-
-                    <!-- Screen reader announcements -->
-                    <div
-                      aria-live="polite"
-                      aria-atomic="true"
-                      class="sr-only"
-                      id="tab-announcements"
-                    ></div>
-                  </div>
-                </section>
-              </section>
-              <!-- prototyping code ends -->
+</body>
+</html>
