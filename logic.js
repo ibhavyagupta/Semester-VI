@@ -674,6 +674,25 @@
                       }
                     });
 
+// Accessibility: Enable keyboard access without addEventListener
+const wrHeaders = document.querySelectorAll(".wr-ptql-card h2");
+
+// Ensure headers are focusable and behave like buttons
+for (let i = 0; i < wrHeaders.length; i++) {
+  wrHeaders[i].setAttribute("tabindex", "0");
+  wrHeaders[i].setAttribute("role", "button");
+
+  // Inline keyboard handling using onkeydown property
+  wrHeaders[i].onkeydown = function (e) {
+    const key = e.key || e.keyCode;
+    if (key === "Enter" || key === " " || key === "Spacebar" || key === 13 || key === 32) {
+      e.preventDefault(); // prevent scroll on Space
+      toggleAccordion(this);
+    }
+  };
+}
+
+
                     window.addEventListener("orientationchange", () => {
                       setTimeout(() => {
                         if (window.innerWidth <= 767) {
