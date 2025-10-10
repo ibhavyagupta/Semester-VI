@@ -68,30 +68,7 @@
   }
 }
 
-                    window.addEventListener("resize", () => {
-                      if (window.innerWidth > 767) {
-                        const allCards =
-                          document.querySelectorAll(".wr-ptql-card");
-                        allCards.forEach((card) => {
-                          card.classList.remove("active");
-                          const links = card.querySelector(".wr-ptql-links");
-                          if (links) {
-                            links.style.maxHeight = "";
-                          }
-                        });
-                      } else {
-                        const activeCards = document.querySelectorAll(
-                          ".wr-ptql-card.active"
-                        );
-                        activeCards.forEach((card) => {
-                          const links = card.querySelector(".wr-ptql-links");
-                          if (links) {
-                            const scrollHeight = links.scrollHeight;
-                            links.style.maxHeight = scrollHeight + "px";
-                          }
-                        });
-                      }
-                    });
+            
 
 // Accessibility: Enable keyboard access without addEventListener
 const wrHeaders = document.querySelectorAll(".wr-ptql-card h2");
@@ -112,20 +89,51 @@ for (let i = 0; i < wrHeaders.length; i++) {
 }
 
 
-                    window.addEventListener("orientationchange", () => {
-                      setTimeout(() => {
-                        if (window.innerWidth <= 767) {
-                          const activeCards = document.querySelectorAll(
-                            ".wr-ptql-card.active"
-                          );
-                          activeCards.forEach((card) => {
-                            const links = card.querySelector(".wr-ptql-links");
-                            if (links) {
-                              const scrollHeight = links.scrollHeight;
-                              links.style.maxHeight = scrollHeight + "px";
-                            }
-                          });
-                        }
-                      }, 100);
-                    });
+                   
+// Accessibility improvement: skip links in collapsed cards when tabbing
+const wrHeaders = document.querySelectorAll(".wr-ptql-card h2");
+
+for (let i = 0; i < wrHeaders.length; i++) {
+  const header = wrHeaders[i];
+  header.setAttribute("tabindex", "0");
+  header.setAttribute("role", "button");
+
+  // Handle Enter/Space for toggling (without addEventListener)
+  header.onkeydown = function (e) {
+    const key = e.key || e.keyCode;
+    if (key === "Enter" || key === " " || key === "Spacebar" || key === 13 || key === 32) {
+      e.preventDefault();
+      toggleAccordion(this);
+      updateLinkFocusState(); // ensure tab behavior updates after toggle
+    }
+  };
+}
+
+// Function to disable/enable tabbing for collapsed cards
+function updateLinkFocusState() {
+  const cards = document.querySelectorAll(".wr-ptql-card");
+  for (let i = 0; i < cards.length; i++) {
+    const links = cards[i].querySelectorAll(".wr-ptql-links a");
+    const isExpanded = cards[i].classList.contains("active");
+    for (let j = 0; j < links.length; j++) {
+      if (isExpanded && window.innerWidth <= 767) {
+        links[j].setAttribute("tabindex", "0"); // focusable
+      } else {
+        links[j].setAttribute("tabindex", "-1"); // skip when collapsed
+      }
+    }
+  }
+}
+
+// Initialize tab states on page load
+updateLinkFocusState();
+
+// Reapply tab state on resize or orientation change (to keep behavior consistent)
+window.onresize = function () {
+  updateLinkFocusState();
+};
+window.onorientationchange = function () {
+  setTimeout(updateLinkFocusState, 200);
+};
+
                 </script>
