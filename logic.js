@@ -1,4 +1,4 @@
-<div class="container wr-container">
+ <div class="container wr-container">
                   <h1 class="wr-title" id="main-heading">
                     What are you looking for today?
                   </h1>
@@ -56,6 +56,7 @@
                           tabindex="-1"
                           aria-expanded="false"
                           aria-controls="banking-links"
+                          onclick="toggleAccordion(this)"
                         >
                           <img
                             class="wr-ptql-decorative"
@@ -117,6 +118,7 @@
                           tabindex="-1"
                           aria-expanded="false"
                           aria-controls="mortgages-links"
+                          onclick="toggleAccordion(this)"
                         >
                           <img
                             class="wr-ptql-decorative"
@@ -178,6 +180,7 @@
                           tabindex="-1"
                           aria-expanded="false"
                           aria-controls="savings-links"
+                          onclick="toggleAccordion(this)"
                         >
                           <img
                             class="wr-ptql-decorative"
@@ -239,6 +242,8 @@
                           tabindex="-1"
                           aria-expanded="false"
                           aria-controls="borrowing-links"
+                          onclick="toggleAccordion(this)"
+
                         >
                           <img
                             class="wr-ptql-decorative"
@@ -312,6 +317,8 @@
                           tabindex="-1"
                           aria-expanded="false"
                           aria-controls="banking-help-links"
+                          onclick="toggleAccordion(this)"
+
                         >
                           <img
                             class="wr-ptql-decorative"
@@ -403,6 +410,8 @@
                           tabindex="-1"
                           aria-expanded="false"
                           aria-controls="security-help-links"
+                          onclick="toggleAccordion(this)"
+
                         >
                           <img
                             class="wr-ptql-decorative"
@@ -485,6 +494,8 @@
                           tabindex="-1"
                           aria-expanded="false"
                           aria-controls="life-help-links"
+                          onclick="toggleAccordion(this)"
+
                         >
                           <img
                             class="wr-ptql-decorative"
@@ -605,31 +616,38 @@
                       document.getElementById("supportContent");
 
                     const cards = document.querySelectorAll(".wr-ptql-card h2");
-                    cards.forEach((header) => {
-                      header.addEventListener("click", () => {
-                        if (window.innerWidth <= 767) {
-                          const card = header.parentElement;
-                          const links = card.querySelector(".wr-ptql-links");
-                          const isCurrentlyActive =
-                            card.classList.contains("active");
+                    
 
-                          if (isCurrentlyActive) {
-                            card.classList.remove("active");
-                            links.style.maxHeight = "0px";
-                          } else {
-                            card.classList.add("active");
-                            const scrollHeight = links.scrollHeight;
-                            links.style.maxHeight = scrollHeight + "px";
+                  function toggleAccordion(headerElement) {
+  if (window.innerWidth <= 767) {
+    const card = headerElement.parentElement;
+    const links = card.querySelector(".wr-ptql-links");
+    
+    // Add null check for safety
+    if (!links) return;
+    
+    const isCurrentlyActive = card.classList.contains("active");
 
-                            setTimeout(() => {
-                              if (card.classList.contains("active")) {
-                                links.style.maxHeight = "auto";
-                              }
-                            }, 400);
-                          }
-                        }
-                      });
-                    });
+    if (isCurrentlyActive) {
+      card.classList.remove("active");
+      links.style.maxHeight = "0px";
+      // Update ARIA attribute
+      headerElement.setAttribute('aria-expanded', 'false');
+    } else {
+      card.classList.add("active");
+      const scrollHeight = links.scrollHeight;
+      links.style.maxHeight = scrollHeight + "px";
+      // Update ARIA attribute
+      headerElement.setAttribute('aria-expanded', 'true');
+
+      setTimeout(() => {
+        if (card.classList.contains("active")) {
+          links.style.maxHeight = "auto";
+        }
+      }, 400);
+    }
+  }
+}
 
                     window.addEventListener("resize", () => {
                       if (window.innerWidth > 767) {
