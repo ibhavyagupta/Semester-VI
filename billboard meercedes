@@ -1151,162 +1151,207 @@
                     id="tab-announcements"
                   ></div>
                 </div>
-                <script>
-                  function showProducts() {
-                    const productsTab =
-                      document.getElementById("wr-productsTab");
-                    const supportTab = document.getElementById("supportTab");
-                    const productsContent =
-                      document.getElementById("productsContent");
-                    const supportContent =
-                      document.getElementById("supportContent");
-                    productsTab.classList.add("active");
-                    supportTab.classList.remove("active");
-                    productsContent.classList.add("active");
-                    supportContent.classList.remove("active");
-                  }
+<script>
+  function showProducts() {
+    const productsTab = document.getElementById("wr-productsTab");
+    const supportTab = document.getElementById("supportTab");
+    const productsContent = document.getElementById("productsContent");
+    const supportContent = document.getElementById("supportContent");
 
-                  function showSupport() {
-                    const productsTab =
-                      document.getElementById("wr-productsTab");
-                    const supportTab = document.getElementById("supportTab");
-                    const productsContent =
-                      document.getElementById("productsContent");
-                    const supportContent =
-                      document.getElementById("supportContent");
-                    supportTab.classList.add("active");
-                    productsTab.classList.remove("active");
-                    supportContent.classList.add("active");
-                    productsContent.classList.remove("active");
-                  }
+    productsTab.classList.add("active");
+    supportTab.classList.remove("active");
+    productsContent.classList.add("active");
+    supportContent.classList.remove("active");
 
-                  const productsTab = document.getElementById("wr-productsTab");
-                  const supportTab = document.getElementById("supportTab");
-                  const productsContent =
-                    document.getElementById("productsContent");
-                  const supportContent =
-                    document.getElementById("supportContent");
-                  const cards = document.querySelectorAll(".wr-ptql-card h2");
+    // Accessibility: Focus the active panel
+    productsContent.setAttribute("tabindex", "-1");
+    productsContent.focus();
+  }
 
-                  // Function to manage link tabindex based on card state
-                  function updateLinkTabindex(card, isActive) {
-                    const links = card.querySelectorAll(
-                      ".wr-ptql-links a, .wr-ptql-links button, .wr-ptql-links [tabindex]"
-                    );
-                    links.forEach((link) => {
-                      if (isActive) {
-                        link.removeAttribute("tabindex");
-                      } else {
-                        link.setAttribute("tabindex", "-1");
-                      }
-                    });
-                  }
+  function showSupport() {
+    const productsTab = document.getElementById("wr-productsTab");
+    const supportTab = document.getElementById("supportTab");
+    const productsContent = document.getElementById("productsContent");
+    const supportContent = document.getElementById("supportContent");
 
-                  function toggleAccordion(headerElement) {
-                    if (window.innerWidth <= 767) {
-                      const card = headerElement.parentElement;
-                      const links = card.querySelector(".wr-ptql-links");
+    supportTab.classList.add("active");
+    productsTab.classList.remove("active");
+    supportContent.classList.add("active");
+    productsContent.classList.remove("active");
 
-                      if (!links) return;
+    // Accessibility: Focus the active panel
+    supportContent.setAttribute("tabindex", "-1");
+    supportContent.focus();
+  }
 
-                      const isCurrentlyActive =
-                        card.classList.contains("active");
+  // --- Accessibility trap logic (pure functions, no event listeners) ---
+  function trapFocusWithinTabs() {
+    const container = document.querySelector(".wr-container");
+    if (!container) return;
 
-                      if (isCurrentlyActive) {
-                        card.classList.remove("active");
-                        links.style.maxHeight = "0px";
-                        headerElement.setAttribute("aria-expanded", "false");
-                        // Remove links from tab order when collapsed
-                        updateLinkTabindex(card, false);
-                      } else {
-                        card.classList.add("active");
-                        const scrollHeight = links.scrollHeight;
-                        links.style.maxHeight = scrollHeight + "px";
-                        headerElement.setAttribute("aria-expanded", "true");
-                        // Add links back to tab order when expanded
-                        updateLinkTabindex(card, true);
+    const focusableElements = container.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
 
-                        setTimeout(() => {
-                          if (card.classList.contains("active")) {
-                            links.style.maxHeight = "auto";
-                          }
-                        }, 400);
-                      }
-                    }
-                  }
+    if (focusableElements.length === 0) return;
 
-                  window.addEventListener("resize", () => {
-                    if (window.innerWidth > 767) {
-                      const allCards =
-                        document.querySelectorAll(".wr-ptql-card");
-                      allCards.forEach((card) => {
-                        card.classList.remove("active");
-                        const links = card.querySelector(".wr-ptql-links");
-                        if (links) {
-                          links.style.maxHeight = "";
-                        }
-                        // Reset tabindex for desktop view
-                        updateLinkTabindex(card, true);
-                      });
-                    } else {
-                      // Initialize tabindex for mobile view
-                      const allCards =
-                        document.querySelectorAll(".wr-ptql-card");
-                      allCards.forEach((card) => {
-                        const isActive = card.classList.contains("active");
-                        updateLinkTabindex(card, isActive);
-                      });
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
 
-                      const activeCards = document.querySelectorAll(
-                        ".wr-ptql-card.active"
-                      );
-                      activeCards.forEach((card) => {
-                        const links = card.querySelector(".wr-ptql-links");
-                        if (links) {
-                          const scrollHeight = links.scrollHeight;
-                          links.style.maxHeight = scrollHeight + "px";
-                        }
-                      });
-                    }
-                  });
+    // Assign inline keyboard handler directly
+    container.onkeydown = function (e) {
+      const key = e.key || e.keyCode;
+      if (key === "Tab" || key === 9) {
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusable) {
+            e.preventDefault();
+            lastFocusable.focus();
+          }
+        } else {
+          if (document.activeElement === lastFocusable) {
+            e.preventDefault();
+            firstFocusable.focus();
+          }
+        }
+      }
+    };
+  }
 
-                
+  // --- Accordion + responsive behavior ---
+  const productsTab = document.getElementById("wr-productsTab");
+  const supportTab = document.getElementById("supportTab");
+  const productsContent = document.getElementById("productsContent");
+  const supportContent = document.getElementById("supportContent");
+  const cards = document.querySelectorAll(".wr-ptql-card h2");
 
-                  // Accessibility: Enable keyboard access
-                  const wrHeaders =
-                    document.querySelectorAll(".wr-ptql-card h2");
+  function updateLinkTabindex(card, isActive) {
+    const links = card.querySelectorAll(
+      ".wr-ptql-links a, .wr-ptql-links button, .wr-ptql-links [tabindex]"
+    );
+    links.forEach((link) => {
+      if (isActive) {
+        link.removeAttribute("tabindex");
+      } else {
+        link.setAttribute("tabindex", "-1");
+      }
+    });
+  }
 
-                  // Initialize tabindex for all cards on page load
-                  document.addEventListener("DOMContentLoaded", () => {
-                    const allCards = document.querySelectorAll(".wr-ptql-card");
-                    allCards.forEach((card) => {
-                      if (window.innerWidth <= 767) {
-                        const isActive = card.classList.contains("active");
-                        updateLinkTabindex(card, isActive);
-                      }
-                    });
-                  });
+  function toggleAccordion(headerElement) {
+    if (window.innerWidth <= 767) {
+      const card = headerElement.parentElement;
+      const links = card.querySelector(".wr-ptql-links");
+      if (!links) return;
+      const isCurrentlyActive = card.classList.contains("active");
+      if (isCurrentlyActive) {
+        card.classList.remove("active");
+        links.style.maxHeight = "0px";
+        headerElement.setAttribute("aria-expanded", "false");
+        updateLinkTabindex(card, false);
+      } else {
+        card.classList.add("active");
+        const scrollHeight = links.scrollHeight;
+        links.style.maxHeight = scrollHeight + "px";
+        headerElement.setAttribute("aria-expanded", "true");
+        updateLinkTabindex(card, true);
+        setTimeout(function () {
+          if (card.classList.contains("active")) {
+            links.style.maxHeight = "auto";
+          }
+        }, 400);
+      }
+    }
+  }
 
-                  // Ensure headers are focusable and behave like buttons
-                  for (let i = 0; i < wrHeaders.length; i++) {
-                    wrHeaders[i].setAttribute("tabindex", "0");
-                    wrHeaders[i].setAttribute("role", "button");
+  // Inline resize handler
+  window.onresize = function () {
+    if (window.innerWidth > 767) {
+      const allCards = document.querySelectorAll(".wr-ptql-card");
+      allCards.forEach(function (card) {
+        card.classList.remove("active");
+        const links = card.querySelector(".wr-ptql-links");
+        if (links) {
+          links.style.maxHeight = "";
+        }
+        updateLinkTabindex(card, true);
+      });
+    } else {
+      const allCards = document.querySelectorAll(".wr-ptql-card");
+      allCards.forEach(function (card) {
+        const isActive = card.classList.contains("active");
+        updateLinkTabindex(card, isActive);
+      });
+      const activeCards = document.querySelectorAll(".wr-ptql-card.active");
+      activeCards.forEach(function (card) {
+        const links = card.querySelector(".wr-ptql-links");
+        if (links) {
+          const scrollHeight = links.scrollHeight;
+          links.style.maxHeight = scrollHeight + "px";
+        }
+      });
+    }
+  };
 
-                    // Inline keyboard handling using onkeydown property
-                    wrHeaders[i].onkeydown = function (e) {
-                      const key = e.key || e.keyCode;
-                      if (
-                        key === "Enter" ||
-                        key === " " ||
-                        key === "Spacebar" ||
-                        key === 13 ||
-                        key === 32
-                      ) {
-                        e.preventDefault();
-                        toggleAccordion(this);
-                      }
-                    };
-                  }
-                </script>
+  // --- Initialize everything safely for Adobe Target ---
+  (function initForTarget() {
+    // Retry until DOM elements are injected
+    const check = setInterval(function () {
+      const container = document.querySelector(".wr-container");
+      const tabsReady =
+        document.getElementById("wr-productsTab") &&
+        document.getElementById("supportTab");
+
+      if (container && tabsReady) {
+        clearInterval(check);
+
+        // Focus trap init
+        trapFocusWithinTabs();
+
+        // Make headers focusable and accessible
+        const wrHeaders = document.querySelectorAll(".wr-ptql-card h2");
+        for (let i = 0; i < wrHeaders.length; i++) {
+          const header = wrHeaders[i];
+          header.setAttribute("tabindex", "0");
+          header.setAttribute("role", "button");
+
+          // Inline keyboard handler
+          header.onkeydown = function (e) {
+            const key = e.key || e.keyCode;
+            if (
+              key === "Enter" ||
+              key === " " ||
+              key === "Spacebar" ||
+              key === 13 ||
+              key === 32
+            ) {
+              e.preventDefault();
+              toggleAccordion(this);
+            }
+          };
+        }
+
+        // Initialize accordion tabindexes for current view
+        const allCards = document.querySelectorAll(".wr-ptql-card");
+        for (let i = 0; i < allCards.length; i++) {
+          const card = allCards[i];
+          const isActive = card.classList.contains("active");
+          if (window.innerWidth <= 767) {
+            updateLinkTabindex(card, isActive);
+          } else {
+            updateLinkTabindex(card, true);
+          }
+        }
+
+        // Focus the first active content panel
+        const activePanel = document.querySelector(".wr-content.active");
+        if (activePanel) {
+          activePanel.setAttribute("tabindex", "-1");
+          activePanel.focus();
+        }
+      }
+    }, 100);
+  })();
+</script>
+
               </section>
               <!-- prototyping code ends -->
