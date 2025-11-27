@@ -1,188 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Next steps shelf</title>
+  <meta charset="UTF-8" />
+  <title>Next steps shelf</title>
+  <style>
+    :root {
+      --brand-pink: #ff1973;
+      --brand-purple: #5a1a9c;
+      --bg-lilac: #f7f3ff;
+      --card-bg: #ffffff;
+      --text-main: #3b225a;
+      --text-muted: #6b5a82;
+      --border-radius-lg: 24px;
+    }
 
-<style>
-:root {
-  --brand-purple: #5a1a9c;
-  --brand-pink: #ff1973;
-  --bg-lilac: #f7f3ff;
-  --card-bg: #fff;
-  --card-bg-soft: #faf6ff;
-  --text-main: #3b225a;
-  --text-muted: #6b5a82;
-  --radius: 24px;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  padding: 40px;
-  font-family: system-ui, sans-serif;
-  background: white;
-  color: var(--text-main);
-}
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: #ffffff;
+      color: var(--text-main);
+    }
 
-.next-steps {
-  background: var(--bg-lilac);
-  border-radius: 32px;
-  padding: 50px 32px 32px;
-  position: relative;
-  max-width: 1120px;
-  margin: 0 auto;
-}
+    .next-steps {
+      background: var(--bg-lilac);
+      border-radius: 32px;
+      padding: 36px 32px 32px;
+      position: relative;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
 
-/* ------------------------------ */
-/*   NEXT STEPS BACKGROUND IMAGE  */
-/* ------------------------------ */
+    .next-steps__label {
+      position: absolute;
+      top: -20px;
+      left: 16px;
+      background: var(--brand-pink);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.6rem;
+      padding: 8px 24px;
+      border-radius: 8px 8px 24px 8px;
+      box-shadow: 0 8px 14px rgba(0, 0, 0, 0.12);
+      letter-spacing: 0.02em;
+    }
 
-.next-steps__label {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: white;
-  display: inline-block;
-  padding: 12px 28px;
-  position: absolute;
-  top: -30px;
-  left: 24px;
+    .next-steps__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
 
-  /* 👇 Replace with your Figma background highlight image */
-  background-image: url("https://via.placeholder.com/280x80/ff1a73/ffffff?text=Highlight");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+    /* Cards */
 
-  border-radius: 14px;
-  transform: rotate(-2deg);
-}
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius-lg);
+      padding: 24px 24px 28px;
+      box-shadow: 0 10px 30px rgba(49, 5, 96, 0.08);
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+    }
 
-.next-steps__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
+    .card__icon {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: var(--brand-purple);
+    }
 
-/* ------------------------------ */
-/*            CARDS               */
-/* ------------------------------ */
+    .card__title {
+      font-size: 1.3rem;
+      margin: 0 0 12px;
+      color: var(--brand-purple);
+    }
 
-.card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  padding: 24px 24px 28px;
-  box-shadow: 0 10px 30px rgba(49, 5, 96, 0.06);
-  display: flex;
-  flex-direction: column;
-  border: 2px solid transparent;
-}
+    .card__body {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
 
-.card--primary {
-  background: var(--card-bg-soft);
-  border-color: var(--brand-purple);
-}
+    .card__spacer {
+      flex: 1;
+    }
 
-.card--secondary-a {
-  border-top: 4px solid var(--brand-pink);
-}
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: none;
+      background: var(--brand-purple);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.98rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+      box-shadow: 0 10px 24px rgba(49, 5, 96, 0.25);
+    }
 
-.card--secondary-b {
-  border-top: 4px solid var(--brand-purple);
-}
+    .btn-primary:hover {
+      background: #49157f;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(49, 5, 96, 0.3);
+    }
 
-.card__icon {
-  font-size: 26px;
-  margin-bottom: 16px;
-  color: var(--brand-purple);
-}
+    .card__link {
+      font-weight: 600;
+      text-decoration: underline;
+      color: var(--brand-purple);
+      font-size: 0.96rem;
+    }
 
-.card__title {
-  font-size: 1.3rem;
-  margin: 0 0 12px;
-  color: var(--brand-purple);
-}
+    .card__link:hover {
+      text-decoration-thickness: 2px;
+    }
 
-.card__body {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
+    /* M / L screens: first card full width, second row has 2 cards */
+    @media (min-width: 768px) {
+      .next-steps__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
 
-.card__spacer {
-  flex: 1;
-}
+      .card:first-child {
+        grid-column: span 2;
+      }
+    }
 
-.btn-primary {
-  display: inline-flex;
-  padding: 12px 28px;
-  border-radius: 999px;
-  background: var(--brand-purple);
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-}
+    /* XL screens: 3 cards in one row */
+    @media (min-width: 1200px) {
+      .next-steps__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
 
-.card__link {
-  font-weight: 600;
-  text-decoration: underline;
-  color: var(--brand-purple);
-}
-
-/* Responsive layout rules */
-
-@media (min-width: 768px) {
-  .next-steps__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .card:first-child {
-    grid-column: span 2;
-  }
-}
-
-@media (min-width: 1200px) {
-  .next-steps__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .card:first-child {
-    grid-column: span 1;
-  }
-}
-</style>
+      .card:first-child {
+        grid-column: span 1;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <section class="next-steps">
+    <div class="next-steps__label">Next steps</div>
 
-<section class="next-steps">
-  <div class="next-steps__label">Next steps</div>
+    <div class="next-steps__grid">
+      <!-- Card 1 -->
+      <article class="card">
+        <div class="card__icon">🏠</div>
+        <h3 class="card__title">
+          Get a personalised indication of how much you could borrow
+        </h3>
+        <p class="card__body">
+          An agreement in principle, which some estate agents require before
+          property viewings, will tell you exactly how much you could borrow and
+          how much it could cost each month. It won't affect your credit score
+          and typically takes 10 minutes.
+        </p>
+        <div class="card__spacer"></div>
+        <a href="#" class="btn-primary">Start an Agreement in Principle</a>
+      </article>
 
-  <div class="next-steps__grid">
+      <!-- Card 2 -->
+      <article class="card">
+        <div class="card__icon">🔄</div>
+        <h3 class="card__title">See the mortgage rates</h3>
+        <p class="card__body">
+          If you’re still just researching and want to understand the different
+          products we offer, monthly repayments and product fees, take a look
+          here.
+        </p>
+        <div class="card__spacer"></div>
+        <a href="#" class="card__link">See the mortgage rates</a>
+      </article>
 
-    <article class="card card--primary">
-      <div class="card__icon">🏠</div>
-      <h3 class="card__title">Get a personalised indication of how much you could borrow</h3>
-      <p class="card__body">An agreement in principle …</p>
-      <div class="card__spacer"></div>
-      <a href="#" class="btn-primary">Start an Agreement in Principle</a>
-    </article>
-
-    <article class="card card--secondary-a">
-      <div class="card__icon">🔄</div>
-      <h3 class="card__title">See the mortgage rates</h3>
-      <p class="card__body">If you're still researching …</p>
-      <div class="card__spacer"></div>
-      <a href="#" class="card__link">See the mortgage rates</a>
-    </article>
-
-    <article class="card card--secondary-b">
-      <div class="card__icon">📄</div>
-      <h3 class="card__title">Do some research</h3>
-      <p class="card__body">Mortgages can be complicated …</p>
-      <div class="card__spacer"></div>
-      <a href="#" class="card__link">See our mortgage guide</a>
-    </article>
-
-  </div>
-</section>
-
+      <!-- Card 3 -->
+      <article class="card">
+        <div class="card__icon">📄</div>
+        <h3 class="card__title">Do some research</h3>
+        <p class="card__body">
+          Mortgages can be complicated so if you need a little more information
+          about how it all works, take a look at our handy mortgage guide.
+        </p>
+        <div class="card__spacer"></div>
+        <a href="#" class="card__link">See our mortgage guide</a>
+      </article>
+    </div>
+  </section>
 </body>
 </html>
