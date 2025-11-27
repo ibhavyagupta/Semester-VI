@@ -1,472 +1,188 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Compare Credit Cards — Prototype</title>
+<meta charset="UTF-8">
+<title>Next steps shelf</title>
+
 <style>
-  :root{
-    --bg:#f3eaf6;
-    --panel:#fff;
-    --purple:#5b1f7a;
-    --light-purple:#f2e9f7;
-    --muted:#6b6b6b;
-    --pill-bg:#efe6f7;
-    --card-shadow: 0 6px 18px rgba(88,40,114,0.08);
-    --radius:14px;
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  }
-  html,body{height:100%;}
-  body{
-    margin:0;
-    background: linear-gradient(#f6eef7, #f0e6f6 60%);
-    color:#322;
-    -webkit-font-smoothing:antialiased;
-  }
+:root {
+  --brand-purple: #5a1a9c;
+  --brand-pink: #ff1973;
+  --bg-lilac: #f7f3ff;
+  --card-bg: #fff;
+  --card-bg-soft: #faf6ff;
+  --text-main: #3b225a;
+  --text-muted: #6b5a82;
+  --radius: 24px;
+}
 
-  .wr-container{
-    max-width:1180px;
-    margin:36px auto;
-    padding:32px;
-  }
+body {
+  margin: 0;
+  padding: 40px;
+  font-family: system-ui, sans-serif;
+  background: white;
+  color: var(--text-main);
+}
 
-  /* Header */
-  .wr-hero{
-    text-align:center;
-    padding:28px 16px;
-  }
-  .wr-hero h1{
-    font-size:42px;
-    margin:4px 0 8px;
-    color:var(--purple);
-    letter-spacing:0.2px;
-  }
-  .wr-hero p{color:var(--muted); margin:0 auto; max-width:720px;}
+.next-steps {
+  background: var(--bg-lilac);
+  border-radius: 32px;
+  padding: 50px 32px 32px;
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+}
 
-  /* Four features area */
-  .wr-features{
-    display:grid;
-    grid-template-columns: repeat(4,1fr);
-    gap:28px;
-    margin:28px 0 40px;
-  }
-  .wr-feature{
-    background:linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.9) 100%);
-    border-radius:18px;
-    padding:22px;
-    text-align:center;
-    box-shadow: var(--card-shadow);
-  }
-  .wr-illustration{
-    display:block;
-    width:100%;
-    height:120px;
-    margin-bottom:14px;
-  }
-  .wr-feature h3{margin:8px 0 6px; font-size:16px; color:var(--purple);}
-  .wr-feature p{color:var(--muted); font-size:14px; margin:0;}
+/* ------------------------------ */
+/*   NEXT STEPS BACKGROUND IMAGE  */
+/* ------------------------------ */
 
-  /* Filters panel */
-  .wr-filters-panel{
-    margin-top:18px;
-    background:var(--panel);
-    border-radius:16px;
-    padding:20px;
-    box-shadow: var(--card-shadow);
-  }
-  .wr-filters-title{
-    font-weight:700;
-    color:var(--purple);
-    font-size:20px;
-    text-align:center;
-    margin-bottom:12px;
-  }
-  .wr-filters{
-    display:flex;
-    gap:12px;
-    justify-content:center;
-    flex-wrap:wrap;
-    margin-bottom:8px;
-  }
-  .wr-filter-btn{
-    border: none;
-    background:var(--pill-bg);
-    padding:10px 18px;
-    border-radius:40px;
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    cursor:pointer;
-    transition:all .18s ease;
-    box-shadow: none;
-    font-weight:600;
-    color:var(--purple);
-  }
-  .wr-filter-btn:focus{outline:3px solid rgba(91,31,122,0.12);}
-  .wr-filter-btn.active{
-    background:linear-gradient(90deg,#4f1570,#6d2a9b);
-    color:white;
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(91,31,122,0.18);
-  }
-  .wr-filter-icon{
-    width:18px; height:18px; display:inline-block; flex:0 0 18px;
-  }
+.next-steps__label {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: white;
+  display: inline-block;
+  padding: 12px 28px;
+  position: absolute;
+  top: -30px;
+  left: 24px;
 
-  .wr-count{
-    text-align:center;
-    color:var(--muted);
-    font-size:14px;
-    margin-top:8px;
-  }
+  /* 👇 Replace with your Figma background highlight image */
+  background-image: url("https://via.placeholder.com/280x80/ff1a73/ffffff?text=Highlight");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 
-  /* Cards grid */
-  .wr-cards{
-    margin-top:22px;
-    display:grid;
-    gap:18px;
-  }
-  .wr-card{
-    background:var(--panel);
-    border-radius:16px;
-    padding:18px;
-    box-shadow:var(--card-shadow);
-    display:flex;
-    gap:16px;
-    align-items:center;
-  }
-  .wr-card .art{
-    width:84px; height:84px; flex:0 0 84px; border-radius:12px; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(180deg,#f4ecfa,#efe4f8);
-  }
-  .wr-card h4{margin:0 0 6px; color:var(--purple); font-size:16px;}
-  .wr-card p{margin:0;color:var(--muted); font-size:13px;}
+  border-radius: 14px;
+  transform: rotate(-2deg);
+}
 
-  /* mobile-only icons (hide on desktop) */
-  .mobile-icon{ display:none; width:36px; height:36px; }
+.next-steps__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
 
-  /* Layout breakpoints */
-  /* Large/XL: 4 columns */
-  @media (min-width:1024px){
-    .wr-cards{ grid-template-columns: repeat(4, 1fr); }
-    .wr-features{ grid-template-columns: repeat(4,1fr); }
-    .wr-filter-btn{ padding:12px 18px; }
+/* ------------------------------ */
+/*            CARDS               */
+/* ------------------------------ */
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px 24px 28px;
+  box-shadow: 0 10px 30px rgba(49, 5, 96, 0.06);
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+}
+
+.card--primary {
+  background: var(--card-bg-soft);
+  border-color: var(--brand-purple);
+}
+
+.card--secondary-a {
+  border-top: 4px solid var(--brand-pink);
+}
+
+.card--secondary-b {
+  border-top: 4px solid var(--brand-purple);
+}
+
+.card__icon {
+  font-size: 26px;
+  margin-bottom: 16px;
+  color: var(--brand-purple);
+}
+
+.card__title {
+  font-size: 1.3rem;
+  margin: 0 0 12px;
+  color: var(--brand-purple);
+}
+
+.card__body {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.card__spacer {
+  flex: 1;
+}
+
+.btn-primary {
+  display: inline-flex;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: var(--brand-purple);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card__link {
+  font-weight: 600;
+  text-decoration: underline;
+  color: var(--brand-purple);
+}
+
+/* Responsive layout rules */
+
+@media (min-width: 768px) {
+  .next-steps__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-
-  /* Medium (tablet): 2 columns; filters over two rows */
-  @media (min-width:768px) and (max-width:1023px){
-    .wr-cards{ grid-template-columns: repeat(2, 1fr); }
-    .wr-features{ grid-template-columns: repeat(2,1fr); }
-    .wr-filters{ justify-content:center; gap:12px; }
+  .card:first-child {
+    grid-column: span 2;
   }
+}
 
-  /* Small / Mobile: single column; icons instead of illustrations */
-  @media (max-width:767px){
-    .wr-container{ padding:16px; max-width:420px; }
-    .wr-hero h1{ font-size:28px; }
-    .wr-features{ display:none; } /* hide large illustrations on mobile - we will list options instead */
-    .wr-filters{ flex-direction:column; gap:12px; align-items:stretch; }
-    .wr-filter-btn{ justify-content:flex-start; width:100%; padding:14px; border-radius:12px; background: #efe6f7; color:var(--purple); }
-    .wr-filter-btn.active{ border-radius:12px; }
-    .wr-cards{ grid-template-columns: 1fr; }
-    .wr-card{ align-items:flex-start; }
-    .wr-card .art{ width:60px; height:60px; flex:0 0 60px; border-radius:10px; }
-    .mobile-icon{ display:inline-block; }
-    .wr-illustration{ display:none; } /* hide large illustrations */
+@media (min-width: 1200px) {
+  .next-steps__grid {
+    grid-template-columns: repeat(3, 1fr);
   }
-
-  /* utility */
-  .visually-hidden{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+  .card:first-child {
+    grid-column: span 1;
+  }
+}
 </style>
 </head>
+
 <body>
-  <main class="wr-container" id="page">
-    <header class="wr-hero" role="banner">
-      <h1>Choose the best credit card for you</h1>
-      <p>The best card is the one that best suits your needs. So, why do you want it?</p>
-    </header>
 
-    <!-- desktop / tablet features (illustrations) -->
-    <section class="wr-features" aria-hidden="false">
-      <article class="wr-feature">
-        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f2e9f7"/><stop offset="1" stop-color="#efe4f8"/></linearGradient></defs>
-          <rect rx="60" width="120" height="120" fill="url(#g1)"/>
-          <g transform="translate(18,30)" fill="#6d2a9b">
-            <rect x="4" y="30" width="70" height="34" rx="6" fill="#6d2a9b" />
-            <rect x="18" y="6" width="44" height="24" rx="4" fill="#fff" />
-          </g>
-        </svg>
-        <h3>0% on purchases</h3>
-        <p>Big purchase? Spread the cost with a 0% introductory offer.</p>
-      </article>
+<section class="next-steps">
+  <div class="next-steps__label">Next steps</div>
 
-      <article class="wr-feature">
-        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect rx="60" width="120" height="120" fill="#efe4f8"/>
-          <g transform="translate(22,26)" fill="#6d2a9b">
-            <rect x="8" y="8" width="54" height="36" rx="6" fill="#6d2a9b"/>
-            <path d="M0 64c20 0 40-6 56-20" stroke="#6d2a9b" stroke-width="2" fill="none"/>
-          </g>
-        </svg>
-        <h3>0% on balance transfers</h3>
-        <p>Moving debt to 0% interest could save you money.</p>
-      </article>
+  <div class="next-steps__grid">
 
-      <article class="wr-feature">
-        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect rx="60" width="120" height="120" fill="#efeaf8"/>
-          <g transform="translate(22,26)" fill="#6d2a9b">
-            <rect x="6" y="12" width="52" height="36" rx="6" fill="#6d2a9b"/>
-            <text x="10" y="36" fill="#fff" font-size="10">£££</text>
-          </g>
-        </svg>
-        <h3>Everyday spending</h3>
-        <p>Want an everyday card? It could help build your credit history.</p>
-      </article>
+    <article class="card card--primary">
+      <div class="card__icon">🏠</div>
+      <h3 class="card__title">Get a personalised indication of how much you could borrow</h3>
+      <p class="card__body">An agreement in principle …</p>
+      <div class="card__spacer"></div>
+      <a href="#" class="btn-primary">Start an Agreement in Principle</a>
+    </article>
 
-      <article class="wr-feature">
-        <svg class="wr-illustration" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect rx="60" width="120" height="120" fill="#f5ecf8"/>
-          <g transform="translate(24,28)" fill="#6d2a9b">
-            <rect x="6" y="18" width="48" height="34" rx="6" fill="#6d2a9b"/>
-            <circle cx="38" cy="6" r="6" fill="#6d2a9b"/>
-          </g>
-        </svg>
-        <h3>Rewards and travel</h3>
-        <p>Want to earn rewards or save money when you travel? Try these.</p>
-      </article>
-    </section>
+    <article class="card card--secondary-a">
+      <div class="card__icon">🔄</div>
+      <h3 class="card__title">See the mortgage rates</h3>
+      <p class="card__body">If you're still researching …</p>
+      <div class="card__spacer"></div>
+      <a href="#" class="card__link">See the mortgage rates</a>
+    </article>
 
-    <!-- Filters -->
-    <section class="wr-filters-panel" aria-labelledby="filters-heading">
-      <h2 id="filters-heading" class="wr-filters-title">What cards do you want to see?</h2>
+    <article class="card card--secondary-b">
+      <div class="card__icon">📄</div>
+      <h3 class="card__title">Do some research</h3>
+      <p class="card__body">Mortgages can be complicated …</p>
+      <div class="card__spacer"></div>
+      <a href="#" class="card__link">See our mortgage guide</a>
+    </article>
 
-      <div class="wr-filters" role="tablist" aria-label="Filter credit cards">
-        <button id="filter-all" class="wr-filter-btn" role="tab" aria-pressed="true" data-filter="all">
-          <span class="wr-filter-icon" aria-hidden="true">
-            <!-- eye icon -->
-            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 5C7 5 2.73 8.11 1 12c1.73 3.89 6 7 11 7s9.27-3.11 11-7c-1.73-3.89-6-7-11-7zm0 11a4 4 0 110-8 4 4 0 010 8z"></path></svg>
-          </span>
-          See all cards
-        </button>
+  </div>
+</section>
 
-        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="0-interest">
-          <span class="wr-filter-icon" aria-hidden="true">
-            <!-- percent/money icon -->
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M10 3l11 11-1.5 1.5L8.5 4.5 10 3zm-7 9a2 2 0 100 4 2 2 0 000-4zm14 6a2 2 0 100 4 2 2 0 000-4z"></path></svg>
-          </span>
-          0% interest
-        </button>
-
-        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="everyday">
-          <span class="wr-filter-icon" aria-hidden="true">
-            <!-- wallet icon -->
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21 7H3v10h18V7zm-2 6h-6v-2h6v2z"/></svg>
-          </span>
-          Everyday spending
-        </button>
-
-        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="rewards">
-          <span class="wr-filter-icon" aria-hidden="true">
-            <!-- gift icon -->
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 7l2-2h4v6H6V5h4l2 2zM4 13v6h16v-6H4z"></path></svg>
-          </span>
-          Rewards
-        </button>
-
-        <button class="wr-filter-btn" role="tab" aria-pressed="false" data-filter="travel">
-          <span class="wr-filter-icon" aria-hidden="true">
-            <!-- plane icon -->
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21 16v-2l-8-5V3.5c0-.8-.7-1.5-1.5-1.5S10 2.7 10 3.5V9L2 14v2l8-1v4l-2 .5V22l4-1 4 1v-2.5L13 19v-4l8 1z"/></svg>
-          </span>
-          Travel
-        </button>
-      </div>
-
-      <div class="wr-count" id="wr-count" aria-live="polite">Showing 8 of 8 credit cards</div>
-    </section>
-
-    <!-- Cards results -->
-    <section id="results" class="wr-cards" aria-live="polite" aria-label="Credit card results">
-      <!-- Example dataset: each card has categories in data-category attribute -->
-      <!-- We'll include 8 cards; some overlap categories -->
-      <article class="wr-card" data-categories="0-interest,everyday">
-        <div class="art" aria-hidden="true">
-          <!-- Big illustration for desktop -->
-          <svg class="wr-illustration" viewBox="0 0 100 100" width="84" height="84"><rect rx="12" width="100" height="100" fill="#efe4f8"/><rect x="14" y="26" width="72" height="48" rx="8" fill="#6d2a9b"/></svg>
-          <!-- compact icon for mobile -->
-          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M2 7h20v10H2z"/></svg>
-        </div>
-        <div>
-          <h4>Everyday Plus — Classic</h4>
-          <p>Low rate, no frills — great for everyday use. (Categories: Everyday, 0% interest)</p>
-        </div>
-      </article>
-
-      <article class="wr-card" data-categories="rewards,travel">
-        <div class="art" aria-hidden="true">
-          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f4ecfa"/><circle cx="50" cy="44" r="20" fill="#6d2a9b"/></svg>
-          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L2 7l10 5 10-5z"/></svg>
-        </div>
-        <div>
-          <h4>Rewards Travel Elite</h4>
-          <p>Higher rewards on travel and dining. (Categories: Rewards, Travel)</p>
-        </div>
-      </article>
-
-      <article class="wr-card" data-categories="0-interest">
-        <div class="art" aria-hidden="true">
-          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#efeaf8"/><path d="M20 26h60v48H20z" fill="#6d2a9b"/></svg>
-          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h18v6H3z"/></svg>
-        </div>
-        <div>
-          <h4>0% Purchase — Intro Offer</h4>
-          <p>0% for 18 months on purchases. (Category: 0% interest)</p>
-        </div>
-      </article>
-
-      <article class="wr-card" data-categories="everyday">
-        <div class="art" aria-hidden="true">
-          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f5ecf8"/><rect x="22" y="30" width="56" height="40" rx="6" fill="#6d2a9b"/></svg>
-          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M2 12h20v2H2z"/></svg>
-        </div>
-        <div>
-          <h4>Everyday Cashback</h4>
-          <p>Cashback on groceries and utilities. (Category: Everyday)</p>
-        </div>
-      </article>
-
-      <article class="wr-card" data-categories="rewards">
-        <div class="art" aria-hidden="true">
-          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f2e9f7"/><path d="M18 34h64v40H18z" fill="#6d2a9b"/></svg>
-          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
-        </div>
-        <div>
-          <h4>Rewards Everyday</h4>
-          <p>Good everyday rewards and partner offers. (Category: Rewards)</p>
-        </div>
-      </article>
-
-      <article class="wr-card" data-categories="travel,0-interest">
-        <div class="art" aria-hidden="true">
-          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#efe6f8"/><path d="M12 40h76v28H12z" fill="#6d2a9b"/></svg>
-          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 16V8l-9 4z"/></svg>
-        </div>
-        <div>
-          <h4>Travel Saver 0%</h4>
-          <p>Travel benefits and 0% on transfers. (Categories: Travel, 0% interest)</p>
-        </div>
-      </article>
-
-      <article class="wr-card" data-categories="everyday,rewards">
-        <div class="art" aria-hidden="true">
-          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#f7eefb"/><rect x="28" y="30" width="44" height="32" rx="6" fill="#6d2a9b"/></svg>
-          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h16v16H4z"/></svg>
-        </div>
-        <div>
-          <h4>Daily Rewards Card</h4>
-          <p>Small rewards for daily purchases. (Categories: Everyday, Rewards)</p>
-        </div>
-      </article>
-
-      <article class="wr-card" data-categories="travel">
-        <div class="art" aria-hidden="true">
-          <svg class="wr-illustration" viewBox="0 0 100 100"><rect rx="12" width="100" height="100" fill="#efe3f8"/><path d="M22 32h56v36H22z" fill="#6d2a9b"/></svg>
-          <svg class="mobile-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M2 12l20-8v16z"/></svg>
-        </div>
-        <div>
-          <h4>Global Traveller</h4>
-          <p>Premium travel perks and lounge passes. (Category: Travel)</p>
-        </div>
-      </article>
-    </section>
-  </main>
-
-<script>
-(function(){
-  const totalCards = document.querySelectorAll('.wr-card').length;
-  const countEl = document.getElementById('wr-count');
-  const results = document.getElementById('results');
-  const filterButtons = Array.from(document.querySelectorAll('.wr-filter-btn'));
-  let activeFilter = 'all';
-
-  // initialize - set All active
-  function setActiveButtonByFilter(f) {
-    filterButtons.forEach(btn => {
-      const isActive = (btn.dataset.filter === f);
-      btn.classList.toggle('active', isActive);
-      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    });
-  }
-
-  setActiveButtonByFilter('all');
-  countEl.textContent = `Showing ${totalCards} of ${totalCards} credit cards`;
-
-  function showFiltered(filter) {
-    const cards = Array.from(document.querySelectorAll('.wr-card'));
-    if (filter === 'all') {
-      cards.forEach(c => c.style.display = '');
-      countEl.textContent = `Showing ${totalCards} of ${totalCards} credit cards`;
-      activeFilter = 'all';
-      setActiveButtonByFilter('all');
-      return;
-    }
-
-    const matching = cards.filter(c => {
-      const cats = c.dataset.categories.split(',');
-      return cats.includes(filter);
-    });
-
-    // show/hide
-    cards.forEach(c => c.style.display = 'none');
-    matching.forEach(c => c.style.display = '');
-
-    countEl.textContent = `Showing ${matching.length} of ${totalCards} credit cards`;
-    activeFilter = filter;
-    setActiveButtonByFilter(filter);
-  }
-
-  // click handling
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const filter = btn.dataset.filter;
-      // toggle behavior: if clicked same as active -> reset to all
-      if (filter === activeFilter || (filter === 'all' && activeFilter === 'all')) {
-        // if clicked All while All active -> nothing (keep)
-        if (filter === 'all' && activeFilter === 'all') {
-          showFiltered('all');
-          return;
-        }
-        // otherwise, unselect -> show all
-        showFiltered('all');
-      } else {
-        // select the clicked filter
-        showFiltered(filter);
-      }
-
-      // accessibility: ensure keyboard focus remains visible
-      btn.focus();
-
-      // mobile behaviour: when a filter (not all) is selected, scroll to results
-      if (window.matchMedia('(max-width:767px)').matches) {
-        // only scroll when a specific filter selected (not 'all')
-        if (activeFilter !== 'all') {
-          // animate scroll
-          results.scrollIntoView({behavior:'smooth', block:'start'});
-        }
-      }
-    });
-  });
-
-  // Keyboard support: allow Enter/Space on focused buttons (native already handles button)
-  // Add small console debugging hook if dev needs to trace
-  window.__wr_debug_filters = {
-    getActive: () => activeFilter,
-    setFilter: (f) => showFiltered(f)
-  };
-
-})();
-</script>
 </body>
 </html>
